@@ -315,6 +315,31 @@ body {
 .alert-red { background: #FEF2F2; border-color: #EF4444; color: #991B1B; }
 .alert-blue { background: #EFF6FF; border-color: #3B82F6; color: #1E40AF; }
 
+
+/* Structured food display */
+.food-item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted #E5E7EB; font-size: 14px; }
+.food-item:last-child { border-bottom: none; }
+.food-name { color: var(--text-main); font-weight: 500; }
+.food-measure { color: var(--text-sec); font-size: 13px; white-space: nowrap; margin-left: 8px; }
+.meal-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+
+/* Week calendar selector */
+.week-cal { 
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; 
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 12px;
+}
+.week-cal::-webkit-scrollbar { display: none; }
+.week-cal-btn {
+  flex: 0 0 auto; padding: 6px 10px; border-radius: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  font-size: 11px; font-weight: 600; color: var(--text-sec);
+  cursor: pointer; transition: all 0.2s; text-align: center; min-width: 60px;
+}
+.week-cal-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
+.week-cal-btn span { display: block; font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.week-cal-btn.active span { color: rgba(255,255,255,0.7); }
+.week-info { font-size: 12px; color: var(--text-sec); margin-bottom: 12px; padding: 8px 12px; background: var(--bg-app); border-radius: 8px; }
+
 </style>
 </head>
 <body>
@@ -326,9 +351,9 @@ body {
 
 <div id="tab-resumo" class="tab-content active">
   <div class="stats">
-    <div class="stat"><div class="stat-val">1546</div><div class="stat-label">kcal/dia</div></div>
+    <div class="stat"><div class="stat-val">1544</div><div class="stat-label">kcal/dia</div></div>
     <div class="stat"><div class="stat-val">150g</div><div class="stat-label">prot/dia</div></div>
-    <div class="stat"><div class="stat-val">754</div><div class="stat-label">déficit</div></div>
+    <div class="stat"><div class="stat-val">756</div><div class="stat-label">déficit</div></div>
     <div class="stat"><div class="stat-val">0.7kg</div><div class="stat-label">perda/sem</div></div>
   </div>
 
@@ -490,45 +515,37 @@ body {
     
     <div class="list-cat">LATICÍNIOS LÍQUIDOS</div>
     <div class="list-item"><strong>Leite Desnatado</strong><span>8 Litros (Uso apenas FDS)</span></div>
-    <div class="list-item"><strong>Iogurte Grego Natural</strong><span>40 potes × 170g cada (10/semana — usar ½ pote/100g por vez)</span></div>
-    <div class="list-item"><strong>Requeijão Light</strong><span>4 copos × 200g (1 col. sopa/15g por uso)</span></div>
-    <div class="list-item"><strong>Creme de Leite Light</strong><span>2 caixinhas × 200g (2 col. sopa/30g por uso)</span></div>
-    <div class="list-item"><strong>Parmesão Ralado</strong><span>100g (1 col. sopa/15g por uso)</span></div>
-    <div class="list-item"><strong>Manteiga</strong><span>1 tablete 200g (uso mínimo)</span></div>
+    <div class="list-item"><strong>Iogurte Grego Natural</strong><span>40 potes × 170g (10/sem · usar ½ pote = 100g por vez)</span></div>
+    <div class="list-item"><strong>Requeijão Light</strong><span>4 copos × 200g (1 col. sopa = 15g por uso)</span></div>
+    <div class="list-item"><strong>Creme de Leite Light</strong><span>2 cx × 200g (2 col. sopa = 30g por uso)</span></div>
+    <div class="list-item"><strong>Parmesão Ralado</strong><span>100g (1 col. sopa = 15g por uso)</span></div>
 
-    <div class="list-cat">LEGUMINOSAS</div>
-    <div class="list-item"><strong>Feijão Cru (Carioca/Preto)</strong><span>900g cru → ~2,3kg cozido (1 concha/80g = 61 kcal)</span></div>
-    <div class="list-item"><strong>Lentilha Seca</strong><span>400g cru → ~1kg cozida (1 concha/80g = 74 kcal)</span></div>
+    <div class="list-cat">LEGUMINOSAS & FARINHAS</div>
+    <div class="list-item"><strong>Feijão Cru</strong><span>900g (1 concha = 80g cozido = 61 kcal)</span></div>
+    <div class="list-item"><strong>Lentilha Seca</strong><span>400g (1 concha = 80g cozida = 74 kcal)</span></div>
+    <div class="list-item"><strong>Farinha de Arroz</strong><span>300g (2 col. sopa = 20g por uso)</span></div>
+    <div class="list-item"><strong>Farofa Pronta</strong><span>200g (2 col. sopa = 20g = 81 kcal)</span></div>
 
-    <div class="list-cat">FARINHAS & EMPANADOS</div>
-    <div class="list-item"><strong>Farinha de Arroz</strong><span>300g (2 col. sopa/20g por panqueca ou empanado)</span></div>
-    <div class="list-item"><strong>Farofa Pronta</strong><span>200g (2 col. sopa/20g por uso = 81 kcal)</span></div>
+    <div class="list-cat">🍌 FRUTAS (Frescas semanalmente)</div>
+    <div class="list-item"><strong>Bananas</strong><span>32 un (8/sem · 1 un = 75g = 74 kcal)</span></div>
+    <div class="list-item"><strong>Maçãs</strong><span>10 un (1 un = 130g = 73 kcal)</span></div>
+    <div class="list-item"><strong>Peras</strong><span>12 un (1 un = 130g = 69 kcal)</span></div>
+    <div class="list-item"><strong>Laranjas</strong><span>8 un (1 un = 150g = 56 kcal)</span></div>
+    <div class="list-item"><strong>Morangos</strong><span>4 bdj × 250g (8 un = 100g = 30 kcal)</span></div>
 
-    <div class="list-cat">FRUTAS (Comprar frescas semanalmente)</div>
-    <div class="list-item"><strong>Bananas</strong><span>32 un (8/sem · 1 un média = 75g s/ casca = 74 kcal)</span></div>
-    <div class="list-item"><strong>Maçãs</strong><span>10 un (2-3/sem · 1 un média = 130g = 73 kcal)</span></div>
-    <div class="list-item"><strong>Peras</strong><span>12 un (3/sem · 1 un média = 130g = 69 kcal)</span></div>
-    <div class="list-item"><strong>Laranjas</strong><span>8 un (2/sem · 1 un = 150g s/ casca = 56 kcal)</span></div>
-    <div class="list-item"><strong>Morangos</strong><span>4 bandejas × 250g (1/sem · 100g = 8 un = 30 kcal)</span></div>
-    <div class="list-item"><strong>Limões</strong><span>8 un (tempero e sucos)</span></div>
-    <div class="list-item"><strong>Abacate</strong><span>1 un pequeno (Sem D · 2 col. sopa/50g = 48 kcal)</span></div>
-
-    <div class="list-cat">TEMPEROS & MOLHOS</div>
-    <div class="list-item"><strong>Amendoim Torrado s/ Sal</strong><span>250g (1 col. sopa/10g por uso = 61 kcal)</span></div>
-    <div class="list-item"><strong>Molho de Tomate</strong><span>1,2L total (300ml/sem · 2 col. sopa/50ml por marmita = 18 kcal)</span></div>
-    <div class="list-item"><strong>Shoyu</strong><span>1 frasco 150ml (1 col. sopa/15ml por uso = 9 kcal)</span></div>
-    <div class="list-item"><strong>Chimichurri</strong><span>1 frasco 100ml (Sem D)</span></div>
-    <div class="list-item"><strong>Mostarda</strong><span>1 frasco 200g (1 col. sopa/15g = 15 kcal)</span></div>
-    <div class="list-item"><strong>Molho Tártaro</strong><span>1 frasco 200g (2 col. sopa/30g = 65 kcal — Sem B)</span></div>
-    <div class="list-item"><strong>Canela em Pó</strong><span>1 pote 30g</span></div>
-    <div class="list-item"><strong>Alho · Cebola · Sal · Ervas</strong><span>Alho (2 cabeças) · Cebola (6 un) · A gosto</span></div>
+    <div class="list-cat">🥜 TEMPEROS & CONDIMENTOS</div>
+    <div class="list-item"><strong>Amendoim Torrado s/ Sal</strong><span>250g (1 col. sopa = 10g = 61 kcal)</span></div>
+    <div class="list-item"><strong>Molho de Tomate</strong><span>1,2L (2 col. sopa = 50ml = 18 kcal)</span></div>
+    <div class="list-item"><strong>Shoyu</strong><span>1 frasco 150ml (1 col. sopa = 15ml = 9 kcal)</span></div>
+    <div class="list-item"><strong>Mostarda</strong><span>1 frasco 200g</span></div>
+    <div class="list-item"><strong>Molho Tártaro</strong><span>1 frasco 200g (2 col. sopa = 30g = 65 kcal)</span></div>
 
     <div class="list-cat">💊 SUPLEMENTOS (Mensal)</div>
-    <div class="list-item"><strong>Whey 100% Pure Probiótica Morango</strong><span>1 pote 900g (1 scoop = 33g = 130 kcal/23g prot · ~27 doses)</span></div>
-    <div class="list-item"><strong>Multivitamínico Growth</strong><span>1 cx 30 comprimidos (1/dia com café)</span></div>
-    <div class="list-item"><strong>Ômega 3 Ultra Growth</strong><span>1 pote 75 cáps (2 cáps/dia no almoço = 37 dias)</span></div>
-    <div class="list-item"><strong>Vitamina D3 2000UI Body Nutry</strong><span>1 frasco (1/dia no almoço com gordura)</span></div>
-    <div class="list-item"><strong>Magnésio Quelato Ecomev</strong><span>1 cx (2 cáps/dia = 500mg à noite)</span></div>
+    <div class="list-item"><strong>Whey 100% Pure Probiótica</strong><span>1 pote 900g (1 scoop = 33g = 130 kcal · ~27 doses)</span></div>
+    <div class="list-item"><strong>Multivitamínico Growth</strong><span>1 cx 30 cp (1/dia)</span></div>
+    <div class="list-item"><strong>Ômega 3 Ultra Growth</strong><span>1 pote 75 cáps (2/dia = 37 dias)</span></div>
+    <div class="list-item"><strong>Vitamina D3 2000UI</strong><span>1 frasco (1/dia no almoço)</span></div>
+    <div class="list-item"><strong>Magnésio Quelato Ecomev</strong><span>1 cx (2 cáps/dia = 500mg)</span></div>
   </div>
 </div>
 
@@ -624,7 +641,7 @@ const WEEKS = {
   "A": {
     "info": "Semanas 1, 5, 9, 13, 17, 21, 25...",
     "prep": [
-      { item: "Arroz Integral (480g)", modo: "Cozinhar com alho e sal", dest: "4 col. sopa (100g) Seg/Ter/Qua/Sex · 3 col. sopa (80g) Qui" },
+      { item: "Arroz Integral (480g)", modo: "Cozinhar com alho e sal", dest: "4 col. sopa (100g) cada: Seg/Ter/Qua/Sex · 3 col. (80g) Qui" },
       { item: "Macarrão Integral (160g)", modo: "Cozinhar al dente", dest: "1 pegador (80g) Jan Seg · 1 pegador (80g) Jan Qui" },
       { item: "Batata-doce (200g)", modo: "Assar ou cozinhar", dest: "1 un. peq. (100g) Jan Ter · 1 un. peq. (100g) Jan Sex" },
       { item: "Lentilha (80g)", modo: "Cozida simples", dest: "1 pegador (80g) Alm Qui" },
@@ -637,7 +654,7 @@ const WEEKS = {
     "shop": [
       { cat: "PROTEÍNAS", text: "Frango (650g) · Carne moída (250g) · Tilápia (300g) · Carne Panela (150g) · Maminha (150g) · Frango Assado Dom (150g) · Ovos (24 un) · Peito Peru (40g) · Presunto (40g)" },
       { cat: "CARBOIDRATOS", text: "Arroz int. (500g) · Arroz branco (120g) · Macarrão int. (160g) · Batata-doce (200g) · Pão integral (1 pct/500g/~16 fatias) · Purê Batata (80g) · Tapioca hidratada (135g/9 col. sopa) · Lentilha (80g) · Feijão (80g) · Tortilha integral (1 un/40g)" },
-      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 potes × 170g) · Leite desnatado (2L/FDS) · Muçarela (120g) · Queijo minas (40g) · Requeijão light (30g/2 col. sopa) · Creme leite light (30g/2 col. sopa)" },
+      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 potes × 170g) · Leite desnatado (2L / FDS) · Muçarela (120g) · Queijo minas (40g) · Requeijão light (30g/2 col. sopa) · Creme leite light (30g/2 col. sopa)" },
       { cat: "FRUTAS", text: "Banana (8 un) · Maçã (2 un) · Pera (3 un) · Laranja (2 un) · Morango (250g)" },
       { cat: "OUTROS", text: "Amendoim (60g) · Farofa pronta (20g/2 col. sopa) · Whey Protein" }
     ],
@@ -646,38 +663,38 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos mexidos (100g) + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + 1 banana peq. (60g s/ casca)",
+          "food": "2 ovos mexidos (100g total) + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + 1 banana peq. (60g s/ casca)",
           "kcal": 347,
           "prot": 20,
-          "sub1": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + banana (60g) ≈339 kcal",
+          "sub1": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + banana (60g) ≈339 kcal",
           "sub2": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g queijo) + morango (60g) ≈298 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + 50g morango (4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "1 maçã média (130g) + 10g (1 col. sopa) amendoim ≈134 kcal"
+          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim ≈134 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço",
-          "food": "MARMITA: 150g (1 filé) frango grelhado + 100g (4 col. sopa) arroz integral + 50ml (2 col. sopa) molho tomate",
+          "food": "MARMITA: 150g (1 filé médio) frango grelhado + 100g (4 col. sopa) arroz integral + 50ml (2 col. sopa) molho tomate",
           "kcal": 381,
           "prot": 51,
-          "sub1": "150g tilápia + 100g (4 col. sopa) arroz + 1 ovo ≈389 kcal",
-          "sub2": "130g carne moída + 80g (1 pegador) macarrão int. + 50ml molho ≈397 kcal"
+          "sub1": "150g (1 filé) tilápia + 100g (4 col. sopa) arroz + 1 ovo ≈389 kcal",
+          "sub2": "130g (1 concha cheia) carne moída + 80g (1 pegador) macarrão int. + 50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
-          "sub1": "100g (½ pote) iogurte grego + 50g morango (4 un.) ≈112 kcal",
-          "sub2": "1 fatia pão + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru ≈118 kcal"
+          "sub1": "100g (½ pote) iogurte grego + 50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru ≈118 kcal"
         },
         {
           "time": "18:00",
@@ -686,15 +703,15 @@ const WEEKS = {
           "kcal": 387,
           "prot": 36,
           "sub1": "Wrap (tortilha 40g + 100g (½ filé) frango + 20g (1 fatia) queijo + molho) ≈336 kcal",
-          "sub2": "Omelete (3 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 pão ≈352 kcal"
+          "sub2": "Omelete (3 ovos (150g total) + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
           "name": "Ceia+Whey",
-          "food": "1 scoop (33g) Whey Probiótica + 200ml água",
+          "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal",
+          "sub1": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal",
           "sub2": "Whey + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
@@ -702,20 +719,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Omelete (2 ovos + 20g (1 fatia) queijo minas + 20g (2 fatias) presunto) + 1 fatia (30g) pão int.",
+          "food": "Omelete (2 ovos + 20g (1 fatia) queijo minas + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral",
           "kcal": 307,
           "prot": 22,
-          "sub1": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g queijo) + morango (60g/5 un.) ≈298 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + laranja peq. (100g) ≈277 kcal"
+          "sub1": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g queijo) + 60g (5 un.) morango ≈298 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + laranja peq. (100g) ≈277 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim",
+          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 135,
           "prot": 2,
           "sub1": "100g (½ pote) iogurte grego + ½ banana (50g) ≈126 kcal",
-          "sub2": "1 pera média (130g) + 10g (1 col. sopa) amendoim ≈130 kcal"
+          "sub2": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim ≈130 kcal"
         },
         {
           "time": "12:00",
@@ -729,11 +746,11 @@ const WEEKS = {
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "100g (½ pote) iogurte grego + 50g morango (4 un.) ≈112 kcal",
-          "sub2": "1 maçã média (130g) + 10g (1 col. sopa) amendoim ≈134 kcal"
+          "sub1": "100g (½ pote) iogurte grego + 50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim ≈134 kcal"
         },
         {
           "time": "18:00",
@@ -741,7 +758,7 @@ const WEEKS = {
           "food": "MARMITA: 120g (½ peito desfiado) frango + 100g (1 un. peq.) batata-doce + 50ml (2 col. sopa) molho tomate",
           "kcal": 275,
           "prot": 41,
-          "sub1": "120g tilápia + 80g (1 pegador) macarrão int. + 50ml molho ≈308 kcal",
+          "sub1": "120g (1 filé peq.) tilápia + 80g (1 pegador) macarrão int. + 50ml molho ≈308 kcal",
           "sub2": "Escondidinho (100g purê + 120g frango + 20g queijo) ≈309 kcal"
         },
         {
@@ -750,7 +767,7 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água + ½ banana (50g)",
           "kcal": 179,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
           "sub2": "Whey + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
@@ -758,20 +775,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 1 banana peq. (60g s/ casca)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 1 banana peq. (60g s/ casca)",
           "kcal": 299,
           "prot": 12,
-          "sub1": "2 ovos + 20g (1 fatia) muçarela + 1 pão (30g) + morango (50g/4 un.) ≈303 kcal",
+          "sub1": "2 ovos + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + 50g (4 un.) morango ≈303 kcal",
           "sub2": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g queijo) + laranja peq. (100g) ≈317 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "2 ovos cozidos (100g)",
+          "food": "2 ovos cozidos (100g total)",
           "kcal": 146,
           "prot": 13,
-          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "100g (½ pote) iogurte grego + morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "100g (½ pote) iogurte grego + 50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "12:00",
@@ -780,53 +797,53 @@ const WEEKS = {
           "kcal": 415,
           "prot": 50,
           "sub1": "150g (3 col. sopa) frango desfiado + 80g arroz + 80g (1 concha rasa) feijão ≈422 kcal",
-          "sub2": "130g carne moída + 80g macarrão + 50ml molho ≈397 kcal"
+          "sub2": "130g (1 concha cheia) carne moída + 80g macarrão + 50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 maçã média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 134,
           "prot": 1,
-          "sub1": "1 pera média (130g) + 10g (1 col. sopa) amendoim ≈130 kcal",
+          "sub1": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim ≈130 kcal",
           "sub2": "100g (½ pote) iogurte grego + ½ maçã (80g) ≈142 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Wrap: tortilha int. (40g) + 100g (½ filé) frango + 20g (1 fatia) muçarela + 50ml molho",
+          "food": "Wrap: 1 tortilha integral (40g) + 100g (½ filé) frango + 20g (1 fatia) muçarela + 50ml molho tomate",
           "kcal": 335,
           "prot": 41,
-          "sub1": "Omelete (3 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 pão ≈352 kcal",
-          "sub2": "120g tilápia + 80g macarrão + 50ml molho ≈308 kcal"
+          "sub1": "Omelete (3 ovos (150g total) + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral ≈352 kcal",
+          "sub2": "120g (1 filé peq.) tilápia + 80g macarrão + 50ml molho ≈308 kcal"
         },
         {
           "time": "20:00",
           "name": "Ceia+Whey",
-          "food": "1 scoop (33g) Whey + 200ml água + 50g morango (4 un.)",
+          "food": "1 scoop (33g) Whey + 200ml água + 50g (4 un.) morango",
           "kcal": 145,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal"
         }
       ],
       "Quinta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos cozidos (100g) + 1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 1 laranja peq. (100g s/ casca)",
+          "food": "2 ovos cozidos (100g total) + 1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 1 laranja peq. (100g s/ casca)",
           "kcal": 280,
           "prot": 19,
-          "sub1": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + banana peq. (60g) ≈339 kcal",
-          "sub2": "Omelete (2 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + banana peq. (60g) ≈339 kcal",
+          "sub2": "Omelete (2 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral ≈307 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "80g (½ pote) iogurte grego + ½ banana (50g)",
+          "food": "80g (½ pote raso) iogurte grego + 50g banana",
           "kcal": 126,
           "prot": 8,
-          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim ≈135 kcal",
+          "sub1": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim ≈135 kcal",
           "sub2": "1 maçã média (130g) ≈73 kcal"
         },
         {
@@ -835,17 +852,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) frango c/ mostarda + 80g (3 col. sopa) arroz int. + 80g (1 concha rasa) lentilha",
           "kcal": 413,
           "prot": 54,
-          "sub1": "150g tilápia + 80g macarrão + 1 ovo ≈371 kcal",
+          "sub1": "150g (1 filé) tilápia + 80g macarrão + 1 ovo ≈371 kcal",
           "sub2": "150g (1 porção) carne de panela + 100g (4 col. sopa) arroz + 50ml molho ≈415 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "1 pera média (130g) + 10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "100g (½ pote) iogurte grego + morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "100g (½ pote) iogurte grego + 50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "18:00",
@@ -862,7 +879,7 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal",
+          "sub1": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal",
           "sub2": "Whey + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
@@ -870,20 +887,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) + morango (60g/5 un.)",
+          "food": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) + 60g (5 un.) morango",
           "kcal": 298,
           "prot": 17,
-          "sub1": "2 ovos + 20g (1 fatia) muçarela + 1 pão + banana peq. (60g) ≈347 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + laranja ≈277 kcal"
+          "sub1": "2 ovos + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + banana peq. (60g) ≈347 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo + laranja ≈277 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
           "sub1": "100g (½ pote) iogurte grego + ½ banana (50g) ≈126 kcal",
-          "sub2": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim ≈135 kcal"
+          "sub2": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim ≈135 kcal"
         },
         {
           "time": "12:00",
@@ -892,25 +909,25 @@ const WEEKS = {
           "kcal": 427,
           "prot": 41,
           "sub1": "150g (3 col. sopa) frango desfiado + 100g (4 col. sopa) arroz + 50ml molho ≈399 kcal",
-          "sub2": "150g tilápia + 80g arroz + 80g (1 concha rasa) feijão ≈374 kcal"
+          "sub2": "150g (1 filé) tilápia + 80g arroz + 80g (1 concha rasa) feijão ≈374 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 maçã média (130g) + 10g (1 col. sopa) amendoim ≈134 kcal",
-          "sub2": "1 fatia pão + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru ≈118 kcal"
+          "sub1": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim ≈134 kcal",
+          "sub2": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru ≈118 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "MARMITA: 120g (½ peito) frango empanado (20g (2 col.) far. arroz) + 100g (1 un. peq.) batata-doce + 50ml molho",
+          "food": "MARMITA: 120g (½ peito) frango empanado (far. arroz (20g) + 100g (1 un. peq.) batata-doce + 50ml molho tomate",
           "kcal": 339,
           "prot": 41,
           "sub1": "120g (1 concha rasa) carne moída + 80g macarrão + 50ml molho ≈387 kcal",
-          "sub2": "Omelete (3 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto)+1 fatia (30g) pão ≈352 kcal"
+          "sub2": "Omelete (3 ovos (150g total) + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
@@ -918,24 +935,24 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Sábado": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + 200ml (1 copo) leite desnatado + banana peq. (60g)",
+          "food": "Tapioca 45g (3 col. sopa) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + 200ml (1 copo) leite desnatado + banana peq. (60g)",
           "kcal": 381,
           "prot": 14,
-          "sub1": "French toast (60g pão + 1 ovo (50g) + ½ banana (50g)) + 200ml (1 copo) leite ≈363 kcal",
-          "sub2": "2 ovos + pão + 200ml (1 copo) leite + laranja ≈363 kcal"
+          "sub1": "French toast (60g 2 fatias (60g) pão integral + 1 ovo (50g) + 50g banana) + 200ml leite ≈363 kcal",
+          "sub2": "2 ovos + 1 fatia (30g) pão integral + 200ml (1 copo) leite + laranja ≈363 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "Vitamina: 100g morango (8 un.) + 200ml (1 copo) leite + 1 scoop (33g) whey",
+          "food": "Vitamina: 100g (8 un.) morango + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 230,
           "prot": 27,
           "sub1": "Vitamina: banana média (75g) + 200ml (1 copo) leite + whey ≈274 kcal",
@@ -944,7 +961,7 @@ const WEEKS = {
         {
           "time": "12:00",
           "name": "Almoço Fixo",
-          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g)",
+          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g total)",
           "kcal": 361,
           "prot": 20,
           "sub1": "120g (5 col. sopa) arroz + 80g (1 concha rasa) lentilha + 2 ovos ≈374 kcal",
@@ -956,7 +973,7 @@ const WEEKS = {
           "food": "Crepioca lanche: 1 ovo (50g) + 30g (2 col. sopa) tapioca + 20g muçarela",
           "kcal": 207,
           "prot": 10,
-          "sub1": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz) ≈224 kcal",
+          "sub1": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g) ≈224 kcal",
           "sub2": "100g (½ pote) iogurte grego + banana peq. (60g) ≈156 kcal"
         },
         {
@@ -966,7 +983,7 @@ const WEEKS = {
           "kcal": 413,
           "prot": 48,
           "sub1": "120g (½ peito desfiado) frango + 80g macarrão + 20g queijo ≈355 kcal",
-          "sub2": "Hambúrguer (120g carne + pão 50g + 20g queijo) ≈444 kcal"
+          "sub2": "Hambúrguer (120g carne + 1 pão integral (50g) + 20g queijo) ≈444 kcal"
         },
         {
           "time": "20:00",
@@ -982,11 +999,11 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "French toast (60g pão int. + 1 ovo) + canela + ½ banana (50g) + 200ml (1 copo) leite",
+          "food": "French toast (60g pão integral + 1 ovo (50g)) + canela + 50g banana + 200ml (1 copo) leite desnatado",
           "kcal": 363,
           "prot": 17,
-          "sub1": "Tapioca (60g/4 col. sopa) + 20g (1 fatia) queijo + 20g (2 fatias) presunto + 200ml (1 copo) leite ≈374 kcal",
-          "sub2": "2 ovos + pão + 200ml (1 copo) leite + suco laranja ≈350 kcal"
+          "sub1": "Tapioca 60g (4 col. sopa) + 20g (1 fatia) queijo + 20g (2 fatias) presunto + 200ml leite ≈374 kcal",
+          "sub2": "2 ovos + 1 fatia (30g) pão integral + 200ml (1 copo) leite + suco laranja ≈350 kcal"
         },
         {
           "time": "09:30",
@@ -994,7 +1011,7 @@ const WEEKS = {
           "food": "Vitamina: banana média (75g) + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 274,
           "prot": 28,
-          "sub1": "Vitamina: morango (100g/8 un.) + 200ml (1 copo) leite + whey ≈230 kcal",
+          "sub1": "Vitamina: 100g (8 un.) morango + 200ml (1 copo) leite + whey ≈230 kcal",
           "sub2": "100g iogurte + whey + morango ≈242 kcal"
         },
         {
@@ -1003,13 +1020,13 @@ const WEEKS = {
           "food": "150g (1 filé) frango assado + 100g (4 col. sopa) arroz int. + 80g (2 col. sopa) purê batata",
           "kcal": 405,
           "prot": 52,
-          "sub1": "150g pernil + 100g (4 col. sopa) arroz + 20g (2 col. sopa) farofa ≈515 kcal",
-          "sub2": "150g maminha + 100g (4 col. sopa) arroz + 80g (2 pedaços) mandioca cozida ≈455 kcal"
+          "sub1": "150g (2 fatias grossas) pernil + 100g (4 col. sopa) arroz + 20g (2 col. sopa) farofa ≈515 kcal",
+          "sub2": "150g (1 bife médio) maminha + 100g (4 col. sopa) arroz + 80g (2 pedaços) mandioca cozida ≈455 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz)",
+          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g)",
           "kcal": 224,
           "prot": 8,
           "sub1": "Crepioca (1 ovo (50g) + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) ≈207 kcal",
@@ -1022,7 +1039,7 @@ const WEEKS = {
           "kcal": 280,
           "prot": 40,
           "sub1": "Canja: 120g frango + 80g arroz ≈290 kcal",
-          "sub2": "120g tilápia + 100g (1 un. peq.) batata-doce + 50ml molho ≈240 kcal"
+          "sub2": "120g (1 filé peq.) tilápia + 100g (1 un. peq.) batata-doce + 50ml molho ≈240 kcal"
         },
         {
           "time": "20:00",
@@ -1039,10 +1056,10 @@ const WEEKS = {
   "B": {
     "info": "Semanas 2, 6, 10, 14, 18, 22, 26, 30, 34, 38, 42",
     "prep": [
-      { item: "Arroz Integral (460g)", modo: "Cozinhar simples com alho", dest: "4 col. sopa (100g) Seg/Ter/Sex · 3 col. sopa (80g) Ter Jan/Qua" },
+      { item: "Arroz Integral (460g)", modo: "Cozinhar simples com alho", dest: "4 col. sopa (100g): Seg/Ter/Sex · 3 col. (80g): Ter Jan/Qua" },
       { item: "Macarrão Integral (80g)", modo: "Cozinhar al dente", dest: "1 pegador (80g) Alm Qui" },
       { item: "Purê Batata (200g)", modo: "Amassar com pouca manteiga", dest: "100g (Jan Seg); 100g (Jan Sex)" },
-      { item: "Purê Batata-Doce (80g)", modo: "Amassar", dest: "1 concha rasa (80g) Alm Qua" },
+      { item: "Purê Batata-Doce (80g)", modo: "Amassar", dest: "1 concha (80g) Alm Qua" },
       { item: "Frango (540g)", modo: "150g Shoyu; 120g Estrogonofe; 150g Mostarda; 120g Desfiado", dest: "Distribuir conforme cardápio" },
       { item: "Tilápia (300g)", modo: "150g Empanada no forno; 150g Grelhada", dest: "150g (Alm Ter); 150g (Alm Sex)" },
       { item: "Carne Moída (240g)", modo: "120g Refogada; 120g para Hambúrguer", dest: "120g (Jan Seg); 120g Hambúrguer cru (Jan Qui)" },
@@ -1051,29 +1068,29 @@ const WEEKS = {
     "shop": [
       { cat: "PROTEÍNAS", text: "Frango (540g) · Carne moída (240g) · Tilápia (300g) · Carne Panela (150g) · Frango Sáb/Dom (270g) · Ovos (24 un) · Peito Peru (40g) · Presunto (40g)" },
       { cat: "CARBOIDRATOS", text: "Arroz int. (460g) · Arroz branco (120g) · Macarrão int. (160g) · Batata-doce (80g) · Batata Inglesa (200g) · Mandioca (200g) · Pão integral (1 pct/500g) · Tapioca hidratada (135g/9 col. sopa) · Farinha arroz (100g)" },
-      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 un × 170g) · Leite desnatado (2L/FDS) · Muçarela (120g) · Queijo minas/coalho (40g) · Requeijão light (30g/2 col. sopa) · Creme leite light (30g/2 col. sopa) · Parmesão ralado (15g/1 col. sopa)" },
+      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 un × 170g) · Leite desnatado (2L / FDS) · Muçarela (120g) · Queijo minas/coalho (40g) · Requeijão light (30g/2 col. sopa) · Creme leite light (30g/2 col. sopa) · Parmesão ralado (15g/1 col. sopa)" },
       { cat: "FRUTAS", text: "Banana (8 un) · Maçã (2 un) · Pera (3 un) · Laranja (2 un) · Morango (250g)" },
-      { cat: "OUTROS", text: "Amendoim (60g) · Molho Tártaro (30g) · Shoyu · Whey Protein" }
+      { cat: "OUTROS", text: "Amendoim (60g) · Molho tártaro (30ml/2 col. sopa) · Shoyu · Whey Protein" }
     ],
     "days": {
       "Segunda": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo mexido + 20g (1 fatia) muçarela + morango (60g/5 un.)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo mexido + 20g (1 fatia) muçarela + 60g (5 un.) morango",
           "kcal": 321,
           "prot": 10,
-          "sub1": "2 ovos + 20g (1 fatia) muçarela + pão 30g + banana peq. (60g) ≈347 kcal",
+          "sub1": "2 ovos + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + banana peq. (60g) ≈347 kcal",
           "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo) + laranja peq. (100g) ≈317 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 maçã média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 134,
           "prot": 1,
-          "sub1": "100g (½ pote) iogurte grego + morango (50g/4 un.) ≈112 kcal",
-          "sub2": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim ≈135 kcal"
+          "sub1": "100g (½ pote) iogurte grego + 50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim ≈135 kcal"
         },
         {
           "time": "12:00",
@@ -1081,17 +1098,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) frango ao shoyu + 100g (4 col. sopa) arroz int. + 1 ovo cozido (50g)",
           "kcal": 445,
           "prot": 58,
-          "sub1": "150g tilápia + 100g (4 col. sopa) arroz + 50ml molho ≈381 kcal",
+          "sub1": "150g (1 filé) tilápia + 100g (4 col. sopa) arroz + 50ml molho ≈381 kcal",
           "sub2": "150g (3 col. sopa) frango desfiado + 80g arroz + 80g (1 concha rasa) lentilha ≈413 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
           "sub1": "100g (½ pote) iogurte grego + ½ banana (50g) ≈126 kcal",
-          "sub2": "1 fatia pão + 15g (1 col. sopa) requeijão + 20g peru ≈118 kcal"
+          "sub2": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g peru ≈118 kcal"
         },
         {
           "time": "18:00",
@@ -1099,8 +1116,8 @@ const WEEKS = {
           "food": "MARMITA: 120g (1 concha rasa) carne moída + 100g (3 col. sopa) purê batata + 20g (1 fatia) muçarela gratinada",
           "kcal": 362,
           "prot": 37,
-          "sub1": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈352 kcal",
-          "sub2": "Wrap (tortilha+100g (½ filé) frango+20g queijo) ≈336 kcal"
+          "sub1": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto) + 1 fatia (30g) pão integral ≈352 kcal",
+          "sub2": "Wrap (tortilha+100g frango+20g queijo) ≈336 kcal"
         },
         {
           "time": "20:00",
@@ -1108,7 +1125,7 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água + ½ banana (50g)",
           "kcal": 179,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
           "sub2": "Whey + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
@@ -1116,20 +1133,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos mexidos (100g) + 15g (1 col. sopa) requeijão + 1 fatia pão (30g) + banana peq. (60g)",
+          "food": "2 ovos mexidos (100g total) + 15g (1 col. sopa) requeijão light + 1 fatia (30g) pão integral + banana peq. (60g)",
           "kcal": 348,
           "prot": 17,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+morango (60g/5 un.) ≈321 kcal",
-          "sub2": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+60g (5 un.) morango ≈321 kcal",
+          "sub2": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "80g (½ pote) iogurte grego + ½ banana (50g)",
+          "food": "80g (½ pote raso) iogurte grego + 50g banana",
           "kcal": 126,
           "prot": 8,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "1 laranja (150g)+10g (1 col. sopa) amendoim ≈117 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "1 laranja (150g)+10g (1 col. sopa rasa) amendoim ≈117 kcal"
         },
         {
           "time": "12:00",
@@ -1137,17 +1154,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) tilápia empanada forno + 100g (4 col. sopa) arroz int. + 30g (2 col. sopa) molho tártaro",
           "kcal": 446,
           "prot": 43,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "18:00",
@@ -1156,7 +1173,7 @@ const WEEKS = {
           "kcal": 375,
           "prot": 44,
           "sub1": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal",
-          "sub2": "120g tilápia+80g macarrão+50ml molho ≈308 kcal"
+          "sub2": "120g (1 filé peq.) tilápia+80g macarrão+50ml molho ≈308 kcal"
         },
         {
           "time": "20:00",
@@ -1164,27 +1181,27 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal",
-          "sub2": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal"
+          "sub1": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal",
+          "sub2": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal"
         }
       ],
       "Quarta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Omelete (2 ovos + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia pão (30g)",
+          "food": "Omelete (2 ovos + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral",
           "kcal": 307,
           "prot": 22,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal",
-          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal",
+          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 maçã média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 134,
           "prot": 1,
-          "sub1": "2 ovos cozidos (100g) ≈146 kcal",
+          "sub1": "2 ovos cozidos (100g total) ≈146 kcal",
           "sub2": "100g (½ pote) iogurte grego+½ banana (50g) ≈126 kcal"
         },
         {
@@ -1193,35 +1210,35 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 porção) carne de panela + 80g (3 col. sopa) arroz int. + 80g (2 col. sopa) purê batata-doce",
           "kcal": 417,
           "prot": 50,
-          "sub1": "150g (3 col. sopa) frango desfiado+80g arroz+80g (1 concha rasa) feijão ≈422 kcal",
-          "sub2": "150g tilápia+100g (4 col.) arroz+1 ovo (50g) ≈389 kcal"
+          "sub1": "150g frango+80g arroz+80g (1 concha rasa) feijão ≈422 kcal",
+          "sub2": "150g (1 filé) tilápia+100g (4 col.) arroz + 1 ovo (50g) ≈389 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão ≈97 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light ≈97 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Omelete (3 ovos + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia pão (30g)",
+          "food": "Omelete (3 ovos (150g total) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral",
           "kcal": 389,
           "prot": 32,
-          "sub1": "Wrap (tortilha+100g (½ filé) frango+20g queijo+50ml molho) ≈336 kcal",
+          "sub1": "Wrap (tortilha+100g frango+20g queijo+50ml molho) ≈336 kcal",
           "sub2": "120g (1 concha rasa) carne moída+80g macarrão+50ml molho ≈387 kcal"
         },
         {
           "time": "20:00",
           "name": "Ceia+Whey",
-          "food": "1 scoop (33g) Whey + 200ml água + 50g morango (4 un.)",
+          "food": "1 scoop (33g) Whey + 200ml água + 50g (4 un.) morango",
           "kcal": 145,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Quinta": [
@@ -1231,16 +1248,16 @@ const WEEKS = {
           "food": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) + 1 laranja peq. (100g s/ casca)",
           "kcal": 317,
           "prot": 17,
-          "sub1": "2 ovos+20g muçarela+pão+morango (50g/4 un.) ≈303 kcal",
-          "sub2": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal"
+          "sub1": "2 ovos+20g muçarela+1 fatia (30g) pão integral+50g (4 un.) morango ≈303 kcal",
+          "sub2": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim",
+          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 135,
           "prot": 2,
-          "sub1": "80g (½ pote) iogurte grego+morango (50g/4 un.) ≈93 kcal",
+          "sub1": "80g (½ pote raso) iogurte grego+50g (4 un.) morango ≈93 kcal",
           "sub2": "1 maçã média (130g) ≈73 kcal"
         },
         {
@@ -1249,26 +1266,26 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) frango c/ mostarda + 80g (1 pegador) macarrão int. + 1 ovo cozido (50g)",
           "kcal": 432,
           "prot": 55,
-          "sub1": "150g tilápia+100g (4 col.) arroz+1 ovo (50g) ≈389 kcal",
+          "sub1": "150g (1 filé) tilápia+100g (4 col.) arroz + 1 ovo (50g) ≈389 kcal",
           "sub2": "150g (1 porção) carne de panela+80g arroz+80g (1 concha rasa) lentilha ≈420 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal",
-          "sub2": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal"
+          "sub1": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Hambúrguer: 120g (1 concha rasa) carne moída + pão (50g) + 20g muçarela",
+          "food": "Hambúrguer: 120g (1 concha rasa) carne moída + 1 pão integral (50g) + 20g muçarela",
           "kcal": 444,
           "prot": 39,
           "sub1": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal",
-          "sub2": "Wrap (tortilha+100g (½ filé) frango+20g queijo) ≈336 kcal"
+          "sub2": "Wrap (tortilha+100g frango+20g queijo) ≈336 kcal"
         },
         {
           "time": "20:00",
@@ -1276,28 +1293,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Sexta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos cozidos (100g) + 1 pão (30g) + 15g (1 col. sopa) requeijão + 1 laranja peq. (100g s/ casca)",
-          "kcal": 336,
-          "prot": 18,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal",
-          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal"
+          "food": "2 ovos cozidos (100g total) + 1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 1 laranja peq. (100g s/ casca)",
+          "kcal": 280,
+          "prot": 19,
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal",
+          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal"
         },
         {
           "time": "12:00",
@@ -1305,17 +1322,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) tilápia grelhada + 100g (4 col. sopa) arroz int. + 1 ovo cozido (50g)",
           "kcal": 389,
           "prot": 48,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
           "sub1": "100g (½ pote) iogurte grego+½ banana (50g) ≈126 kcal",
-          "sub2": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal"
+          "sub2": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal"
         },
         {
           "time": "18:00",
@@ -1323,7 +1340,7 @@ const WEEKS = {
           "food": "MARMITA: Escondidinho (100g (3 col. sopa) purê batata + 120g frango + 20g (1 fatia) muçarela)",
           "kcal": 309,
           "prot": 42,
-          "sub1": "120g tilápia+80g macarrão+50ml molho ≈308 kcal",
+          "sub1": "120g (1 filé peq.) tilápia+80g macarrão+50ml molho ≈308 kcal",
           "sub2": "120g (1 concha rasa) carne moída+80g macarrão+50ml molho ≈387 kcal"
         },
         {
@@ -1332,19 +1349,19 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Sábado": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "French toast (60g pão + 1 ovo) + canela + ½ banana (50g) + 200ml (1 copo) leite",
+          "food": "French toast (60g 2 fatias (60g) pão integral + 1 ovo (50g)) + canela + 50g banana + 200ml (1 copo) leite desnatado",
           "kcal": 363,
           "prot": 17,
-          "sub1": "Tapioca (60g/4 col. sopa)+1 ovo+20g queijo+200ml (1 copo) leite ≈374 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+suco laranja ≈350 kcal"
+          "sub1": "Tapioca 60g (4 col. sopa)+1 ovo+20g queijo+200ml leite ≈374 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+suco laranja ≈350 kcal"
         },
         {
           "time": "09:30",
@@ -1352,13 +1369,13 @@ const WEEKS = {
           "food": "Vitamina: banana média (75g) + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 274,
           "prot": 28,
-          "sub1": "Vitamina: morango (100g/8 un.) + 200ml (1 copo) leite + whey ≈230 kcal",
+          "sub1": "Vitamina: 100g (8 un.) morango + 200ml (1 copo) leite + whey ≈230 kcal",
           "sub2": "100g iogurte+whey+morango ≈242 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço Fixo",
-          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g)",
+          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g total)",
           "kcal": 361,
           "prot": 20,
           "sub1": "120g (5 col. sopa) arroz + 80g (1 concha rasa) lentilha + 2 ovos ≈374 (opção lentilha)",
@@ -1367,7 +1384,7 @@ const WEEKS = {
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz)",
+          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g)",
           "kcal": 224,
           "prot": 8,
           "sub1": "Crepioca (1 ovo+30g (2 col. sopa) tapioca+20g (1 fatia) muçarela) ≈207 kcal",
@@ -1380,7 +1397,7 @@ const WEEKS = {
           "kcal": 355,
           "prot": 44,
           "sub1": "Escondidinho (100g purê+120g frango+20g queijo) ≈309 kcal",
-          "sub2": "120g tilápia+100g (1 un. peq.) batata-doce+50ml molho ≈240 kcal"
+          "sub2": "120g (1 filé peq.) tilápia+100g (1 un. peq.) batata-doce+50ml molho ≈240 kcal"
         },
         {
           "time": "20:00",
@@ -1396,19 +1413,19 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (60g/4 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + 200ml (1 copo) leite",
+          "food": "Tapioca 60g (4 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + 200ml (1 copo) leite desnatado",
           "kcal": 401,
           "prot": 15,
-          "sub1": "French toast (60g pão+1 ovo)+canela+½ banana (50g)+200ml (1 copo) leite ≈363 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+suco ≈350 kcal"
+          "sub1": "French toast (60g pão integral+1 ovo (50g))+canela+50g banana+200ml leite ≈363 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+suco ≈350 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "Vitamina: morango (100g/8 un.) + 200ml (1 copo) leite + 1 scoop (33g) whey",
+          "food": "Vitamina: 100g (8 un.) morango + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 230,
           "prot": 27,
-          "sub1": "Vitamina: banana média (75g)+200ml (1 copo) leite+whey ≈274 kcal",
+          "sub1": "Vitamina: banana média (75g)+200ml leite+whey ≈274 kcal",
           "sub2": "100g iogurte+whey+morango ≈242 kcal"
         },
         {
@@ -1417,13 +1434,13 @@ const WEEKS = {
           "food": "100g (2 pedaços peq.) costela assada + 80g (3 col. sopa) arroz int. + 80g (2 pedaços) mandioca cozida",
           "kcal": 573,
           "prot": 32,
-          "sub1": "150g maminha+100g arroz+80g (2 col. sopa) purê batata ≈413 kcal",
+          "sub1": "150g (1 bife médio) maminha+100g arroz+80g (2 col. sopa) purê batata ≈413 kcal",
           "sub2": "150g (1 filé) frango assado+100g arroz+20g (2 col. sopa) farofa ≈445 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz)",
+          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g)",
           "kcal": 224,
           "prot": 8,
           "sub1": "Crepioca (1 ovo+30g (2 col. sopa) tapioca+20g queijo) ≈207 kcal",
@@ -1453,7 +1470,7 @@ const WEEKS = {
   "C": {
     "info": "Semanas 3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43",
     "prep": [
-      { item: "Arroz Integral (400g)", modo: "Cozinhar com ervas e sal", dest: "4 col. sopa (100g) Seg/Ter/Qua/Sex" },
+      { item: "Arroz Integral (400g)", modo: "Cozinhar com ervas e sal", dest: "4 col. sopa (100g) cada: Seg/Ter/Qua/Sex" },
       { item: "Macarrão Integral (160g)", modo: "Cozinhar al dente", dest: "1 pegador (80g) Jan Ter · 1 pegador (80g) Alm Qui" },
       { item: "Frango (500g)", modo: "150g Xadrez; 100g Tiras (Yakisoba); 100g Desfiado (Risoto); 150g Grelhado", dest: "Distribuir conforme cardápio" },
       { item: "Carne Panela (120g)", modo: "Desfiada c/ molho natural", dest: "120g (Jan Seg)" },
@@ -1474,38 +1491,38 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos mexidos (100g) + 20g (1 fatia) muçarela + 1 fatia pão (30g) + 1 banana peq. (60g s/ casca)",
+          "food": "2 ovos mexidos (100g total) + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral + 1 banana peq. (60g s/ casca)",
           "kcal": 347,
           "prot": 20,
-          "sub1": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal"
+          "sub1": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço",
-          "food": "MARMITA: 150g (1 filé em cubos) frango xadrez (shoyu+10g (1 col. sopa) amendoim) + 100g (4 col. sopa) arroz int.",
+          "food": "MARMITA: 150g (1 filé em cubos) frango xadrez (15ml shoyu + 10g (1 col. sopa rasa) amendoim) + 100g (4 col. sopa) arroz int.",
           "kcal": 433,
           "prot": 53,
-          "sub1": "150g tilápia+100g (4 col.) arroz+1 ovo (50g) ≈389 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g (1 filé) tilápia+100g (4 col.) arroz + 1 ovo (50g) ≈389 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão ≈97 kcal"
+          "sub1": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light ≈97 kcal"
         },
         {
           "time": "18:00",
@@ -1514,7 +1531,7 @@ const WEEKS = {
           "kcal": 285,
           "prot": 39,
           "sub1": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal",
-          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈352 kcal"
+          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
@@ -1522,28 +1539,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água + ½ banana (50g)",
           "kcal": 179,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Terça": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo minas + morango (60g/5 un.)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo minas + 60g (5 un.) morango",
           "kcal": 303,
           "prot": 10,
-          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal",
-          "sub2": "2 ovos+pão+15g (1 col. sopa) requeijão+laranja peq. (100g) ≈336 kcal"
+          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light+laranja peq. (100g) ≈336 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim",
+          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 135,
           "prot": 2,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "80g (½ pote) iogurte grego+morango (50g/4 un.) ≈93 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "80g (½ pote raso) iogurte grego+50g (4 un.) morango ≈93 kcal"
         },
         {
           "time": "12:00",
@@ -1551,13 +1568,13 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) merluza assada + 100g (4 col. sopa) arroz int. + 20g (2 col. sopa) farofa de ovo",
           "kcal": 388,
           "prot": 43,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "150g tilápia+80g arroz+80g (1 concha rasa) feijão ≈374 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "150g (1 filé) tilápia+80g arroz+80g (1 concha rasa) feijão ≈374 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light",
           "kcal": 97,
           "prot": 3,
           "sub1": "1 maçã média (130g) ≈73 kcal",
@@ -1566,10 +1583,10 @@ const WEEKS = {
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "MARMITA Yakisoba: 80g (1 pegador) macarrão int. + 100g (½ filé) frango + 1 ovo (50g) + 15ml (1 col. sopa) shoyu",
+          "food": "MARMITA Yakisoba: 80g (1 pegador) macarrão int. + 100g (½ filé) frango + 1 ovo (50g) + 15ml (1 col.) shoyu",
           "kcal": 356,
           "prot": 45,
-          "sub1": "Wrap (tortilha+100g (½ filé) frango+20g queijo) ≈336 kcal",
+          "sub1": "Wrap (tortilha+100g frango+20g queijo) ≈336 kcal",
           "sub2": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal"
         },
         {
@@ -1578,28 +1595,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal",
-          "sub2": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal"
+          "sub1": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal",
+          "sub2": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal"
         }
       ],
       "Quarta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Omelete (2 ovos + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia pão (30g)",
+          "food": "Omelete (2 ovos + 20g (1 fatia) muçarela + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral",
           "kcal": 307,
           "prot": 22,
-          "sub1": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal"
+          "sub1": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "80g (½ pote) iogurte grego + ½ maçã (80g)",
+          "food": "80g (½ pote raso) iogurte grego + ½ maçã (80g)",
           "kcal": 122,
           "prot": 8,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal"
         },
         {
           "time": "12:00",
@@ -1607,22 +1624,22 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 bife médio) bife acebolado + 100g (4 col. sopa) arroz int. + 50ml (2 col.) molho caseiro",
           "kcal": 415,
           "prot": 57,
-          "sub1": "150g (3 col. sopa) frango desfiado+80g arroz+80g (1 concha rasa) lentilha ≈413 kcal",
-          "sub2": "150g tilápia+80g (1 pegador) macarrão+1 ovo ≈371 kcal"
+          "sub1": "150g frango+80g arroz+80g (1 concha rasa) lentilha ≈413 kcal",
+          "sub2": "150g (1 filé) tilápia+80g (1 pegador) macarrão + 1 ovo ≈371 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
-          "sub1": "1 fatia pão+15g (1 col. sopa) requeijão+20g (2 fatias) peito de peru ≈118 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light+20g (2 fatias) peito de peru ≈118 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Risoto: 100g arroz (fresco) + 100g (½ filé) frango desfiado + 15g (1 col. sopa) parmesão",
+          "food": "Risoto: 100g arroz (fresco) + 100g frango desfiado + 15g (1 col. sopa) parmesão",
           "kcal": 357,
           "prot": 41,
           "sub1": "120g (1 concha rasa) carne moída+80g macarrão+50ml molho ≈387 kcal",
@@ -1631,11 +1648,11 @@ const WEEKS = {
         {
           "time": "20:00",
           "name": "Ceia+Whey",
-          "food": "1 scoop (33g) Whey + 200ml água + 50g morango (4 un.)",
+          "food": "1 scoop (33g) Whey + 200ml água + 50g (4 un.) morango",
           "kcal": 145,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Quinta": [
@@ -1645,34 +1662,34 @@ const WEEKS = {
           "food": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) + banana peq. (60g)",
           "kcal": 339,
           "prot": 17,
-          "sub1": "2 ovos+20g muçarela+pão+morango (50g/4 un.) ≈303 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+laranja peq. peq. (100g) ≈277 kcal"
+          "sub1": "2 ovos+20g muçarela+1 fatia (30g) pão integral+50g (4 un.) morango ≈303 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+laranja peq. (100g) ≈277 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "2 ovos cozidos (100g)",
+          "food": "2 ovos cozidos (100g total)",
           "kcal": 146,
           "prot": 13,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço",
-          "food": "MARMITA: 150g (1 filé) frango grelhado + 80g (1 pegador) macarrão int. + 30g (2 col. sopa) molho branco light",
+          "food": "MARMITA: 150g (1 filé médio) frango grelhado + 80g (1 pegador) macarrão int. + 30g (2 col. sopa) molho branco light",
           "kcal": 406,
           "prot": 53,
           "sub1": "150g (1 porção) carne de panela+100g arroz+50ml molho ≈415 kcal",
-          "sub2": "150g tilápia+100g (4 col.) arroz+1 ovo (50g) ≈389 kcal"
+          "sub2": "150g (1 filé) tilápia+100g (4 col.) arroz + 1 ovo (50g) ≈389 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal",
+          "sub1": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal",
           "sub2": "100g (½ pote) iogurte grego+½ banana (50g) ≈126 kcal"
         },
         {
@@ -1681,7 +1698,7 @@ const WEEKS = {
           "food": "MARMITA: 120g (1 concha rasa) carne moída bolonhesa + 100g (1 un. peq.) batata-doce + 20g muçarela",
           "kcal": 390,
           "prot": 36,
-          "sub1": "Hambúrguer (120g carne+pão 50g+20g queijo) ≈444 kcal",
+          "sub1": "Hambúrguer (120g carne+1 pão integral (50g)+20g queijo) ≈444 kcal",
           "sub2": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal"
         },
         {
@@ -1690,37 +1707,37 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Sexta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos cozidos (100g) + 1 pão (30g) + 15g (1 col. sopa) requeijão + 1 laranja peq. (100g s/ casca)",
+          "food": "2 ovos cozidos (100g total) + 1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 1 laranja peq. (100g s/ casca)",
           "kcal": 280,
           "prot": 19,
-          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal"
+          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "10g (1 col. sopa) amendoim + 1 maçã média (130g)",
+          "food": "10g (1 col. sopa rasa) amendoim + 1 maçã média (130g)",
           "kcal": 134,
           "prot": 3,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "80g (½ pote) iogurte grego+morango (50g/4 un.) ≈93 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "80g (½ pote raso) iogurte grego+50g (4 un.) morango ≈93 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço",
-          "food": "MARMITA: 150g (1 filé) tilápia c/ crosta far. arroz + 100g (4 col. sopa) arroz int. + 15ml suco limão",
+          "food": "MARMITA: 150g (1 filé) tilápia crosta far. arroz + 100g (4 col. sopa) arroz int. + 15ml suco limão",
           "kcal": 407,
           "prot": 44,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
@@ -1728,17 +1745,17 @@ const WEEKS = {
           "food": "100g (½ pote) iogurte grego + 1 banana média (75g s/ casca)",
           "kcal": 171,
           "prot": 10,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão ≈97 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light ≈97 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Wrap fresco: tortilha int. (40g) + 100g (¾ concha) carne moída + 20g (1 fatia) muçarela + 50ml molho",
+          "food": "Wrap fresco: 1 tortilha integral (40g) + 100g (¾ concha) carne moída + 20g (1 fatia) muçarela + 50ml molho tomate",
           "kcal": 372,
           "prot": 35,
           "sub1": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal",
-          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈352 kcal"
+          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
@@ -1746,19 +1763,19 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Sábado": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo coalho + 200ml (1 copo) leite + suco laranja nat. (150ml/½ copo)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo coalho + 200ml (1 copo) leite + 150ml (½ copo) suco laranja nat.",
           "kcal": 360,
           "prot": 12,
-          "sub1": "French toast (60g pão+1 ovo)+½ banana (50g)+200ml (1 copo) leite ≈363 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+laranja ≈363 kcal"
+          "sub1": "French toast (60g pão integral+1 ovo (50g))+50g banana+200ml leite ≈363 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+laranja ≈363 kcal"
         },
         {
           "time": "09:30",
@@ -1766,13 +1783,13 @@ const WEEKS = {
           "food": "Vitamina: banana média (75g) + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 274,
           "prot": 28,
-          "sub1": "Vitamina: morango (100g/8 un.)+200ml (1 copo) leite+whey ≈230 kcal",
+          "sub1": "Vitamina: 100g (8 un.) morango+200ml leite+whey ≈230 kcal",
           "sub2": "100g iogurte+whey+morango ≈242 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço Fixo",
-          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g)",
+          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g total)",
           "kcal": 361,
           "prot": 20,
           "sub1": "120g (5 col. sopa) arroz + 80g (1 concha rasa) lentilha + 2 ovos ≈374 (opção lentilha)",
@@ -1784,7 +1801,7 @@ const WEEKS = {
           "food": "Crepioca lanche: 1 ovo (50g) + 30g (2 col. sopa) tapioca + 20g muçarela",
           "kcal": 207,
           "prot": 10,
-          "sub1": "Panqueca (1 ovo+80g banana+20g (2 col. sopa) 20g (2 col.) far. arroz) ≈224 kcal",
+          "sub1": "Panqueca (1 ovo+80g banana+20g (2 col. sopa) far. arroz (20g) ≈224 kcal",
           "sub2": "100g (½ pote) iogurte grego+banana peq. (60g) ≈156 kcal"
         },
         {
@@ -1793,8 +1810,8 @@ const WEEKS = {
           "food": "Escondidinho: 100g (3 col. sopa) purê batata + 120g (1 concha rasa) carne moída + 20g muçarela",
           "kcal": 362,
           "prot": 37,
-          "sub1": "120g (½ peito desfiado) frango+80g (1 pegador) macarrão+20g (1 fatia) queijo ≈355 kcal",
-          "sub2": "Omelete (3 ovos+20g queijo+presunto)+1 fatia (30g) pão ≈352 kcal"
+          "sub1": "120g (½ peito desfiado) frango+80g (1 pegador) macarrão + 20g (1 fatia) queijo ≈355 kcal",
+          "sub2": "Omelete (3 ovos+20g queijo+presunto)+ 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
@@ -1810,19 +1827,19 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "French toast (60g pão + 1 ovo) + canela + ½ banana (50g) + 200ml (1 copo) leite",
+          "food": "French toast (60g 2 fatias (60g) pão integral + 1 ovo (50g)) + canela + 50g banana + 200ml (1 copo) leite desnatado",
           "kcal": 363,
           "prot": 17,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+200ml (1 copo) leite ≈338 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+laranja peq. (100g) ≈363 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+200ml leite ≈338 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+laranja peq. (100g) ≈363 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "Vitamina: morango (100g/8 un.) + 200ml (1 copo) leite + 1 scoop (33g) whey",
+          "food": "Vitamina: 100g (8 un.) morango + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 230,
           "prot": 27,
-          "sub1": "Vitamina: banana média (75g)+200ml (1 copo) leite+whey ≈274 kcal",
+          "sub1": "Vitamina: banana média (75g)+200ml leite+whey ≈274 kcal",
           "sub2": "100g iogurte+whey ≈227 kcal"
         },
         {
@@ -1832,12 +1849,12 @@ const WEEKS = {
           "kcal": 515,
           "prot": 51,
           "sub1": "150g (1 filé) frango assado+100g arroz+80g (2 col. sopa) purê batata ≈421 kcal",
-          "sub2": "150g maminha+100g arroz+80g (2 pedaços) mandioca cozida ≈455 kcal"
+          "sub2": "150g (1 bife médio) maminha+100g arroz+80g (2 pedaços) mandioca cozida ≈455 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz)",
+          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g)",
           "kcal": 224,
           "prot": 8,
           "sub1": "Crepioca (1 ovo+30g (2 col. sopa) tapioca+20g queijo) ≈207 kcal",
@@ -1850,7 +1867,7 @@ const WEEKS = {
           "kcal": 290,
           "prot": 40,
           "sub1": "Sopa: 120g frango+100g batata+30g creme leite ≈280 kcal",
-          "sub2": "120g tilápia+100g (1 un. peq.) batata-doce ≈240 kcal"
+          "sub2": "120g (1 filé peq.) tilápia+100g (1 un. peq.) batata-doce ≈240 kcal"
         },
         {
           "time": "20:00",
@@ -1867,11 +1884,11 @@ const WEEKS = {
   "D": {
     "info": "Semanas 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44",
     "prep": [
-      { item: "Arroz Integral (500g)", modo: "Cozinhar simples com alho", dest: "4 col. sopa (100g) cada dia (Seg→Sex)" },
+      { item: "Arroz Integral (500g)", modo: "Cozinhar simples com alho", dest: "4 col. sopa (100g) cada dia útil" },
       { item: "Macarrão Integral (80g)", modo: "Cozinhar al dente", dest: "1 pegador (80g) Jan Seg" },
-      { item: "Purê Batata (180g)", modo: "Amassar", dest: "2 col. sopa (80g) Alm Ter · 3 col. sopa (100g) Jan Sex" },
+      { item: "Purê Batata (180g)", modo: "Amassar", dest: "2 col. (80g) Alm Ter · 3 col. (100g) Jan Sex" },
       { item: "Batata-doce (200g)", modo: "Rodelas, assar/cozinhar", dest: "1 un. peq. (100g) Jan Ter · 1 un. peq. (100g) Jan Qui" },
-      { item: "Mandioca (80g)", modo: "Cozida na pressão", dest: "1 concha rasa (80g) Alm Qua" },
+      { item: "Mandioca (80g)", modo: "Cozida na pressão", dest: "1 concha (80g) Alm Qua" },
       { item: "Contrafilé (150g)", modo: "Grelhar bife, chimichurri", dest: "150g (Alm Seg)" },
       { item: "Frango (350g)", modo: "150g Gratinado; 50g desfiado; 150g Recheado", dest: "Distribuir conforme cardápio" },
       { item: "Carne Panela (150g)", modo: "Cozinhar na pressão", dest: "150g (Alm Qua)" },
@@ -1881,7 +1898,7 @@ const WEEKS = {
     "shop": [
       { cat: "PROTEÍNAS", text: "Frango (350g) · Contrafilé (150g) · Carne Panela (150g) · Carne moída (340g) · Tilápia (270g) · Fraldinha Dom (150g) · Pernil (250g) · Linguiça (100g) · Ovos (24 un) · Peito Peru (40g) · Presunto (40g)" },
       { cat: "CARBOIDRATOS", text: "Arroz int. (500g) · Arroz branco (120g) · Macarrão (80g) · Batata (180g) · Batata-doce (200g) · Mandioca (80g) · Pão integral (1 pct/500g) · Tapioca hidratada (135g/9 col. sopa) · Tortilha integral (1 un/40g) · Pão Hambúrguer (50g)" },
-      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 un × 170g) · Leite desnatado (2L/FDS) · Muçarela (120g) · Queijo minas/coalho (40g) · Requeijão light (30g/2 col. sopa) · Parmesão ralado (15g/1 col. sopa)" },
+      { cat: "LATICÍNIOS", text: "Iogurte grego natural (10 un × 170g) · Leite desnatado (2L / FDS) · Muçarela (120g) · Queijo minas/coalho (40g) · Requeijão light (30g/2 col. sopa) · Parmesão ralado (15g/1 col. sopa)" },
       { cat: "FRUTAS", text: "Banana (8 un) · Maçã (3 un) · Pera (3 un) · Laranja (2 un) · Morango (250g) · Abacate (1 un)" },
       { cat: "OUTROS", text: "Amendoim (60g) · Chimichurri · Molho Tomate · Whey Protein" }
     ],
@@ -1890,20 +1907,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + banana peq. (60g)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 20g (2 fatias) presunto + banana peq. (60g)",
           "kcal": 359,
           "prot": 12,
-          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal",
-          "sub2": "2 ovos+20g muçarela+pão+morango (50g/4 un.) ≈303 kcal"
+          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal",
+          "sub2": "2 ovos+20g muçarela+1 fatia (30g) pão integral+50g (4 un.) morango ≈303 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 maçã média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 maçã média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 134,
           "prot": 1,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "12:00",
@@ -1911,17 +1928,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 bife médio) contrafilé grelhado + 100g (4 col. sopa) arroz int. + 1 ovo (50g) + 5g chimichurri",
           "kcal": 493,
           "prot": 63,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
-          "sub1": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão+20g peru ≈118 kcal"
+          "sub1": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light+20g peru ≈118 kcal"
         },
         {
           "time": "18:00",
@@ -1929,7 +1946,7 @@ const WEEKS = {
           "food": "MARMITA: 80g (1 pegador) macarrão int. bolonhesa (100g (¾ concha) carne moída) + 15g (1 col. sopa) parmesão",
           "kcal": 379,
           "prot": 30,
-          "sub1": "Wrap (tortilha+100g (½ filé) frango+20g queijo+50ml molho) ≈336 kcal",
+          "sub1": "Wrap (tortilha+100g frango+20g queijo+50ml molho) ≈336 kcal",
           "sub2": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal"
         },
         {
@@ -1938,28 +1955,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água + ½ banana (50g)",
           "kcal": 179,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Terça": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Omelete (2 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia pão (30g)",
+          "food": "Omelete (2 ovos + 20g (1 fatia) queijo + 20g (2 fatias) presunto) + 1 fatia (30g) pão integral",
           "kcal": 307,
           "prot": 22,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+banana peq. peq. (60g) ≈339 kcal",
-          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+banana peq. (60g) ≈339 kcal",
+          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim",
+          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 135,
           "prot": 2,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "80g (½ pote) iogurte grego+½ banana (50g) ≈126 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "80g (½ pote raso) iogurte grego+½ banana (50g) ≈126 kcal"
         },
         {
           "time": "12:00",
@@ -1967,17 +1984,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) frango gratinado (50ml molho tomate + 20g (1 fatia) muçarela) + 100g (4 col. sopa) arroz + 80g (2 col. sopa) purê batata",
           "kcal": 489,
           "prot": 57,
-          "sub1": "150g tilápia+100g (4 col.) arroz+1 ovo (50g) ≈389 kcal",
+          "sub1": "150g (1 filé) tilápia+100g (4 col.) arroz + 1 ovo (50g) ≈389 kcal",
           "sub2": "150g (1 porção) carne de panela+80g arroz+80g (1 concha rasa) lentilha ≈420 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal",
-          "sub2": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal"
+          "sub1": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal"
         },
         {
           "time": "18:00",
@@ -1986,7 +2003,7 @@ const WEEKS = {
           "kcal": 303,
           "prot": 39,
           "sub1": "120g frango+80g macarrão+50ml molho ≈308 kcal",
-          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈352 kcal"
+          "sub2": "Omelete (3 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈352 kcal"
         },
         {
           "time": "20:00",
@@ -1994,28 +2011,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Quarta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "2 ovos mexidos (100g) + 20g (2 fatias) presunto + 20g (1 fatia) muçarela + 1 fatia pão (30g)",
+          "food": "2 ovos mexidos (100g total) + 20g (2 fatias) presunto + 20g (1 fatia) muçarela + 1 fatia (30g) pão integral",
           "kcal": 327,
           "prot": 22,
-          "sub1": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+laranja peq. peq. (100g) ≈277 kcal",
-          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+morango (60g/5 un.) ≈298 kcal"
+          "sub1": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+laranja peq. (100g) ≈277 kcal",
+          "sub2": "Crepioca (2 ovos+30g (2 col. sopa) tapioca+20g queijo)+60g (5 un.) morango ≈298 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "80g (½ pote) iogurte grego + ½ maçã (80g)",
+          "food": "80g (½ pote raso) iogurte grego + ½ maçã (80g)",
           "kcal": 122,
           "prot": 8,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal"
         },
         {
           "time": "12:00",
@@ -2023,35 +2040,35 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 porção) carne de panela + 100g (4 col. sopa) arroz int. + 80g (2 pedaços) mandioca cozida",
           "kcal": 455,
           "prot": 50,
-          "sub1": "150g (3 col. sopa) frango desfiado+80g arroz+80g (1 concha rasa) feijão ≈422 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+80g arroz+80g (1 concha rasa) feijão ≈422 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão ≈97 kcal"
+          "sub1": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light ≈97 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Pizza caseira: tortilha int. (40g) + 50g (3 col. sopa) frango desfiado + 30g (1½ fatia) muçarela + 50ml (2 col. sopa) molho tomate",
+          "food": "Pizza caseira: 1 tortilha integral (40g) + 50g (3 col. sopa) frango desfiado + 30g (1½ fatia) muçarela + 50ml (2 col. sopa) molho tomate",
           "kcal": 282,
           "prot": 20,
-          "sub1": "Wrap (tortilha+100g (½ filé) frango+20g queijo) ≈336 kcal",
+          "sub1": "Wrap (tortilha+100g frango+20g queijo) ≈336 kcal",
           "sub2": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal"
         },
         {
           "time": "20:00",
           "name": "Ceia+Whey",
-          "food": "1 scoop (33g) Whey + 200ml água + 50g morango (4 un.)",
+          "food": "1 scoop (33g) Whey + 200ml água + 50g (4 un.) morango",
           "kcal": 145,
           "prot": 24,
-          "sub1": "Whey (33g)+200ml água ≈130 kcal",
-          "sub2": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal"
+          "sub1": "Whey (33g) + 200ml água ≈130 kcal",
+          "sub2": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal"
         }
       ],
       "Quinta": [
@@ -2061,44 +2078,44 @@ const WEEKS = {
           "food": "Crepioca (2 ovos + 30g (2 col. sopa) tapioca + 20g (1 fatia) muçarela) + 1 laranja peq. (100g s/ casca)",
           "kcal": 317,
           "prot": 17,
-          "sub1": "2 ovos+pão+15g (1 col. sopa) requeijão+banana peq. (60g) ≈348 kcal",
-          "sub2": "Tapioca (45g/3 col. sopa)+1 ovo+20g queijo+morango (60g/5 un.) ≈303 kcal"
+          "sub1": "2 ovos+1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light+banana peq. (60g) ≈348 kcal",
+          "sub2": "Tapioca 45g (3 col. sopa)+1 ovo+20g queijo+60g (5 un.) morango ≈303 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa) amendoim",
+          "food": "1 banana média (75g s/ casca) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 135,
           "prot": 2,
-          "sub1": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal",
-          "sub2": "80g (½ pote) iogurte grego+morango (50g/4 un.) ≈93 kcal"
+          "sub1": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal",
+          "sub2": "80g (½ pote raso) iogurte grego+50g (4 un.) morango ≈93 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço",
-          "food": "MARMITA: 150g (1 filé) frango recheado c/ queijo (20g (1 fatia) muçarela) + 100g (4 col. sopa) arroz int. + 1 ovo",
+          "food": "MARMITA: 150g (1 filé) frango recheado queijo (20g (1 fatia) muçarela) + 100g (4 col. sopa) arroz int. + 1 ovo (50g)",
           "kcal": 502,
           "prot": 62,
-          "sub1": "150g tilápia+80g (1 pegador) macarrão+1 ovo ≈371 kcal",
-          "sub2": "150g (3 col. sopa) frango desfiado+80g arroz+80g (1 concha rasa) lentilha ≈413 kcal"
+          "sub1": "150g (1 filé) tilápia+80g (1 pegador) macarrão + 1 ovo ≈371 kcal",
+          "sub2": "150g frango+80g arroz+80g (1 concha rasa) lentilha ≈413 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "1 fatia pão (30g) + 15g (1 col. sopa) requeijão + 20g (2 fatias) peito de peru",
+          "food": "1 fatia (30g) pão integral + 15g (1 col. sopa) requeijão light + 20g (2 fatias) peito de peru",
           "kcal": 118,
           "prot": 8,
-          "sub1": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal",
-          "sub2": "1 pera média (130g)+10g (1 col. sopa) amendoim ≈130 kcal"
+          "sub1": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal",
+          "sub2": "1 pera média (130g)+10g (1 col. sopa rasa) amendoim ≈130 kcal"
         },
         {
           "time": "18:00",
           "name": "Jantar",
-          "food": "Hambúrguer caseiro: 120g (1 concha rasa) carne moída + pão (50g) + 20g muçarela",
+          "food": "Hambúrguer caseiro: 120g (1 concha rasa) carne moída + 1 pão integral (50g) + 20g muçarela",
           "kcal": 444,
           "prot": 39,
           "sub1": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal",
-          "sub2": "Wrap (tortilha+100g (½ filé) frango+20g queijo) ≈336 kcal"
+          "sub2": "Wrap (tortilha+100g frango+20g queijo) ≈336 kcal"
         },
         {
           "time": "20:00",
@@ -2106,28 +2123,28 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey (33g)+200ml água+50g morango (4 un.) ≈145 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 50g (4 un.) morango ≈145 kcal"
         }
       ],
       "Sexta": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 1 laranja peq. (100g s/ casca)",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) muçarela + 1 laranja peq. (100g s/ casca)",
           "kcal": 314,
           "prot": 10,
-          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+1 fatia (30g) pão ≈307 kcal",
-          "sub2": "2 ovos+pão+15g (1 col. sopa) requeijão+morango (50g/4 un.) ≈290 kcal"
+          "sub1": "Omelete (2 ovos+20g queijo+20g (2 fatias) presunto)+ 1 fatia (30g) pão integral ≈307 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light+50g (4 un.) morango ≈290 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "1 pera média (130g) + 10g (1 col. sopa) amendoim",
+          "food": "1 pera média (130g) + 10g (1 col. sopa rasa) amendoim",
           "kcal": 130,
           "prot": 2,
-          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa) amendoim ≈135 kcal",
-          "sub2": "100g (½ pote) iogurte grego+morango (50g/4 un.) ≈112 kcal"
+          "sub1": "1 banana média (75g s/ casca)+10g (1 col. sopa rasa) amendoim ≈135 kcal",
+          "sub2": "100g (½ pote) iogurte grego+50g (4 un.) morango ≈112 kcal"
         },
         {
           "time": "12:00",
@@ -2135,17 +2152,17 @@ const WEEKS = {
           "food": "MARMITA: 150g (1 filé) tilápia grelhada + 100g (4 col. sopa) arroz int. + 80g (1 concha rasa) lentilha",
           "kcal": 389,
           "prot": 48,
-          "sub1": "150g (3 col. sopa) frango desfiado+100g arroz+50ml molho ≈399 kcal",
-          "sub2": "130g carne moída+80g macarrão+50ml molho ≈397 kcal"
+          "sub1": "150g frango+100g arroz+50ml molho ≈399 kcal",
+          "sub2": "130g (1 concha cheia) carne moída+80g macarrão+50ml molho ≈397 kcal"
         },
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "100g (½ pote) iogurte grego + morango (50g/4 un.)",
+          "food": "100g (½ pote) iogurte grego + 50g (4 un.) morango",
           "kcal": 112,
           "prot": 10,
-          "sub1": "1 maçã média (130g)+10g (1 col. sopa) amendoim ≈134 kcal",
-          "sub2": "1 fatia pão+15g (1 col. sopa) requeijão ≈97 kcal"
+          "sub1": "1 maçã média (130g)+10g (1 col. sopa rasa) amendoim ≈134 kcal",
+          "sub2": "1 fatia (30g) pão integral+15g (1 col. sopa) requeijão light ≈97 kcal"
         },
         {
           "time": "18:00",
@@ -2153,7 +2170,7 @@ const WEEKS = {
           "food": "MARMITA: Escondidinho (100g (3 col. sopa) purê batata + 120g (1 concha rasa) carne moída + 20g (1 fatia) muçarela)",
           "kcal": 362,
           "prot": 37,
-          "sub1": "120g tilápia+80g macarrão+50ml molho ≈308 kcal",
+          "sub1": "120g (1 filé peq.) tilápia+80g macarrão+50ml molho ≈308 kcal",
           "sub2": "120g frango+100g (1 un. peq.) batata-doce+50ml molho ≈275 kcal"
         },
         {
@@ -2162,33 +2179,33 @@ const WEEKS = {
           "food": "1 scoop (33g) Whey + 200ml água",
           "kcal": 130,
           "prot": 23,
-          "sub1": "Whey (33g)+200ml água+½ banana (50g) ≈179 kcal",
-          "sub2": "Whey+20g (1 fatia) queijo minas ≈183 kcal"
+          "sub1": "Whey (33g) + 200ml água + ½ banana (50g) ≈179 kcal",
+          "sub2": "Whey (33g) + 200ml água + 20g (1 fatia) queijo minas ≈183 kcal"
         }
       ],
       "Sábado": [
         {
           "time": "05:30",
           "name": "Café",
-          "food": "Tapioca (45g/3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo coalho + suco laranja nat. (150ml/½ copo) + 200ml (1 copo) leite",
+          "food": "Tapioca 45g (3 col. sopa) + 1 ovo (50g) + 20g (1 fatia) queijo coalho + 150ml (½ copo) suco laranja nat. + 200ml (1 copo) leite desnatado",
           "kcal": 360,
           "prot": 12,
-          "sub1": "French toast (60g pão+1 ovo)+½ banana (50g)+200ml (1 copo) leite ≈363 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+suco ≈350 kcal"
+          "sub1": "French toast (60g pão integral+1 ovo (50g))+50g banana+200ml leite ≈363 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+suco ≈350 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "Vitamina: 50g abacate (2 col. sopa) + 200ml (1 copo) leite + 1 scoop (33g) whey",
+          "food": "Vitamina: 50g (2 col. sopa) abacate + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 248,
           "prot": 27,
-          "sub1": "Vitamina: banana média (75g)+200ml (1 copo) leite+whey ≈274 kcal",
-          "sub2": "Vitamina: morango (100g/8 un.)+200ml (1 copo) leite+whey ≈230 kcal"
+          "sub1": "Vitamina: banana média (75g)+200ml leite+whey ≈274 kcal",
+          "sub2": "Vitamina: 100g (8 un.) morango+200ml leite+whey ≈230 kcal"
         },
         {
           "time": "12:00",
           "name": "Almoço Fixo",
-          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g)",
+          "food": "120g (5 col. sopa) arroz branco + 80g (1 concha rasa) feijão + 2 ovos grelhados (100g total)",
           "kcal": 361,
           "prot": 20,
           "sub1": "120g (5 col. sopa) arroz + 80g (1 concha rasa) lentilha + 2 ovos ≈374 kcal (opção lentilha)",
@@ -2197,7 +2214,7 @@ const WEEKS = {
         {
           "time": "15:00",
           "name": "Lanche",
-          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) 20g (2 col.) far. arroz)",
+          "food": "Panqueca (1 ovo (50g) + 80g banana + 20g (2 col. sopa) far. arroz (20g)",
           "kcal": 224,
           "prot": 8,
           "sub1": "100g iogurte+banana peq. (60g) ≈156 kcal",
@@ -2209,8 +2226,8 @@ const WEEKS = {
           "food": "150g (1 filé) frango empanado forno + 100g (1 un. peq.) batata-doce + 50ml (2 col. sopa) molho tomate",
           "kcal": 339,
           "prot": 44,
-          "sub1": "Hambúrguer (120g carne+pão 50g+20g queijo) ≈444 kcal",
-          "sub2": "120g frango+80g (1 pegador) macarrão+20g (1 fatia) queijo ≈355 kcal"
+          "sub1": "Hambúrguer (120g carne+1 pão integral (50g)+20g queijo) ≈444 kcal",
+          "sub2": "120g frango+80g (1 pegador) macarrão + 20g (1 fatia) queijo ≈355 kcal"
         },
         {
           "time": "20:00",
@@ -2226,20 +2243,20 @@ const WEEKS = {
         {
           "time": "05:30",
           "name": "Café",
-          "food": "French toast (60g pão + 1 ovo) + canela + ½ banana (50g) + 200ml (1 copo) leite",
+          "food": "French toast (60g 2 fatias (60g) pão integral + 1 ovo (50g)) + canela + 50g banana + 200ml (1 copo) leite desnatado",
           "kcal": 363,
           "prot": 17,
-          "sub1": "Tapioca (60g/4 col. sopa)+1 ovo+20g queijo+200ml (1 copo) leite ≈374 kcal",
-          "sub2": "2 ovos+pão+200ml (1 copo) leite+suco ≈350 kcal"
+          "sub1": "Tapioca 60g (4 col. sopa)+1 ovo+20g queijo+200ml leite ≈374 kcal",
+          "sub2": "2 ovos+1 fatia (30g) pão integral+200ml leite+suco ≈350 kcal"
         },
         {
           "time": "09:30",
           "name": "Lanche",
-          "food": "Vitamina: morango (100g/8 un.) + ½ banana (50g) + 200ml (1 copo) leite + 1 scoop (33g) whey",
+          "food": "Vitamina: 100g (8 un.) morango + 50g banana + 200ml (1 copo) leite + 1 scoop (33g) whey",
           "kcal": 279,
           "prot": 28,
           "sub1": "100g iogurte+whey+morango ≈242 kcal",
-          "sub2": "Vitamina: banana média (75g)+200ml (1 copo) leite+whey ≈274 kcal"
+          "sub2": "Vitamina: banana média (75g)+200ml leite+whey ≈274 kcal"
         },
         {
           "time": "12:00",
@@ -2247,7 +2264,7 @@ const WEEKS = {
           "food": "150g (1 bife médio) maminha grelhada + 100g (4 col. sopa) arroz int. + 80g (2 col. sopa) purê batata",
           "kcal": 396,
           "prot": 50,
-          "sub1": "150g pernil+100g arroz+20g (2 col. sopa) farofa ≈515 kcal",
+          "sub1": "150g (2 fatias grossas) pernil+100g arroz+20g (2 col. sopa) farofa ≈515 kcal",
           "sub2": "150g (1 filé) frango assado+100g arroz+80g purê ≈421 kcal"
         },
         {
@@ -2288,6 +2305,375 @@ const DAY_ORDER = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", 
 let currentWeek = "A";
 let currentDay = "Segunda";
 let currentSubView = "menu";
+let currentCycle = 1;
+
+const WEEKS_CALENDAR = [
+  {
+    "num": 1,
+    "type": "A",
+    "cycle": 1,
+    "start": "02/03",
+    "end": "08/03",
+    "start_full": "02/03/2026"
+  },
+  {
+    "num": 2,
+    "type": "B",
+    "cycle": 1,
+    "start": "09/03",
+    "end": "15/03",
+    "start_full": "09/03/2026"
+  },
+  {
+    "num": 3,
+    "type": "C",
+    "cycle": 1,
+    "start": "16/03",
+    "end": "22/03",
+    "start_full": "16/03/2026"
+  },
+  {
+    "num": 4,
+    "type": "D",
+    "cycle": 1,
+    "start": "23/03",
+    "end": "29/03",
+    "start_full": "23/03/2026"
+  },
+  {
+    "num": 5,
+    "type": "A",
+    "cycle": 2,
+    "start": "30/03",
+    "end": "05/04",
+    "start_full": "30/03/2026"
+  },
+  {
+    "num": 6,
+    "type": "B",
+    "cycle": 2,
+    "start": "06/04",
+    "end": "12/04",
+    "start_full": "06/04/2026"
+  },
+  {
+    "num": 7,
+    "type": "C",
+    "cycle": 2,
+    "start": "13/04",
+    "end": "19/04",
+    "start_full": "13/04/2026"
+  },
+  {
+    "num": 8,
+    "type": "D",
+    "cycle": 2,
+    "start": "20/04",
+    "end": "26/04",
+    "start_full": "20/04/2026"
+  },
+  {
+    "num": 9,
+    "type": "A",
+    "cycle": 3,
+    "start": "27/04",
+    "end": "03/05",
+    "start_full": "27/04/2026"
+  },
+  {
+    "num": 10,
+    "type": "B",
+    "cycle": 3,
+    "start": "04/05",
+    "end": "10/05",
+    "start_full": "04/05/2026"
+  },
+  {
+    "num": 11,
+    "type": "C",
+    "cycle": 3,
+    "start": "11/05",
+    "end": "17/05",
+    "start_full": "11/05/2026"
+  },
+  {
+    "num": 12,
+    "type": "D",
+    "cycle": 3,
+    "start": "18/05",
+    "end": "24/05",
+    "start_full": "18/05/2026"
+  },
+  {
+    "num": 13,
+    "type": "A",
+    "cycle": 4,
+    "start": "25/05",
+    "end": "31/05",
+    "start_full": "25/05/2026"
+  },
+  {
+    "num": 14,
+    "type": "B",
+    "cycle": 4,
+    "start": "01/06",
+    "end": "07/06",
+    "start_full": "01/06/2026"
+  },
+  {
+    "num": 15,
+    "type": "C",
+    "cycle": 4,
+    "start": "08/06",
+    "end": "14/06",
+    "start_full": "08/06/2026"
+  },
+  {
+    "num": 16,
+    "type": "D",
+    "cycle": 4,
+    "start": "15/06",
+    "end": "21/06",
+    "start_full": "15/06/2026"
+  },
+  {
+    "num": 17,
+    "type": "A",
+    "cycle": 5,
+    "start": "22/06",
+    "end": "28/06",
+    "start_full": "22/06/2026"
+  },
+  {
+    "num": 18,
+    "type": "B",
+    "cycle": 5,
+    "start": "29/06",
+    "end": "05/07",
+    "start_full": "29/06/2026"
+  },
+  {
+    "num": 19,
+    "type": "C",
+    "cycle": 5,
+    "start": "06/07",
+    "end": "12/07",
+    "start_full": "06/07/2026"
+  },
+  {
+    "num": 20,
+    "type": "D",
+    "cycle": 5,
+    "start": "13/07",
+    "end": "19/07",
+    "start_full": "13/07/2026"
+  },
+  {
+    "num": 21,
+    "type": "A",
+    "cycle": 6,
+    "start": "20/07",
+    "end": "26/07",
+    "start_full": "20/07/2026"
+  },
+  {
+    "num": 22,
+    "type": "B",
+    "cycle": 6,
+    "start": "27/07",
+    "end": "02/08",
+    "start_full": "27/07/2026"
+  },
+  {
+    "num": 23,
+    "type": "C",
+    "cycle": 6,
+    "start": "03/08",
+    "end": "09/08",
+    "start_full": "03/08/2026"
+  },
+  {
+    "num": 24,
+    "type": "D",
+    "cycle": 6,
+    "start": "10/08",
+    "end": "16/08",
+    "start_full": "10/08/2026"
+  },
+  {
+    "num": 25,
+    "type": "A",
+    "cycle": 7,
+    "start": "17/08",
+    "end": "23/08",
+    "start_full": "17/08/2026"
+  },
+  {
+    "num": 26,
+    "type": "B",
+    "cycle": 7,
+    "start": "24/08",
+    "end": "30/08",
+    "start_full": "24/08/2026"
+  },
+  {
+    "num": 27,
+    "type": "C",
+    "cycle": 7,
+    "start": "31/08",
+    "end": "06/09",
+    "start_full": "31/08/2026"
+  },
+  {
+    "num": 28,
+    "type": "D",
+    "cycle": 7,
+    "start": "07/09",
+    "end": "13/09",
+    "start_full": "07/09/2026"
+  },
+  {
+    "num": 29,
+    "type": "A",
+    "cycle": 8,
+    "start": "14/09",
+    "end": "20/09",
+    "start_full": "14/09/2026"
+  },
+  {
+    "num": 30,
+    "type": "B",
+    "cycle": 8,
+    "start": "21/09",
+    "end": "27/09",
+    "start_full": "21/09/2026"
+  },
+  {
+    "num": 31,
+    "type": "C",
+    "cycle": 8,
+    "start": "28/09",
+    "end": "04/10",
+    "start_full": "28/09/2026"
+  },
+  {
+    "num": 32,
+    "type": "D",
+    "cycle": 8,
+    "start": "05/10",
+    "end": "11/10",
+    "start_full": "05/10/2026"
+  },
+  {
+    "num": 33,
+    "type": "A",
+    "cycle": 9,
+    "start": "12/10",
+    "end": "18/10",
+    "start_full": "12/10/2026"
+  },
+  {
+    "num": 34,
+    "type": "B",
+    "cycle": 9,
+    "start": "19/10",
+    "end": "25/10",
+    "start_full": "19/10/2026"
+  },
+  {
+    "num": 35,
+    "type": "C",
+    "cycle": 9,
+    "start": "26/10",
+    "end": "01/11",
+    "start_full": "26/10/2026"
+  },
+  {
+    "num": 36,
+    "type": "D",
+    "cycle": 9,
+    "start": "02/11",
+    "end": "08/11",
+    "start_full": "02/11/2026"
+  },
+  {
+    "num": 37,
+    "type": "A",
+    "cycle": 10,
+    "start": "09/11",
+    "end": "15/11",
+    "start_full": "09/11/2026"
+  },
+  {
+    "num": 38,
+    "type": "B",
+    "cycle": 10,
+    "start": "16/11",
+    "end": "22/11",
+    "start_full": "16/11/2026"
+  },
+  {
+    "num": 39,
+    "type": "C",
+    "cycle": 10,
+    "start": "23/11",
+    "end": "29/11",
+    "start_full": "23/11/2026"
+  },
+  {
+    "num": 40,
+    "type": "D",
+    "cycle": 10,
+    "start": "30/11",
+    "end": "06/12",
+    "start_full": "30/11/2026"
+  },
+  {
+    "num": 41,
+    "type": "A",
+    "cycle": 11,
+    "start": "07/12",
+    "end": "13/12",
+    "start_full": "07/12/2026"
+  },
+  {
+    "num": 42,
+    "type": "B",
+    "cycle": 11,
+    "start": "14/12",
+    "end": "20/12",
+    "start_full": "14/12/2026"
+  },
+  {
+    "num": 43,
+    "type": "C",
+    "cycle": 11,
+    "start": "21/12",
+    "end": "27/12",
+    "start_full": "21/12/2026"
+  },
+  {
+    "num": 44,
+    "type": "D",
+    "cycle": 11,
+    "start": "28/12",
+    "end": "03/01",
+    "start_full": "28/12/2026"
+  }
+];
+
+
+function selectCalWeek(type, cycle) {
+  currentWeek = type;
+  currentCycle = cycle;
+  currentDay = "Segunda";
+  renderWeeks();
+  // Scroll the calendar to show active week
+  setTimeout(() => {
+    const active = document.querySelector('.week-cal-btn.active');
+    if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, 100);
+}
 
 function showTab(id) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -2303,9 +2689,29 @@ function showTab(id) {
 
 function renderWeeks() {
   const ws = document.getElementById('weekSel');
-  ws.innerHTML = WEEK_NAMES.map(w =>
-    `<button class="week-btn ${w===currentWeek?'active':''}" onclick="selectWeek('${w}')">Semana ${w}</button>`
-  ).join('');
+  // Show real week buttons grouped
+  let calHtml = '<div class="week-cal" id="weekCal">';
+  WEEKS_CALENDAR.forEach(wc => {
+    const isActive = wc.type === currentWeek && wc.cycle === currentCycle;
+    calHtml += `<button class="week-cal-btn ${isActive?'active':''}" onclick="selectCalWeek('${wc.type}',${wc.cycle})">
+      S${wc.num}<span>${wc.start}</span>
+    </button>`;
+  });
+  calHtml += '</div>';
+  
+  // Also show type selector
+  calHtml += '<div style="display:flex;gap:6px;margin-bottom:12px;">';
+  WEEK_NAMES.forEach(w => {
+    calHtml += `<button class="week-btn ${w===currentWeek?'active':''}" onclick="selectWeek('${w}')" style="flex:1;">Tipo ${w}</button>`;
+  });
+  calHtml += '</div>';
+  
+  const calWeek = WEEKS_CALENDAR.find(w => w.type === currentWeek && w.cycle === currentCycle);
+  if (calWeek) {
+    calHtml += `<div class="week-info">📅 <strong>Semana ${calWeek.num}</strong> (${calWeek.start} a ${calWeek.end}) — Cardápio Tipo ${calWeek.type}, Ciclo ${calWeek.cycle} de 11</div>`;
+  }
+  
+  ws.innerHTML = calHtml;
 
   const ds = document.getElementById('daySel');
   ds.innerHTML = DAY_ORDER.map(d => {
@@ -2349,13 +2755,39 @@ function getMealClass(name) {
   return 'lanche';
 }
 
+function formatFood(food) {
+  // Split by " + " and render each ingredient as structured item
+  if (!food) return '';
+  const prefix = food.startsWith('MARMITA:') ? '<div class="meal-label">🍱 MARMITA</div>' : '';
+  const clean = food.replace('MARMITA: ', '').replace('MARMITA Yakisoba: ', 'Yakisoba: ');
+  const items = clean.split(' + ');
+  if (items.length <= 1) return `<div class="meal-food">${food}</div>`;
+  
+  let html = prefix + '<div style="margin-bottom:6px;">';
+  items.forEach((item, i) => {
+    // Extract measure from parentheses
+    const match = item.match(/^(.+?)\s*\(([^)]+)\)\s*(.*)$/);
+    if (match) {
+      html += `<div class="food-item"><span class="food-name">${match[1].trim()} ${match[3].trim()}</span><span class="food-measure">${match[2]}</span></div>`;
+    } else {
+      html += `<div class="food-item"><span class="food-name">${item.trim()}</span></div>`;
+    }
+  });
+  html += '</div>';
+  return html;
+}
+
 function renderDay() {
-  const meals = WEEKS[currentWeek].days[currentDay];
+  const wk = WEEKS[currentWeek];
+  const meals = wk.days[currentDay];
   if (!meals) { document.getElementById('dayContent').innerHTML = '<p>Sem dados</p>'; return; }
 
   const totalKcal = meals.reduce((s, m) => s + m.kcal, 0);
   const totalProt = meals.reduce((s, m) => s + m.prot, 0);
 
+  // Show week calendar info
+  const calWeek = WEEKS_CALENDAR.find(w => w.type === currentWeek && w.cycle === 1);
+  
   let html = `<div class="day-total">
     <span>🔥 ${totalKcal} kcal</span>
     <span>💪 ${totalProt}g prot</span>
@@ -2372,11 +2804,11 @@ function renderDay() {
         </div>
       </div>
       <div class="meal-name">${m.name}</div>
-      <div class="meal-food">${m.food}</div>
+      ${formatFood(m.food)}
       <details class="meal-subs">
         <summary>Opções de Troca</summary>
-        <div class="sub">1️⃣ ${m.sub1}</div>
-        <div class="sub" style="${m.sub2 ? '' : 'display:none;'}">2️⃣ ${m.sub2}</div>
+        <div class="sub"><strong>Opção 2:</strong> ${m.sub1}</div>
+        <div class="sub" style="${m.sub2 ? '' : 'display:none;'}"><strong>Opção 3:</strong> ${m.sub2}</div>
       </details>
     </div>`;
   });
