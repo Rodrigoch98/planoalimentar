@@ -316,20 +316,36 @@ body {
 /* Week cal styles moved to .week-selector above */
 
 
-/* Professional Header */
+/* Header with depth */
 .header {
-  background: linear-gradient(135deg, #059669, #047857);
-  padding: 16px 20px 14px;
+  background: linear-gradient(160deg, #111827 0%, #1F2937 50%, #111827 100%);
+  padding: 14px 20px 12px;
   position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 12px rgba(5,150,105,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  border-bottom: 2px solid #059669;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-left { display: flex; align-items: center; gap: 10px; }
+.header-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; box-shadow: 0 2px 8px rgba(16,185,129,0.4);
 }
 .header h1 {
-  font-size: 17px; font-weight: 800; color: white;
-  letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
+  font-size: 16px; font-weight: 800; color: #F9FAFB;
+  letter-spacing: 0.5px;
 }
-.header p {
-  font-size: 12px; color: rgba(255,255,255,0.75);
-  margin-top: 2px; font-weight: 500;
+.header-sub {
+  font-size: 11px; color: #9CA3AF; margin-top: 1px; font-weight: 500;
+}
+.header-badge {
+  font-size: 10px; font-weight: 700; padding: 3px 8px;
+  border-radius: 6px; background: rgba(16,185,129,0.15);
+  color: #34D399; border: 1px solid rgba(16,185,129,0.3);
+  white-space: nowrap;
 }
 
 /* Custom Week Navigator */
@@ -418,8 +434,23 @@ body {
   margin-top: 16px; background: rgba(255,255,255,0.1);
   border-radius: 8px; padding: 12px;
 }
-.progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; margin-top: 6px; }
-.progress-fill { height: 100%; background: white; border-radius: 4px; width: 0%; transition: width 1s ease; }
+.progress-bar { 
+  height: 10px; background: rgba(255,255,255,0.15); 
+  border-radius: 5px; overflow: hidden; margin-top: 8px; 
+  position: relative;
+}
+.progress-fill { 
+  height: 100%; border-radius: 5px; width: 0%; 
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); 
+  background: linear-gradient(90deg, #34D399, #10B981, #059669);
+  box-shadow: 0 0 8px rgba(52,211,153,0.5);
+  position: relative;
+}
+.progress-fill::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 20px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+  border-radius: 0 5px 5px 0;
+}
 
 .resumo-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
@@ -445,8 +476,16 @@ body {
 <body>
 
 <div class="header">
-  <h1>PLANO NUTRICIONAL</h1>
-  <p>Rodrigo · 02/Mar/2026 → 03/Jan/2027 · Verificado TACO/UNICAMP</p>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-icon">🥗</div>
+      <div>
+        <h1>PLANO NUTRICIONAL</h1>
+        <div class="header-sub">Rodrigo · Mar/2026 → Jan/2027</div>
+      </div>
+    </div>
+    <div class="header-badge" id="headerBadge">Sem 1</div>
+  </div>
 </div>
 
 <div id="tab-resumo" class="tab-content active">
@@ -462,13 +501,17 @@ body {
       <div class="resumo-stat"><div class="resumo-stat-val">0,7kg</div><div class="resumo-stat-label">perda/semana</div></div>
     </div>
     
-    <div class="resumo-progress">
-      <div style="display:flex;justify-content:space-between;font-size:12px;">
-        <span><strong>114 kg</strong> atual</span>
-        <span>meta <strong>80-83 kg</strong></span>
+    <div class="resumo-progress" id="progressSection">
+      <div style="display:flex;justify-content:space-between;font-size:12px;align-items:baseline;">
+        <span><strong id="pesoAtual">114 kg</strong></span>
+        <span style="font-size:10px;opacity:0.7;" id="progressWeekLabel">Semana 0/44</span>
+        <span>meta <strong>80 kg</strong></span>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <div style="text-align:center;font-size:11px;margin-top:4px;opacity:0.8;">~31-34 kg em 44 semanas</div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:6px;opacity:0.7;">
+        <span id="pesoLost">0 kg perdidos</span>
+        <span id="pesoRemain">~34 kg restantes</span>
+      </div>
     </div>
   </div>
 
@@ -660,9 +703,9 @@ body {
     <div class="list-cat">💊 SUPLEMENTOS (Mensal)</div>
     <div class="list-item"><strong>Whey 100% Pure Probiótica</strong><span>1 pote 900g (1 scoop = 33g = 130 kcal · ~27 doses)</span></div>
     <div class="list-item"><strong>Multivitamínico Growth</strong><span>1 cx 30 cp (1/dia)</span></div>
-    <div class="list-item"><strong>Ômega 3 Ultra Growth</strong><span>1 pote 75 cáps (2/dia = 37 dias)</span></div>
+    <div class="list-item"><strong>Ômega 3 Ultra Growth</strong><span>1 pote 75 cáps (1/dia = 75 dias)</span></div>
     <div class="list-item"><strong>Vitamina D3 2000UI</strong><span>1 frasco (1/dia no almoço)</span></div>
-    <div class="list-item"><strong>Magnésio Quelato Ecomev</strong><span>1 cx (2 cáps/dia = 500mg)</span></div>
+    <div class="list-item"><strong>Magnésio Quelato Ecomev</strong><span>1 cx (1 cáps/dia = 500mg)</span></div>
   </div>
 </div>
 
@@ -2818,12 +2861,12 @@ const MEDS_SCHEDULE = {
   ],
   "12:00": [
     { name: "Vit. D3", dose: "2000UI", cls: "med-pill-blue" },
-    { name: "Ômega 3", dose: "2 cáps", cls: "med-pill-blue" }
+    { name: "Ômega 3", dose: "1 cáps", cls: "med-pill-blue" }
   ],
   "20:00": [
     { name: "Cabergolina", dose: "0,5mg", cls: "med-pill-purple", extra: "QUA/SÁB" },
     { name: "Topiramato", dose: "100mg", cls: "med-pill-purple" },
-    { name: "Magnésio", dose: "2 cáps", cls: "med-pill-purple" }
+    { name: "Magnésio", dose: "1 cáps", cls: "med-pill-purple" }
   ]
 };
 
@@ -2922,6 +2965,8 @@ function navWeek(dir) {
   currentCycle = wc.cycle;
   currentDay = 'Segunda';
   renderWeeks();
+  const badge = document.getElementById('headerBadge');
+  if (badge) badge.textContent = 'Sem ' + wc.num;
 }
 
 function selectWeek(w) { currentWeek = w; currentDay = "Segunda"; renderWeeks(); }
@@ -3083,32 +3128,96 @@ function renderShop() {
   document.getElementById('shopContent').innerHTML = html;
 }
 
-// Inicialização
-renderWeeks();
+// ============================================
+// AUTO-DETECT CURRENT WEEK AND DAY
+// ============================================
+function autoDetectWeek() {
+  const now = new Date();
+  const planStart = new Date(2026, 2, 2); // 02/Mar/2026 (month 0-indexed)
+  const planEnd = new Date(2027, 0, 3);   // 03/Jan/2027
+  
+  const diffMs = now - planStart;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  
+  if (diffDays < 0) {
+    // Plan hasn't started yet — show week 1
+    return { weekIdx: 0, dayIdx: 0 };
+  }
+  
+  if (diffDays >= 44 * 7) {
+    // Plan ended — show last week
+    return { weekIdx: 43, dayIdx: 6 };
+  }
+  
+  const weekIdx = Math.floor(diffDays / 7);
+  const dayIdx = diffDays % 7; // 0=Monday ... 6=Sunday
+  
+  return { weekIdx: Math.min(weekIdx, 43), dayIdx: Math.min(dayIdx, 6) };
+}
 
-// Progress bar animation on resumo
-setTimeout(() => {
+// Set initial state from auto-detection
+const detected = autoDetectWeek();
+const detectedWeek = WEEKS_CALENDAR[detected.weekIdx];
+if (detectedWeek) {
+  currentWeek = detectedWeek.type;
+  currentCycle = detectedWeek.cycle;
+}
+currentDay = DAY_ORDER[detected.dayIdx] || 'Segunda';
+
+// ============================================
+// DYNAMIC WEIGHT PROGRESS
+// ============================================
+const WEIGHT_START = 114;
+const WEIGHT_GOAL = 80;
+const LOSS_PER_WEEK = 0.7;
+const TOTAL_WEEKS = 44;
+
+function updateProgress() {
+  const det = autoDetectWeek();
+  const weeksElapsed = det.weekIdx;
+  const weightLost = Math.min(weeksElapsed * LOSS_PER_WEEK, WEIGHT_START - WEIGHT_GOAL);
+  const currentWeight = WEIGHT_START - weightLost;
+  const totalToLose = WEIGHT_START - WEIGHT_GOAL;
+  const pctComplete = Math.min((weightLost / totalToLose) * 100, 100);
+  
+  const pesoAtual = document.getElementById('pesoAtual');
+  const progressLabel = document.getElementById('progressWeekLabel');
+  const pesoLost = document.getElementById('pesoLost');
+  const pesoRemain = document.getElementById('pesoRemain');
   const fill = document.getElementById('progressFill');
-  if (fill) fill.style.width = '0%'; // Will animate when visible
-}, 100);
+  const badge = document.getElementById('headerBadge');
+  
+  if (pesoAtual) pesoAtual.innerHTML = `<strong>${currentWeight.toFixed(1)} kg</strong> estimado`;
+  if (progressLabel) progressLabel.textContent = `Semana ${weeksElapsed}/44`;
+  if (pesoLost) pesoLost.textContent = `↓ ${weightLost.toFixed(1)} kg perdidos`;
+  if (pesoRemain) pesoRemain.textContent = `${(totalToLose - weightLost).toFixed(1)} kg restantes`;
+  if (badge) badge.textContent = `Sem ${weeksElapsed + 1}`;
+  
+  // Animate progress bar
+  if (fill) {
+    fill.style.width = '0%';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fill.style.width = Math.max(pctComplete, 2) + '%';
+      });
+    });
+  }
+}
 
-// Animate progress when resumo tab is shown
-const origShowTab = showTab;
+// ============================================
+// INITIALIZATION
+// ============================================
+renderWeeks();
+updateProgress();
+
+// Re-animate progress when switching to resumo tab
+const _origShowTab = showTab;
 showTab = function(id) {
-  origShowTab(id);
+  _origShowTab(id);
   if (id === 'resumo') {
-    setTimeout(() => {
-      const fill = document.getElementById('progressFill');
-      if (fill) fill.style.width = '0%';
-      requestAnimationFrame(() => { if (fill) fill.style.width = '5%'; });
-    }, 300);
+    setTimeout(updateProgress, 200);
   }
 };
-// Initial animation
-setTimeout(() => {
-  const fill = document.getElementById('progressFill');
-  if (fill) fill.style.width = '5%';
-}, 500);
 </script>
 
 </body>
