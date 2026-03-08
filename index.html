@@ -49,31 +49,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Header Estilo App */
-.header { 
-  background: var(--surface);
-  padding: 20px 24px 16px; 
-  position: sticky; 
-  top: 0; 
-  z-index: 100; 
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-}
-.header h1 { 
-  font-size: 20px; 
-  font-weight: 800; 
-  color: var(--text-main); 
-  letter-spacing: -0.5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.header p { 
-  font-size: 13px; 
-  color: var(--text-sec); 
-  margin-top: 4px; 
-  font-weight: 500;
-}
+/* Header styles in new CSS block */
 
 /* Tab Bar Premium */
 .tab-bar { 
@@ -173,66 +149,7 @@ body {
   box-shadow: var(--shadow-sm); 
 }
 
-/* Week Selector - Dropdown */
-.week-selector {
-  display: flex; gap: 8px; align-items: center; 
-  margin-bottom: 12px; flex-wrap: wrap;
-}
-.week-dropdown {
-  flex: 1; min-width: 0;
-  padding: 10px 14px; border-radius: 10px;
-  background: var(--surface); border: 1px solid var(--border);
-  font-size: 14px; font-weight: 600; color: var(--text-main);
-  font-family: inherit; appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234B5563' viewBox='0 0 16 16'%3E%3Cpath d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  padding-right: 32px;
-}
-.week-type-pills {
-  display: flex; gap: 4px;
-}
-.week-type-btn {
-  padding: 8px 14px; border-radius: 8px;
-  background: var(--bg-app); border: 1px solid var(--border);
-  font-size: 13px; font-weight: 700; color: var(--text-sec);
-  cursor: pointer; transition: all 0.2s;
-}
-.week-type-btn.active { 
-  background: var(--primary); color: white; border-color: var(--primary); 
-}
-.week-info-bar {
-  width: 100%; padding: 8px 12px; margin-top: 4px;
-  background: var(--bg-app); border-radius: 8px;
-  font-size: 12px; color: var(--text-sec); font-weight: 500;
-}
-
-/* Day Selector - Full-width grid */
-.day-grid {
-  display: grid; grid-template-columns: repeat(7, 1fr);
-  gap: 4px; margin-bottom: 16px;
-}
-.day-cell {
-  display: flex; flex-direction: column; align-items: center;
-  padding: 8px 2px; border-radius: 10px;
-  background: var(--surface); border: 2px solid var(--border);
-  cursor: pointer; transition: all 0.2s;
-  min-width: 0;
-}
-.day-cell-label {
-  font-size: 10px; font-weight: 700; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.3px;
-}
-.day-cell-num {
-  font-size: 16px; font-weight: 800; color: var(--text-sec);
-  margin-top: 2px;
-}
-.day-cell.active {
-  background: var(--secondary); border-color: var(--secondary);
-}
-.day-cell.active .day-cell-label,
-.day-cell.active .day-cell-num { color: white; }
-.day-cell.weekend { border-color: #C4B5FD; }
-.day-cell.weekend.active { background: #7C3AED; border-color: #7C3AED; }
+/* Old selectors replaced by week-nav and day-pills */
 
 /* Refeições - Mobile First */
 .meal { 
@@ -398,62 +315,204 @@ body {
 
 /* Week cal styles moved to .week-selector above */
 
+
+/* Professional Header */
+.header {
+  background: linear-gradient(135deg, #059669, #047857);
+  padding: 16px 20px 14px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(5,150,105,0.3);
+}
+.header h1 {
+  font-size: 17px; font-weight: 800; color: white;
+  letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
+}
+.header p {
+  font-size: 12px; color: rgba(255,255,255,0.75);
+  margin-top: 2px; font-weight: 500;
+}
+
+/* Custom Week Navigator */
+.week-nav {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); border-radius: 12px;
+  padding: 8px 12px; margin-bottom: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.week-nav-arrow {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--bg-app); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; font-size: 18px; color: var(--text-sec);
+  transition: all 0.15s;
+}
+.week-nav-arrow:active { background: var(--primary-light); }
+.week-nav-center {
+  flex: 1; text-align: center; min-width: 0;
+}
+.week-nav-num {
+  font-size: 16px; font-weight: 800; color: var(--text-main);
+}
+.week-nav-date {
+  font-size: 12px; color: var(--text-sec); margin-top: 1px;
+}
+.week-nav-type {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  background: var(--primary-light); color: var(--primary-dark);
+  padding: 2px 8px; border-radius: 4px; margin-top: 4px;
+}
+
+/* Day Pills */
+.day-pills {
+  display: flex; gap: 4px; margin-bottom: 14px;
+}
+.day-pill {
+  flex: 1; text-align: center; padding: 10px 2px;
+  border-radius: 10px; cursor: pointer;
+  background: var(--surface); border: 1.5px solid var(--border);
+  transition: all 0.15s;
+}
+.day-pill-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+.day-pill-day { font-size: 15px; font-weight: 800; color: var(--text-sec); margin-top: 1px; }
+.day-pill.active { background: var(--secondary); border-color: var(--secondary); }
+.day-pill.active .day-pill-label, .day-pill.active .day-pill-day { color: white; }
+.day-pill.wknd { background: #FAF5FF; border-color: #DDD6FE; }
+.day-pill.wknd.active { background: #7C3AED; border-color: #7C3AED; }
+
+/* Medication Badge in Meals */
+.meal-meds {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--border);
+}
+.med-pill {
+  font-size: 11px; font-weight: 600; padding: 3px 8px;
+  border-radius: 6px; display: inline-flex; align-items: center; gap: 3px;
+  white-space: nowrap;
+}
+.med-pill-green { background: #ECFDF5; color: #065F46; }
+.med-pill-blue { background: #EFF6FF; color: #1E40AF; }
+.med-pill-purple { background: #F5F3FF; color: #5B21B6; }
+.med-pill-amber { background: #FFFBEB; color: #92400E; }
+.med-pill-skip { background: #F3F4F6; color: #9CA3AF; text-decoration: line-through; font-style: italic; }
+
+/* Resumo Cards */
+.resumo-hero {
+  background: linear-gradient(135deg, #059669, #047857);
+  border-radius: 16px; padding: 20px; color: white;
+  margin-bottom: 16px; box-shadow: var(--shadow-md);
+}
+.resumo-hero h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+.resumo-hero p { font-size: 13px; opacity: 0.85; }
+.resumo-stats {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 8px; margin-top: 16px;
+}
+.resumo-stat {
+  background: rgba(255,255,255,0.15); border-radius: 10px;
+  padding: 12px; text-align: center;
+}
+.resumo-stat-val { font-size: 22px; font-weight: 800; }
+.resumo-stat-label { font-size: 10px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.resumo-progress {
+  margin-top: 16px; background: rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 12px;
+}
+.progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.progress-fill { height: 100%; background: white; border-radius: 4px; width: 0%; transition: width 1s ease; }
+
+.resumo-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+}
+.resumo-card-sm {
+  background: var(--surface); border-radius: 12px; padding: 14px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.resumo-card-sm h4 { font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+.resumo-card-sm p { font-size: 14px; color: var(--text-main); font-weight: 600; line-height: 1.4; }
+
+.restricoes-grid {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.restricao-tag {
+  font-size: 12px; padding: 4px 10px; border-radius: 6px;
+  background: #FEF2F2; color: #991B1B; font-weight: 600;
+  border: 1px solid #FECACA;
+}
+
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>🥑 PLANO ALIMENTAR</h1>
-  <p>Rodrigo • TACO/UNICAMP • 44 Semanas</p>
+  <h1>PLANO NUTRICIONAL</h1>
+  <p>Rodrigo · 02/Mar/2026 → 03/Jan/2027 · Verificado TACO/UNICAMP</p>
 </div>
 
 <div id="tab-resumo" class="tab-content active">
-  <div class="stats">
-    <div class="stat"><div class="stat-val">1544</div><div class="stat-label">kcal/dia</div></div>
-    <div class="stat"><div class="stat-val">150g</div><div class="stat-label">prot/dia</div></div>
-    <div class="stat"><div class="stat-val">756</div><div class="stat-label">déficit</div></div>
-    <div class="stat"><div class="stat-val">0.7kg</div><div class="stat-label">perda/sem</div></div>
+  
+  <div class="resumo-hero">
+    <h2>Programa de Emagrecimento</h2>
+    <p>100% dieta · Déficit calórico controlado · Sem exercícios obrigatórios</p>
+    
+    <div class="resumo-stats">
+      <div class="resumo-stat"><div class="resumo-stat-val">1.545</div><div class="resumo-stat-label">kcal/dia</div></div>
+      <div class="resumo-stat"><div class="resumo-stat-val">~150g</div><div class="resumo-stat-label">proteína/dia</div></div>
+      <div class="resumo-stat"><div class="resumo-stat-val">~755</div><div class="resumo-stat-label">déficit/dia</div></div>
+      <div class="resumo-stat"><div class="resumo-stat-val">0,7kg</div><div class="resumo-stat-label">perda/semana</div></div>
+    </div>
+    
+    <div class="resumo-progress">
+      <div style="display:flex;justify-content:space-between;font-size:12px;">
+        <span><strong>114 kg</strong> atual</span>
+        <span>meta <strong>80-83 kg</strong></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div style="text-align:center;font-size:11px;margin-top:4px;opacity:0.8;">~31-34 kg em 44 semanas</div>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">🎯 Metas & Foco</div>
-    <div style="font-size:14px; line-height:1.6; color:var(--text-sec);">
-      <p><strong>Peso atual:</strong> 114 kg → <strong>Meta:</strong> 80-83 kg</p>
-      <p><strong>Estratégia:</strong> 100% Dieta (Déficit Calórico sem exercícios obrigatórios)</p>
-      <p style="margin-top:8px; font-size:13px; color:var(--text-muted);">Baseado em TDEE sedentário (~2300kcal)</p>
+  <div class="resumo-grid">
+    <div class="resumo-card-sm">
+      <h4>📅 Período</h4>
+      <p>02/03/2026<br>a 03/01/2027<br><span style="font-size:12px;color:var(--text-muted);">44 semanas · 4 cardápios</span></p>
+    </div>
+    <div class="resumo-card-sm">
+      <h4>⚖️ TDEE Base</h4>
+      <p>~2.300 kcal<br><span style="font-size:12px;color:var(--text-muted);">Sedentário · 114kg · 171cm</span></p>
+    </div>
+    <div class="resumo-card-sm">
+      <h4>🍽️ Refeições/Dia</h4>
+      <p>6 refeições<br><span style="font-size:12px;color:var(--text-muted);">Café · 2 lanches · Almoço · Jantar · Ceia</span></p>
+    </div>
+    <div class="resumo-card-sm">
+      <h4>🫘 Lentilha</h4>
+      <p>Incluída<br><span style="font-size:12px;color:var(--text-muted);">93 kcal/100g · +31% prot vs feijão</span></p>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">🫘 Lentilha no Plano</div>
-    <div style="font-size:14px; line-height:1.6; color: var(--text-sec);">
-      <b>Lentilha vs Feijão (100g cozidos):</b><br>
-      Lentilha: 93 kcal · 6,3g prot · 7,9g fibra<br>
-      Feijão: 76 kcal · 4,8g prot · 8,5g fibra<br><br>
-      Diferença de apenas <b>17 kcal</b>, mas <b>+31% proteína</b>. Incluída como opção nos almoços/jantares e como substituto nos sábados (arroz + lentilha + ovos).
+    <div class="card-title">📋 Regras do Plano</div>
+    <div style="font-size:13px; line-height:1.7; color:var(--text-sec);">
+      <p>☀️ <strong>Dias úteis:</strong> Sem leite · Iogurte grego · Whey à noite · Marmitas congeladas</p>
+      <p>🏠 <strong>Fins de semana:</strong> Leite liberado · Liquidificador · Sábado almoço fixo (arroz+feijão+ovos)</p>
+      <p>🔥 <strong>Preparo:</strong> Grelhado, assado ou cozido · Sem fritura · Gordura = manteiga mínima</p>
+      <p>🥩 <strong>Porções TACO:</strong> 150g proteína almoço (1 filé) · 120g jantar · 80g arroz (3 col.) · 80g feijão (1 concha)</p>
     </div>
   </div>
 
-  <div class="alert alert-red">
-    <div class="alert-icon">⚠️</div>
-    <div>
-      <strong>RESTRIÇÕES CRÍTICAS</strong><br>
-      Alergia a mel. Zero café/cafeína. Zero azeite de oliva. Zero aveia. Zero salmão. Zero cuscuz.
-    </div>
-  </div>
-
-  <div class="alert alert-blue">
-    <div class="alert-icon">⏰</div>
-    <div>
-      <strong>ROTINA DIÁRIA</strong><br>
-      05:00 Medicação (Jejum)<br>
-      05:30 Café da Manhã<br>
-      09:30 Lanche<br>
-      12:00 Almoço<br>
-      15:00 Lanche<br>
-      18:00 Jantar<br>
-      20:00 Ceia<br>
-      20:30 Medicação Noite
+  <div class="card">
+    <div class="card-title">🚫 Restrições Alimentares</div>
+    <div class="restricoes-grid">
+      <span class="restricao-tag">🍯 Mel (alergia)</span>
+      <span class="restricao-tag">☕ Café/Cafeína</span>
+      <span class="restricao-tag">🫒 Azeite de oliva</span>
+      <span class="restricao-tag">🥣 Aveia</span>
+      <span class="restricao-tag">🐟 Salmão</span>
+      <span class="restricao-tag">🌽 Cuscuz</span>
+      <span class="restricao-tag">🥗 Saladas/Vinagrete</span>
+      <span class="restricao-tag">🍵 Chás</span>
+      <span class="restricao-tag">🥜 Pasta de amendoim</span>
     </div>
   </div>
 </div>
@@ -477,7 +536,7 @@ body {
         <div class="med-dose-pill">100 mg</div>
       </div>
       <div class="med-row">
-        <div class="med-info-box"><div class="med-name">Clomifeno</div><div class="med-detail">Uso contínuo</div></div>
+        <div class="med-info-box"><div class="med-name">Clomifeno</div><div class="med-detail">⚡ Dia sim, dia não (dias ímpares)</div></div>
         <div class="med-dose-pill">25 mg</div>
       </div>
       <div class="med-row">
@@ -2745,55 +2804,122 @@ function showTab(id) {
   window.scrollTo(0, 0);
 }
 
+
+// Medication schedule per meal time
+const MEDS_SCHEDULE = {
+  "05:00": [
+    { name: "Puran T4", dose: "175mcg", cls: "med-pill-green", note: "JEJUM c/ água" }
+  ],
+  "05:30": [
+    { name: "Sertralina", dose: "100mg", cls: "med-pill-blue" },
+    { name: "Clomifeno", dose: "25mg", cls: "med-pill-amber", alt: true },
+    { name: "Multivit.", dose: "1cp", cls: "med-pill-green" },
+    { name: "Kit Capilar", dose: "3cp", cls: "med-pill-green" }
+  ],
+  "12:00": [
+    { name: "Vit. D3", dose: "2000UI", cls: "med-pill-blue" },
+    { name: "Ômega 3", dose: "2 cáps", cls: "med-pill-blue" }
+  ],
+  "20:00": [
+    { name: "Cabergolina", dose: "0,5mg", cls: "med-pill-purple", extra: "QUA/SÁB" },
+    { name: "Topiramato", dose: "100mg", cls: "med-pill-purple" },
+    { name: "Magnésio", dose: "2 cáps", cls: "med-pill-purple" }
+  ]
+};
+
+function getMedsForTime(time) {
+  // Match meal time to medication time
+  if (time === "05:30") return { before: MEDS_SCHEDULE["05:00"], with: MEDS_SCHEDULE["05:30"] };
+  if (time === "12:00") return { before: null, with: MEDS_SCHEDULE["12:00"] };
+  if (time === "20:00") return { before: null, with: MEDS_SCHEDULE["20:00"] };
+  return null;
+}
+
+function renderMedPills(time, dayName) {
+  const meds = getMedsForTime(time);
+  if (!meds) return '';
+  
+  // Determine if today is odd (for Clomifeno)
+  const dayIdx = DAY_ORDER.indexOf(dayName);
+  const weekIdx = getCurrentWeekIdx();
+  const globalDay = weekIdx * 7 + dayIdx;
+  const isOddDay = globalDay % 2 === 0; // dia 0,2,4... = dia SIM
+  
+  let html = '<div class="meal-meds">';
+  
+  // "Before" meds (Puran before café)
+  if (meds.before) {
+    meds.before.forEach(m => {
+      html += `<span class="med-pill ${m.cls}">⏰ ${m.name} ${m.dose}</span>`;
+    });
+  }
+  
+  // "With" meds
+  if (meds.with) {
+    meds.with.forEach(m => {
+      if (m.alt) {
+        // Clomifeno: alternating days
+        if (isOddDay) {
+          html += `<span class="med-pill ${m.cls}">💊 ${m.name} ${m.dose}</span>`;
+        } else {
+          html += `<span class="med-pill med-pill-skip">💊 ${m.name} (pular hoje)</span>`;
+        }
+      } else if (m.extra) {
+        // Cabergolina: extra on specific days
+        const isExtraDay = dayName === 'Quarta' || dayName === 'Sábado';
+        html += `<span class="med-pill ${m.cls}">💊 ${m.name} ${m.dose}${isExtraDay ? ' + EXTRA' : ''}</span>`;
+      } else {
+        html += `<span class="med-pill ${m.cls}">💊 ${m.name} ${m.dose}</span>`;
+      }
+    });
+  }
+  
+  html += '</div>';
+  return html;
+}
+
+function getCurrentWeekIdx() {
+  return WEEKS_CALENDAR.findIndex(w => w.type === currentWeek && w.cycle === currentCycle);
+}
+
 function renderWeeks() {
   const ws = document.getElementById('weekSel');
-  const calWeek = WEEKS_CALENDAR.find(w => w.type === currentWeek && w.cycle === currentCycle) || WEEKS_CALENDAR[0];
+  const idx = getCurrentWeekIdx();
+  const calWeek = WEEKS_CALENDAR[idx >= 0 ? idx : 0];
   
-  // Build dropdown + type pills
-  let html = '<div class="week-selector">';
-  
-  // Dropdown for week number
-  html += '<select class="week-dropdown" onchange="onWeekDropdown(this.value)">';
-  WEEKS_CALENDAR.forEach(wc => {
-    const sel = (wc.type === currentWeek && wc.cycle === currentCycle) ? 'selected' : '';
-    html += `<option value="${wc.type}-${wc.cycle}" ${sel}>Sem ${wc.num} · ${wc.start} a ${wc.end} · Tipo ${wc.type}</option>`;
-  });
-  html += '</select>';
-  
-  // Type pills
-  html += '<div class="week-type-pills">';
-  WEEK_NAMES.forEach(w => {
-    html += `<button class="week-type-btn ${w===currentWeek?'active':''}" onclick="selectWeek('${w}')">${w}</button>`;
-  });
-  html += '</div>';
-  
-  // Info bar
-  html += `<div class="week-info-bar">
-    📅 <strong>Semana ${calWeek.num}</strong> (${calWeek.start} → ${calWeek.end}) — Cardápio <strong>${calWeek.type}</strong>, Ciclo ${calWeek.cycle}/11
-  </div>`;
-  
-  html += '</div>';
-  ws.innerHTML = html;
+  // Custom week navigator with arrows
+  ws.innerHTML = `
+    <div class="week-nav">
+      <div class="week-nav-arrow" onclick="navWeek(-1)">‹</div>
+      <div class="week-nav-center">
+        <div class="week-nav-num">Semana ${calWeek.num} de 44</div>
+        <div class="week-nav-date">${calWeek.start} a ${calWeek.end}</div>
+        <span class="week-nav-type">Cardápio ${calWeek.type} · Ciclo ${calWeek.cycle}/11</span>
+      </div>
+      <div class="week-nav-arrow" onclick="navWeek(1)">›</div>
+    </div>
+  `;
 
-  // Day grid
+  // Day pills  
   const ds = document.getElementById('daySel');
-  const dayLabels = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
-  const dayNums = ['S','T','Q','Q','S','S','D'];
-  ds.innerHTML = '<div class="day-grid">' + DAY_ORDER.map((d, i) => {
-    const isWknd = d === 'Sábado' || d === 'Domingo';
-    return `<div class="day-cell ${d===currentDay?'active':''} ${isWknd?'weekend':''}" onclick="selectDay('${d}')">
-      <span class="day-cell-label">${dayLabels[i]}</span>
-      <span class="day-cell-num">${dayNums[i]}</span>
+  const labels = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  ds.innerHTML = '<div class="day-pills">' + DAY_ORDER.map((d, i) => {
+    const isWknd = i >= 5;
+    return `<div class="day-pill ${d===currentDay?'active':''} ${isWknd?'wknd':''}" onclick="selectDay('${d}')">
+      <div class="day-pill-label">${labels[i]}</div>
+      <div class="day-pill-day">${labels[i].charAt(0)}</div>
     </div>`;
   }).join('') + '</div>';
 
   updateSubViewVisibility();
 }
 
-function onWeekDropdown(val) {
-  const [type, cycle] = val.split('-');
-  currentWeek = type;
-  currentCycle = parseInt(cycle);
+function navWeek(dir) {
+  const idx = getCurrentWeekIdx();
+  const newIdx = Math.max(0, Math.min(43, idx + dir));
+  const wc = WEEKS_CALENDAR[newIdx];
+  currentWeek = wc.type;
+  currentCycle = wc.cycle;
   currentDay = 'Segunda';
   renderWeeks();
 }
@@ -2910,6 +3036,7 @@ function renderDay() {
       </div>
       <div class="meal-name">${m.name}</div>
       ${formatFood(m.food)}
+      ${renderMedPills(m.time, currentDay)}
       <details class="meal-subs">
         <summary>Opções de Troca</summary>
         <div class="sub"><strong>Opção 2:</strong> ${m.sub1}</div>
@@ -2958,6 +3085,30 @@ function renderShop() {
 
 // Inicialização
 renderWeeks();
+
+// Progress bar animation on resumo
+setTimeout(() => {
+  const fill = document.getElementById('progressFill');
+  if (fill) fill.style.width = '0%'; // Will animate when visible
+}, 100);
+
+// Animate progress when resumo tab is shown
+const origShowTab = showTab;
+showTab = function(id) {
+  origShowTab(id);
+  if (id === 'resumo') {
+    setTimeout(() => {
+      const fill = document.getElementById('progressFill');
+      if (fill) fill.style.width = '0%';
+      requestAnimationFrame(() => { if (fill) fill.style.width = '5%'; });
+    }, 300);
+  }
+};
+// Initial animation
+setTimeout(() => {
+  const fill = document.getElementById('progressFill');
+  if (fill) fill.style.width = '5%';
+}, 500);
 </script>
 
 </body>
