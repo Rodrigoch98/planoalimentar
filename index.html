@@ -40,10 +40,13 @@ body {
   background: var(--bg-app); 
   color: var(--text-main); 
   min-height: 100vh; 
+  min-height: -webkit-fill-available;
   padding-bottom: 90px; 
   font-size: 15px;      
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 /* Header Estilo App */
@@ -170,71 +173,122 @@ body {
   box-shadow: var(--shadow-sm); 
 }
 
-/* Seletores de Data */
-.week-sel, .day-sel { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.week-sel::-webkit-scrollbar, .day-sel::-webkit-scrollbar { display: none; }
-
-.week-btn { 
-  flex: 0 0 auto; 
-  padding: 8px 16px; 
-  border-radius: 20px; 
-  background: var(--surface); 
-  border: 1px solid var(--border); 
-  color: var(--text-sec); 
-  font-size: 14px; 
-  font-weight: 600; 
-  transition: all 0.2s;
+/* Week Selector - Dropdown */
+.week-selector {
+  display: flex; gap: 8px; align-items: center; 
+  margin-bottom: 12px; flex-wrap: wrap;
 }
-.week-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
-
-.day-btn { 
-  flex: 0 0 auto; 
-  width: 48px; height: 64px; 
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  border-radius: 12px; 
-  background: var(--surface); 
-  border: 1px solid var(--border); 
-  color: var(--text-sec); 
-  font-size: 13px; 
-  font-weight: 600; 
-  transition: all 0.2s;
+.week-dropdown {
+  flex: 1; min-width: 0;
+  padding: 10px 14px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  font-size: 14px; font-weight: 600; color: var(--text-main);
+  font-family: inherit; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234B5563' viewBox='0 0 16 16'%3E%3Cpath d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  padding-right: 32px;
 }
-.day-btn span { font-size: 10px; text-transform: uppercase; margin-bottom: 2px; color: var(--text-muted); }
-.day-btn.active { background: var(--secondary); color: white; border-color: var(--secondary); box-shadow: var(--shadow-md); }
-.day-btn.active span { color: rgba(255,255,255,0.8); }
-.day-btn.weekend { border-color: var(--purple-light); background: #FDF4FF; }
-.day-btn.weekend.active { background: #9333EA; border-color: #9333EA; }
+.week-type-pills {
+  display: flex; gap: 4px;
+}
+.week-type-btn {
+  padding: 8px 14px; border-radius: 8px;
+  background: var(--bg-app); border: 1px solid var(--border);
+  font-size: 13px; font-weight: 700; color: var(--text-sec);
+  cursor: pointer; transition: all 0.2s;
+}
+.week-type-btn.active { 
+  background: var(--primary); color: white; border-color: var(--primary); 
+}
+.week-info-bar {
+  width: 100%; padding: 8px 12px; margin-top: 4px;
+  background: var(--bg-app); border-radius: 8px;
+  font-size: 12px; color: var(--text-sec); font-weight: 500;
+}
 
-/* Refeições */
+/* Day Selector - Full-width grid */
+.day-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; margin-bottom: 16px;
+}
+.day-cell {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 8px 2px; border-radius: 10px;
+  background: var(--surface); border: 2px solid var(--border);
+  cursor: pointer; transition: all 0.2s;
+  min-width: 0;
+}
+.day-cell-label {
+  font-size: 10px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.day-cell-num {
+  font-size: 16px; font-weight: 800; color: var(--text-sec);
+  margin-top: 2px;
+}
+.day-cell.active {
+  background: var(--secondary); border-color: var(--secondary);
+}
+.day-cell.active .day-cell-label,
+.day-cell.active .day-cell-num { color: white; }
+.day-cell.weekend { border-color: #C4B5FD; }
+.day-cell.weekend.active { background: #7C3AED; border-color: #7C3AED; }
+
+/* Refeições - Mobile First */
 .meal { 
   background: var(--surface); 
   border-radius: 16px; 
-  padding: 16px; 
+  padding: 14px; 
   margin-bottom: 12px; 
   border: 1px solid var(--border); 
   border-left: 5px solid var(--secondary); 
   box-shadow: var(--shadow-sm); 
-  position: relative;
+  overflow: hidden;
 }
-.meal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-.meal-time { font-size: 13px; color: var(--text-main); font-weight: 800; background: var(--bg-app); padding: 4px 8px; border-radius: 6px; }
-.meal-name { font-size: 13px; color: var(--text-sec); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.meal-food { font-size: 15px; line-height: 1.5; color: var(--text-main); margin-bottom: 8px; font-weight: 500; }
+.meal-header { 
+  display: flex; justify-content: space-between; 
+  align-items: center; margin-bottom: 6px; 
+  flex-wrap: wrap; gap: 6px;
+}
+.meal-time { 
+  font-size: 14px; color: var(--text-main); font-weight: 800; 
+  background: var(--bg-app); padding: 4px 10px; border-radius: 6px; 
+}
+.meal-name { 
+  font-size: 12px; color: var(--text-sec); font-weight: 700; 
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.meal-food { 
+  font-size: 14px; line-height: 1.5; color: var(--text-main); 
+  margin-bottom: 8px; font-weight: 500; 
+  word-wrap: break-word; overflow-wrap: break-word;
+}
 
 .meal-subs { 
   font-size: 13px; 
   color: var(--text-sec); 
   background: #F9FAFB; 
-  padding: 12px; 
+  padding: 10px 12px; 
   border-radius: 8px; 
-  margin-top: 12px; 
+  margin-top: 10px; 
   border: 1px dashed var(--border); 
 }
-.meal-subs summary { cursor: pointer; color: var(--secondary); font-weight: 600; margin-bottom: 6px; list-style: none; display: flex; align-items: center; gap: 4px; }
+.meal-subs summary { 
+  cursor: pointer; color: var(--secondary); font-weight: 600; 
+  margin-bottom: 6px; list-style: none; 
+  display: flex; align-items: center; gap: 4px; 
+  font-size: 13px;
+}
 .meal-subs summary::before { content: "↻"; font-weight: bold; }
 .meal-subs summary::-webkit-details-marker { display: none; }
-.meal-subs .sub { padding: 6px 0; border-bottom: 1px solid #E5E7EB; }
+.meal-subs .sub { 
+  padding: 8px 0; border-bottom: 1px solid #E5E7EB; 
+  font-size: 13px; line-height: 1.5;
+  word-wrap: break-word; overflow-wrap: break-word;
+}
 .meal-subs .sub:last-child { border-bottom: none; }
+.meal-subs .sub strong { color: var(--text-main); font-size: 12px; }
 
 .meal.cafe { border-left-color: var(--accent); }
 .meal.almoco { border-left-color: var(--primary); }
@@ -243,19 +297,19 @@ body {
 .meal.ceia { border-left-color: var(--secondary); }
 
 /* Badges */
-.badges-container { display: flex; gap: 6px; }
-.badge { font-size: 12px; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
+.badges-container { display: flex; gap: 4px; flex-shrink: 0; }
+.badge { font-size: 11px; padding: 3px 7px; border-radius: 6px; font-weight: 700; white-space: nowrap; }
 .badge-cal { background: var(--accent-light); color: #B45309; }
 .badge-prot { background: var(--secondary-light); color: #1D4ED8; }
 
 /* Day Total Sticky */
 .day-total { 
-  display: flex; justify-content: center; align-items: center; gap: 20px;
-  background: var(--text-main); color: white;
-  padding: 12px; border-radius: 12px; margin-bottom: 20px;
+  display: flex; justify-content: center; align-items: center; gap: 16px;
+  background: linear-gradient(135deg, #111827, #1F2937); color: white;
+  padding: 14px 16px; border-radius: 12px; margin-bottom: 16px;
   box-shadow: var(--shadow-md);
 }
-.day-total span { font-size: 16px; font-weight: 700; }
+.day-total span { font-size: 15px; font-weight: 700; }
 
 /* Listas (Compras e Prep) */
 .list-item { 
@@ -316,29 +370,33 @@ body {
 .alert-blue { background: #EFF6FF; border-color: #3B82F6; color: #1E40AF; }
 
 
-/* Structured food display */
-.food-item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted #E5E7EB; font-size: 14px; }
-.food-item:last-child { border-bottom: none; }
-.food-name { color: var(--text-main); font-weight: 500; }
-.food-measure { color: var(--text-sec); font-size: 13px; white-space: nowrap; margin-left: 8px; }
-.meal-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+/* Structured food display - mobile first */
+.food-list { margin: 4px 0 8px; }
+.food-line {
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 5px 0; border-bottom: 1px solid #F3F4F6;
+  font-size: 14px; line-height: 1.4;
+}
+.food-line:last-child { border-bottom: none; }
+.food-dot { 
+  flex-shrink: 0; width: 6px; height: 6px; 
+  border-radius: 50%; background: var(--primary); 
+  margin-top: 6px;
+}
+.food-desc { flex: 1; min-width: 0; }
+.food-desc-name { color: var(--text-main); font-weight: 600; }
+.food-desc-measure { 
+  display: block; font-size: 12px; color: var(--text-sec); 
+  font-weight: 400; margin-top: 1px;
+}
+.meal-label { 
+  font-size: 11px; color: var(--primary-dark); 
+  text-transform: uppercase; font-weight: 700; 
+  letter-spacing: 0.5px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 4px;
+}
 
-/* Week calendar selector */
-.week-cal { 
-  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; 
-  -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-bottom: 12px;
-}
-.week-cal::-webkit-scrollbar { display: none; }
-.week-cal-btn {
-  flex: 0 0 auto; padding: 6px 10px; border-radius: 8px;
-  background: var(--surface); border: 1px solid var(--border);
-  font-size: 11px; font-weight: 600; color: var(--text-sec);
-  cursor: pointer; transition: all 0.2s; text-align: center; min-width: 60px;
-}
-.week-cal-btn.active { background: var(--text-main); color: white; border-color: var(--text-main); }
-.week-cal-btn span { display: block; font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-.week-cal-btn.active span { color: rgba(255,255,255,0.7); }
-.week-info { font-size: 12px; color: var(--text-sec); margin-bottom: 12px; padding: 8px 12px; background: var(--bg-app); border-radius: 8px; }
+/* Week cal styles moved to .week-selector above */
 
 </style>
 </head>
@@ -463,7 +521,7 @@ body {
 </div>
 
 <div id="tab-weeks" class="tab-content">
-  <div class="week-sel" id="weekSel"></div>
+  <div id="weekSel"></div>
   
   <div class="sub-nav">
     <button class="sub-nav-btn active" id="btnViewMenu" onclick="setSubView('menu')">Cardápio</button>
@@ -2670,8 +2728,8 @@ function selectCalWeek(type, cycle) {
   renderWeeks();
   // Scroll the calendar to show active week
   setTimeout(() => {
-    const active = document.querySelector('.week-cal-btn.active');
-    if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    // dropdown handles selection
+    
   }, 100);
 }
 
@@ -2689,40 +2747,55 @@ function showTab(id) {
 
 function renderWeeks() {
   const ws = document.getElementById('weekSel');
-  // Show real week buttons grouped
-  let calHtml = '<div class="week-cal" id="weekCal">';
+  const calWeek = WEEKS_CALENDAR.find(w => w.type === currentWeek && w.cycle === currentCycle) || WEEKS_CALENDAR[0];
+  
+  // Build dropdown + type pills
+  let html = '<div class="week-selector">';
+  
+  // Dropdown for week number
+  html += '<select class="week-dropdown" onchange="onWeekDropdown(this.value)">';
   WEEKS_CALENDAR.forEach(wc => {
-    const isActive = wc.type === currentWeek && wc.cycle === currentCycle;
-    calHtml += `<button class="week-cal-btn ${isActive?'active':''}" onclick="selectCalWeek('${wc.type}',${wc.cycle})">
-      S${wc.num}<span>${wc.start}</span>
-    </button>`;
+    const sel = (wc.type === currentWeek && wc.cycle === currentCycle) ? 'selected' : '';
+    html += `<option value="${wc.type}-${wc.cycle}" ${sel}>Sem ${wc.num} · ${wc.start} a ${wc.end} · Tipo ${wc.type}</option>`;
   });
-  calHtml += '</div>';
+  html += '</select>';
   
-  // Also show type selector
-  calHtml += '<div style="display:flex;gap:6px;margin-bottom:12px;">';
+  // Type pills
+  html += '<div class="week-type-pills">';
   WEEK_NAMES.forEach(w => {
-    calHtml += `<button class="week-btn ${w===currentWeek?'active':''}" onclick="selectWeek('${w}')" style="flex:1;">Tipo ${w}</button>`;
+    html += `<button class="week-type-btn ${w===currentWeek?'active':''}" onclick="selectWeek('${w}')">${w}</button>`;
   });
-  calHtml += '</div>';
+  html += '</div>';
   
-  const calWeek = WEEKS_CALENDAR.find(w => w.type === currentWeek && w.cycle === currentCycle);
-  if (calWeek) {
-    calHtml += `<div class="week-info">📅 <strong>Semana ${calWeek.num}</strong> (${calWeek.start} a ${calWeek.end}) — Cardápio Tipo ${calWeek.type}, Ciclo ${calWeek.cycle} de 11</div>`;
-  }
+  // Info bar
+  html += `<div class="week-info-bar">
+    📅 <strong>Semana ${calWeek.num}</strong> (${calWeek.start} → ${calWeek.end}) — Cardápio <strong>${calWeek.type}</strong>, Ciclo ${calWeek.cycle}/11
+  </div>`;
   
-  ws.innerHTML = calHtml;
+  html += '</div>';
+  ws.innerHTML = html;
 
+  // Day grid
   const ds = document.getElementById('daySel');
-  ds.innerHTML = DAY_ORDER.map(d => {
+  const dayLabels = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
+  const dayNums = ['S','T','Q','Q','S','S','D'];
+  ds.innerHTML = '<div class="day-grid">' + DAY_ORDER.map((d, i) => {
     const isWknd = d === 'Sábado' || d === 'Domingo';
-    return `<button class="day-btn ${d===currentDay?'active':''} ${isWknd?'weekend':''}" onclick="selectDay('${d}')">
-              <span>${d.substring(0,3)}</span>
-              ${d.substring(0,1)}
-            </button>`;
-  }).join('');
+    return `<div class="day-cell ${d===currentDay?'active':''} ${isWknd?'weekend':''}" onclick="selectDay('${d}')">
+      <span class="day-cell-label">${dayLabels[i]}</span>
+      <span class="day-cell-num">${dayNums[i]}</span>
+    </div>`;
+  }).join('') + '</div>';
 
   updateSubViewVisibility();
+}
+
+function onWeekDropdown(val) {
+  const [type, cycle] = val.split('-');
+  currentWeek = type;
+  currentCycle = parseInt(cycle);
+  currentDay = 'Segunda';
+  renderWeeks();
 }
 
 function selectWeek(w) { currentWeek = w; currentDay = "Segunda"; renderWeeks(); }
@@ -2756,22 +2829,54 @@ function getMealClass(name) {
 }
 
 function formatFood(food) {
-  // Split by " + " and render each ingredient as structured item
   if (!food) return '';
-  const prefix = food.startsWith('MARMITA:') ? '<div class="meal-label">🍱 MARMITA</div>' : '';
-  const clean = food.replace('MARMITA: ', '').replace('MARMITA Yakisoba: ', 'Yakisoba: ');
-  const items = clean.split(' + ');
-  if (items.length <= 1) return `<div class="meal-food">${food}</div>`;
   
-  let html = prefix + '<div style="margin-bottom:6px;">';
-  items.forEach((item, i) => {
-    // Extract measure from parentheses
-    const match = item.match(/^(.+?)\s*\(([^)]+)\)\s*(.*)$/);
-    if (match) {
-      html += `<div class="food-item"><span class="food-name">${match[1].trim()} ${match[3].trim()}</span><span class="food-measure">${match[2]}</span></div>`;
+  let label = '';
+  let clean = food;
+  if (food.startsWith('MARMITA Yakisoba:')) {
+    label = '<div class="meal-label">🍱 Yakisoba (Marmita)</div>';
+    clean = food.replace('MARMITA Yakisoba: ', '');
+  } else if (food.startsWith('MARMITA:')) {
+    label = '<div class="meal-label">🍱 Marmita</div>';
+    clean = food.replace('MARMITA: ', '');
+  }
+  
+  const items = clean.split(' + ');
+  if (items.length <= 1 && !label) return `<div class="meal-food" style="font-size:14px;line-height:1.5;margin-bottom:8px;">${food}</div>`;
+  
+  let html = label + '<div class="food-list">';
+  items.forEach(item => {
+    const trimmed = item.trim();
+    // Try to extract: "QTY (MEASURE) NAME" or "NAME (MEASURE)"
+    // Pattern 1: "150g (1 filé) frango grelhado"
+    const p1 = trimmed.match(/^(\d+\S*)\s+\(([^)]+)\)\s+(.+)$/);
+    // Pattern 2: "1 fatia (30g) pão integral"
+    const p2 = trimmed.match(/^(.+?)\s+\(([^)]+)\)\s+(.+)$/);
+    // Pattern 3: "Tapioca 45g (3 col. sopa)"
+    const p3 = trimmed.match(/^(.+?)\s+\(([^)]+)\)$/);
+    
+    let name, measure;
+    if (p1) {
+      name = p1[3];
+      measure = `${p1[1]} · ${p1[2]}`;
+    } else if (p2 && p2[2].match(/\d/)) {
+      name = `${p2[1]} ${p2[3]}`;
+      measure = p2[2];
+    } else if (p3) {
+      name = p3[1];
+      measure = p3[2];
     } else {
-      html += `<div class="food-item"><span class="food-name">${item.trim()}</span></div>`;
+      name = trimmed;
+      measure = '';
     }
+    
+    html += `<div class="food-line">
+      <div class="food-dot"></div>
+      <div class="food-desc">
+        <span class="food-desc-name">${name}</span>
+        ${measure ? `<span class="food-desc-measure">${measure}</span>` : ''}
+      </div>
+    </div>`;
   });
   html += '</div>';
   return html;
