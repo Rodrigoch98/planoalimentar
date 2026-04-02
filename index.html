@@ -126,6 +126,42 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
 .ex-sub-nav{display:flex;gap:6px;background:#E5E7EB;padding:4px;border-radius:12px;margin-bottom:16px}
 .ex-sub-btn{flex:1;padding:10px;font-size:13px;font-weight:600;color:var(--ts);background:transparent;border:none;border-radius:8px;cursor:pointer;transition:.2s}
 .ex-sub-btn.active{background:var(--sf);color:var(--tm);box-shadow:var(--sh)}
+
+.wm-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:300;overflow-y:auto;display:none;padding-bottom:env(safe-area-inset-bottom)}
+.wm-overlay.active{display:block}
+.wm-hdr{background:linear-gradient(135deg,#7C3AED,#5B21B6);padding:16px 20px;color:#fff;position:sticky;top:0;z-index:301;box-shadow:var(--shm)}
+.wm-hdr h2{font-size:16px;font-weight:800}
+.wm-hdr-sub{font-size:12px;opacity:.8;margin-top:2px}
+.wm-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}
+.wm-body{padding:16px;max-width:500px;margin:0 auto}
+.wm-progress{background:rgba(255,255,255,.15);height:6px;border-radius:3px;margin-top:10px;overflow:hidden}
+.wm-progress-fill{height:100%;background:#34D399;border-radius:3px;transition:width .5s}
+.wm-ex-card{background:var(--sf);border-radius:var(--r);padding:24px;margin-bottom:16px;border:1px solid var(--bd);box-shadow:var(--shl);text-align:center}
+.wm-ex-name{font-size:20px;font-weight:800;color:#5B21B6;margin-bottom:4px}
+.wm-ex-detail{font-size:14px;color:var(--ts);margin-bottom:16px}
+.wm-timer{font-size:56px;font-weight:800;color:var(--tm);font-variant-numeric:tabular-nums;letter-spacing:-2px;margin:16px 0}
+.wm-timer.rest{color:#F59E0B}
+.wm-timer.done{color:#10B981}
+.wm-steps{text-align:left;background:var(--bg);border-radius:12px;padding:16px;margin:16px 0;font-size:14px;color:var(--ts);line-height:1.8}
+.wm-steps ol{padding-left:22px;margin:0}
+.wm-steps li{padding:3px 0}
+.wm-tip{text-align:left;padding:10px 14px;background:#ECFDF5;border-radius:10px;border:1px solid #D1FAE5;font-size:13px;color:#059669;font-weight:600;margin:12px 0;line-height:1.5}
+.wm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 32px;border-radius:14px;font-size:16px;font-weight:700;border:none;cursor:pointer;transition:.15s;min-width:200px}
+.wm-btn:active{transform:scale(.97)}
+.wm-btn-primary{background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;box-shadow:0 4px 12px rgba(124,58,237,.3)}
+.wm-btn-rest{background:linear-gradient(135deg,#F59E0B,#D97706);color:#fff;box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.wm-btn-done{background:linear-gradient(135deg,#10B981,#059669);color:#fff;box-shadow:0 4px 12px rgba(16,185,129,.3)}
+.wm-btn-outline{background:var(--sf);color:var(--ts);border:2px solid var(--bd)}
+.wm-set-dots{display:flex;gap:6px;justify-content:center;margin:12px 0}
+.wm-set-dot{width:12px;height:12px;border-radius:50%;background:var(--bd)}
+.wm-set-dot.done{background:#10B981}
+.wm-set-dot.current{background:#7C3AED;box-shadow:0 0 8px rgba(124,58,237,.4)}
+.wm-summary{text-align:center;padding:24px}
+.wm-summary h2{font-size:24px;font-weight:800;color:#10B981;margin-bottom:8px}
+.wm-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0}
+.wm-summary-item{background:var(--bg);border-radius:12px;padding:16px;text-align:center}
+.wm-summary-val{font-size:24px;font-weight:800;color:var(--tm)}
+.wm-summary-label{font-size:11px;color:var(--tmu);text-transform:uppercase;font-weight:700;margin-top:4px}
 </style>
 </head>
 <body>
@@ -155,7 +191,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var
   </div>
   <div class="rg">
     <div class="rc"><h4>📅 Período</h4><p>02/03/2026<br>a 03/01/2027<br><span style="font-size:12px;color:var(--tmu)">44 semanas · 4 cardápios</span></p></div>
-    <div class="rc"><h4>🏋️ Treino (início 06/04)</h4><p>6×/semana<br><span style="font-size:12px;color:var(--tmu)">Supersets + Circuitos · 35-50min · Definição total</span></p></div>
+    <div class="rc"><h4>🏋️ Treino (início 06/04)</h4><p>6×/semana<br><span style="font-size:12px;color:var(--tmu)">Dois exercícios seguidos sem pausas + Circuitos · 35-50min · Definição total</span></p></div>
     <div class="rc"><h4>⚖️ TDEE Base</h4><p>~2.476 kcal<br><span style="font-size:12px;color:var(--tmu)">Mifflin-St Jeor · Sedentário · 114kg · 171cm</span></p></div>
     <div class="rc"><h4>🍗 Proteína Alvo</h4><p>128-160g/dia<br><span style="font-size:12px;color:var(--tmu)">1,6-2,0g/kg peso-meta (80kg)</span></p></div>
     <div class="rc"><h4>🥤 Whey Parmalat Fit</h4><p>Opção de troca (lanche)<br><span style="font-size:12px;color:var(--tmu)">130 kcal · 15g prot · Substituição nos lanches</span></p></div>
@@ -372,39 +408,65 @@ document.getElementById('dSel').innerHTML='<div class="dp">'+DO.map((d,i)=>`<div
 function gMC(n){if(n.includes('Café'))return'cafe';if(n.includes('Almoço')||n.includes('Fixo'))return'almoco';if(n.includes('Jantar'))return'jantar';if(n.includes('Ceia')||n.includes('Whey'))return'ceia';return'lanche'}
 
 function fmtF(food){if(!food)return'';
-const recipes=['Panqueca','Crepioca','Vitamina','French toast','Omelete','Wrap','Risoto','Sopa','Canja','Escondidinho','Hambúrguer','Pizza caseira','Estrogonofe'];
-let label='',clean=food,isRecipe=false;
-if(food.startsWith('MARMITA Yakisoba:')){label='<div class="ml">🍱 Yakisoba (Marmita)</div>';clean=food.replace('MARMITA Yakisoba: ','');isRecipe=true}
-else if(food.startsWith('MARMITA:')){label='<div class="ml">🍱 Marmita</div>';clean=food.replace('MARMITA: ','')}
-else{for(const r of recipes){if(food.startsWith(r)||food.includes(r+':')||food.includes(r+' (')){
-const colonIdx=food.indexOf(':');const parenIdx=food.indexOf('(');
-let recipeName='',ingredients='';
-if(colonIdx>0&&colonIdx<40){recipeName=food.substring(0,colonIdx).trim();ingredients=food.substring(colonIdx+1).trim();isRecipe=true}
-else if(parenIdx>0){
-const closeP=food.indexOf(')');
-if(closeP>parenIdx&&food.substring(parenIdx,closeP).includes('+')){
-recipeName=food.substring(0,parenIdx).trim();
-const afterParen=food.substring(closeP+1).trim();
-const insideParen=food.substring(parenIdx+1,closeP);
-ingredients=insideParen;
-if(afterParen.startsWith('+')){
-const extras=afterParen.substring(1).trim().split(' + ');
-label=`<div class="ml">🍳 ${recipeName}</div>`;
-let h=label+'<div class="fl">';
-insideParen.split(' + ').forEach(it=>{const t=it.trim();let nm=t,ms='';const p3=t.match(/^(.+?)\s+\(([^)]+)\)$/);if(p3){nm=p3[1];ms=p3[2]}h+=`<div class="fln"><div class="fld" style="background:#7C3AED"></div><div class="flc"><span class="flc-n">${nm}</span>${ms?`<span class="flc-m">${ms}</span>`:''}</div></div>`});
-h+='</div>';
-if(extras.length>0){h+='<div style="font-size:11px;font-weight:700;color:var(--tmu);text-transform:uppercase;margin:6px 0 4px;letter-spacing:.5px">Acompanhamento</div><div class="fl">';
-extras.forEach(it=>{const t=it.trim();if(!t)return;let nm=t,ms='';const p3=t.match(/^(.+?)\s+\(([^)]+)\)$/);if(p3){nm=p3[1];ms=p3[2]}h+=`<div class="fln"><div class="fld"></div><div class="flc"><span class="flc-n">${nm}</span>${ms?`<span class="flc-m">${ms}</span>`:''}</div></div>`});
-h+='</div>'}
-return h}
-isRecipe=true}}
-if(isRecipe&&recipeName){
-const emoji=recipeName.includes('Omelete')?'🍳':recipeName.includes('Wrap')?'🌯':recipeName.includes('Sopa')||recipeName.includes('Canja')?'🍲':recipeName.includes('Hambúrguer')?'🍔':recipeName.includes('Pizza')?'🍕':recipeName.includes('Vitamina')?'🥤':recipeName.includes('Panqueca')?'🥞':recipeName.includes('Crepioca')?'🫓':recipeName.includes('Risoto')?'🍚':recipeName.includes('Escondidinho')?'🥘':recipeName.includes('French')?'🍞':'🍽️';
-label=`<div class="ml">${emoji} ${recipeName}</div>`;clean=ingredients}
-break}}}
+const RN=['Panqueca','Crepioca','Vitamina','French toast','Omelete','Wrap','Risoto','Sopa','Canja','Escondidinho','Hambúrguer','Pizza caseira','Estrogonofe'];
+const RE={'Panqueca':'🥞','Crepioca':'🫓','Vitamina':'🥤','French toast':'🍞','Omelete':'🍳','Wrap':'🌯','Risoto':'🍚','Sopa':'🍲','Canja':'🍲','Escondidinho':'🥘','Hambúrguer':'🍔','Pizza caseira':'🍕','Estrogonofe':'🍛'};
+let label='',clean=food;
+if(food.startsWith('MARMITA Yakisoba:')){label='<div class="ml">🍱 Yakisoba (Marmita)</div>';clean=food.replace('MARMITA Yakisoba: ','');return label+fmtItems(clean)}
+if(food.startsWith('MARMITA:')){label='<div class="ml">🍱 Marmita</div>';clean=food.replace('MARMITA: ','');return label+fmtItems(clean)}
+for(const rn of RN){
+  let ci=food.indexOf(rn);if(ci<0)continue;
+  let afterName=food.substring(ci+rn.length).trim();
+  // Pattern A: "RecipeName: ingredients" or "RecipeName lanche: ingredients"
+  let colonMatch=afterName.match(/^([^:(]*?):\s*(.+)$/);
+  if(colonMatch){
+    let suffix=colonMatch[1]?(' '+colonMatch[1].trim()):'';
+    label=`<div class="ml">${RE[rn]||'🍽️'} ${rn}${suffix}</div>`;
+    clean=colonMatch[2];
+    return label+fmtItems(clean);
+  }
+  // Pattern B: "RecipeName (ingredients) + extras"
+  let pi=afterName.indexOf('(');
+  if(pi>=0){
+    let depth=0,endP=-1,full=afterName;
+    for(let i=pi;i<full.length;i++){
+      if(full[i]==='(')depth++;
+      if(full[i]===')'){depth--;if(depth===0){endP=i;break;}}
+    }
+    if(endP>0){
+      let suffix=afterName.substring(0,pi).trim();
+      let inside=full.substring(pi+1,endP);
+      let after=full.substring(endP+1).trim();
+      label=`<div class="ml">${RE[rn]||'🍽️'} ${rn}${suffix?' '+suffix:''}</div>`;
+      let h=label+fmtItems(inside,'#7C3AED');
+      if(after.startsWith('+'))after=after.substring(1).trim();
+      if(after.length>2){
+        h+='<div style="font-size:11px;font-weight:700;color:var(--tmu);text-transform:uppercase;margin:6px 0 4px;letter-spacing:.5px">+ Acompanhamento</div>';
+        h+=fmtItems(after);
+      }
+      return h;
+    }
+  }
+  // Pattern C: "RecipeName recheada: stuff" or simple 
+  if(afterName.startsWith(' ')){
+    label=`<div class="ml">${RE[rn]||'🍽️'} ${rn}</div>`;
+    let restIdx=food.indexOf(rn)+rn.length;
+    // check if there's a qualifier before ":"
+    let rest=food.substring(restIdx).trim();
+    let cm2=rest.match(/^([^:]+):\s*(.+)$/);
+    if(cm2){
+      label=`<div class="ml">${RE[rn]||'🍽️'} ${rn} ${cm2[1].trim()}</div>`;
+      clean=cm2[2];
+      return label+fmtItems(clean);
+    }
+  }
+}
 const items=clean.split(' + ');
 if(items.length<=1&&!label)return`<div style="font-size:14px;line-height:1.5;margin-bottom:8px;font-weight:500">${food}</div>`;
-let h=label+'<div class="fl">';
+return label+fmtItems(clean)}
+
+function fmtItems(str,dotColor){
+const items=str.split(' + ');
+let h='<div class="fl">';
 items.forEach(item=>{const t=item.trim();if(!t)return;let name=t,measure='';
 const p1=t.match(/^(\d+\S*)\s+\(([^)]+)\)\s+(.+)$/);
 const p2=t.match(/^(.+?)\s+\(([^)]+)\)\s+(.+)$/);
@@ -412,7 +474,8 @@ const p3=t.match(/^(.+?)\s+\(([^)]+)\)$/);
 if(p1){name=p1[3];measure=p1[1]+' · '+p1[2]}
 else if(p2&&p2[2].match(/\d/)){name=p2[1]+' '+p2[3];measure=p2[2]}
 else if(p3){name=p3[1];measure=p3[2]}
-h+=`<div class="fln"><div class="fld"></div><div class="flc"><span class="flc-n">${name}</span>${measure?`<span class="flc-m">${measure}</span>`:''}</div></div>`});
+const dc=dotColor?`background:${dotColor}`:'';
+h+=`<div class="fln"><div class="fld" ${dc?`style="${dc}"`:''} ></div><div class="flc"><span class="flc-n">${name}</span>${measure?`<span class="flc-m">${measure}</span>`:''}</div></div>`});
 return h+'</div>'}
 
 const MEDS={"05:30":[{n:"Puran T4",d:"175mcg",c:"mp-g",b:true},{n:"Sertralina",d:"100mg",c:"mp-b"},{n:"Clomifeno",d:"25mg",c:"mp-a",alt:true},{n:"Multivit.",d:"1cp",c:"mp-g"},{n:"Kit Capilar",d:"3cp",c:"mp-g"}],"12:00":[{n:"Vit.D3",d:"2000UI",c:"mp-b"},{n:"Ômega 3",d:"1cáps",c:"mp-b"}],"20:30":[{n:"Cabergolina",d:"0,5mg",c:"mp-v",extra:"QUA/SÁB"},{n:"Topiramato",d:"100mg",c:"mp-v"},{n:"Magnésio",d:"1cáps",c:"mp-v"}]};
@@ -478,20 +541,21 @@ function updateP(){
 }
 
 const EX_PHASES=[
-{name:"Fundação + Queima",weeks:"Sem 1-11",desc:"Aprender os movimentos com boa forma, criar o hábito e iniciar a queima de gordura com supersets",dur:"35-40 min",freq:"6×/semana",level:"Iniciante"},
-{name:"Intensificação",weeks:"Sem 12-22",desc:"Supersets avançados, menos descanso, mais volume. Metabolismo acelerado e músculos começando a aparecer",dur:"40-45 min",freq:"6×/semana",level:"Iniciante-Inter."},
-{name:"Definição Máxima",weeks:"Sem 23-33",desc:"Tri-sets, circuitos metabólicos e HIIT finishers. Máxima queima calórica com preservação muscular",dur:"45-50 min",freq:"6×/semana",level:"Intermediário"},
-{name:"Escultura Final",weeks:"Sem 34-44",desc:"Circuitos de alta densidade, supersets complexos e condicionamento de pico. Corpo definido!",dur:"45-50 min",freq:"6×/semana",level:"Inter.-Avançado"}
+{name:"Fundação + Queima",weeks:"Sem 1-11",desc:"Aprender os movimentos com boa forma, criar o hábito e iniciar a queima de gordura com dois exercícios seguidos sem pausas",dur:"35-40 min",freq:"6×/semana",level:"Iniciante"},
+{name:"Intensificação",weeks:"Sem 12-22",desc:"Dois exercícios seguidos sem pausas avançados, menos descanso, mais volume. Metabolismo acelerado e músculos começando a aparecer",dur:"40-45 min",freq:"6×/semana",level:"Iniciante-Inter."},
+{name:"Definição Máxima",weeks:"Sem 23-33",desc:"Três exercícios seguidos sem pausas, circuitos metabólicos e HIIT finishers. Máxima queima calórica com preservação muscular",dur:"45-50 min",freq:"6×/semana",level:"Intermediário"},
+{name:"Escultura Final",weeks:"Sem 34-44",desc:"Circuitos de alta densidade, dois exercícios seguidos sem pausas complexos e condicionamento de pico. Corpo definido!",dur:"45-50 min",freq:"6×/semana",level:"Inter.-Avançado"}
 ];
 
 const EX_EQUIP=[
 {name:"Colchonete / Tapete de Exercícios",icon:"🧘",price:"R$40-60",when:"Desde a semana 1",have:false},
-{name:"Kit Faixas Elásticas (3 níveis: leve, média, forte)",icon:"🔴",price:"R$30-50",when:"Desde a semana 1",have:false},
-{name:"Par de Halteres Emborrachados 3kg",icon:"🏋️",price:"—",when:"Desde a semana 1",have:true},
-{name:"Par de Halteres Emborrachados 5kg",icon:"🏋️",price:"R$45-65",when:"Desde a semana 1",have:false},
-{name:"Caneleiras 3kg (par)",icon:"🦵",price:"—",when:"A partir da semana 12",have:true},
-{name:"Cadeira Firme (sem rodinhas)",icon:"🪑",price:"Já tem em casa",when:"Desde a semana 1",have:true},
-{name:"Faixa Elástica Extra Forte (preta/roxa)",icon:"🟣",price:"R$15-25 (avulsa)",when:"A partir da semana 23 (substitui halteres maiores)",have:false}
+{name:"Kit Faixas Elásticas (leve, média, forte, extra forte)",icon:"🔴",price:"R$40-60",when:"Desde a semana 1",have:false},
+{name:"Par de Halteres 3kg (que você já tem)",icon:"🏋️",price:"—",when:"Aquecimento e exercícios leves",have:true},
+{name:"Halteres Ajustáveis até 20kg (par) — tipo rosca",icon:"🏋️",price:"R$250-400",when:"Desde a semana 1 — ESSENCIAL para definição",have:false},
+{name:"Caneleiras 3kg (que você já tem)",icon:"🦵",price:"—",when:"Exercícios de glúteo e perna",have:true},
+{name:"Barra de Porta para Puxada (pull-up bar)",icon:"🚪",price:"R$50-80",when:"Desde a semana 1 — costas e bíceps definidos",have:false},
+{name:"Cadeira Firme (sem rodinhas)",icon:"🪑",price:"Já tem em casa",when:"Apoio e dips",have:true},
+{name:"Banco de Supino Ajustável (reto/inclinado)",icon:"🛋️",price:"R$180-300",when:"Desde a semana 1 — peito e ombros definidos",have:false}
 ];
 
 const EX_DAYS=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
@@ -499,182 +563,182 @@ const EX_DAYS=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"]
 const WORKOUTS={
 1:{
 "Segunda":{title:"Pernas & Glúteos — Força",focus:"Quadríceps, Glúteos, Panturrilhas",time:"~38 min",exercises:[
-{name:"Aquecimento Dinâmico",sets:"1",reps:"4 min",rest:"-",steps:["1 min marcha estacionária com joelhos altos","1 min agachamento parcial (metade do movimento) — 15 reps","1 min passada lateral sem faixa — 8 cada lado","1 min elevação de panturrilha lenta — 15 reps"],tip:"Aqueça progressivamente. Comece devagar e aumente o ritmo"},
-{name:"Superset A — Agachamento na Cadeira + Ponte de Glúteos",sets:"4 rodadas",reps:"12 + 15",rest:"60s após os dois",steps:["AGACHAMENTO NA CADEIRA (12 reps):","Pés na largura dos ombros, pontas levemente para fora","Desça em 3 segundos como se fosse sentar, toque levemente o assento","Suba empurrando pelos calcanhares, expire no esforço","SEM DESCANSO, vá direto para:","PONTE DE GLÚTEOS (15 reps):","Deite no colchonete, joelhos dobrados, pés no chão","Eleve o quadril apertando os glúteos, segure 2s no topo","Desça sem tocar o chão completamente","Descanse 60s após completar os dois exercícios"],tip:"Superset = 2 exercícios seguidos sem pausa entre eles. Isso eleva a queima calórica"},
-{name:"Superset B — Passada Lateral com Faixa + Elevação de Panturrilha",sets:"3 rodadas",reps:"10/lado + 20",rest:"45s após os dois",steps:["PASSADA LATERAL COM FAIXA (10 cada lado):","Faixa ao redor dos tornozelos, posição semi-agachada","Passo largo para o lado, mantendo tensão na faixa","Complete 10 para a direita, depois 10 para a esquerda","SEM DESCANSO:","ELEVAÇÃO DE PANTURRILHA (20 reps):","Em pé, segure na cadeira, suba na ponta dos pés","Segure 1s no topo, desça em 3 segundos (lento!)","Peso distribuído igualmente nos dois pés"],tip:"A faixa ativa os glúteos laterais. Mantenha o quadril baixo durante a passada"},
-{name:"Afundo Estático (Lunge Parado)",sets:"3×10/perna",reps:"10 cada perna",rest:"60s",steps:["Dê um passo largo para frente, mantenha a posição","Desça o joelho de trás em direção ao chão (sem tocar)","Joelho da frente alinhado com o tornozelo","Suba empurrando pelo calcanhar da frente, expire","Complete todas as reps de um lado antes de trocar","Segure na cadeira se precisar de equilíbrio"],tip:"Exercício unilateral: corrige desequilíbrios e ativa mais fibras musculares"},
-{name:"Agachamento Isométrico na Parede",sets:"3×25s",reps:"25 seg",rest:"45s",steps:["Encoste as costas na parede, deslize para baixo","Coxas paralelas ao chão (ou o mais perto que conseguir)","Canelas perpendiculares ao chão","Mantenha a posição respirando normalmente","Se precisar, suba um pouco para aliviar"],tip:"Isométrico = sem movimento. Fortalece sem impacto nas articulações"},
-{name:"FINISHER — Marcha Rápida Intervalada",sets:"1",reps:"4 min",rest:"-",steps:["30 segundos de marcha RÁPIDA no lugar (joelhos bem altos, braços balançando forte)","30 segundos de marcha LEVE (recuperação)","Repita 4 vezes (total: 4 minutos)","Mantenha postura ereta, core ativado"],tip:"Esse finisher eleva os batimentos e queima calorias extras após o treino (efeito EPOC)"}
+{name:"Aquecimento Dinâmico",sets:"1",repetições:"4 min",rest:"-",steps:["1 min marcha estacionária com joelhos altos","1 min agachamento parcial (metade do movimento) — 15 repetições","1 min passada lateral sem faixa — 8 cada lado","1 min elevação de panturrilha lenta — 15 repetições"],tip:"Aqueça progressivamente. Comece devagar e aumente o ritmo"},
+{name:"Dois exercícios seguidos sem pausa A — Agachamento na Cadeira + Ponte de Glúteos",sets:"4 rodadas",repetições:"12 + 15",rest:"60s após os dois",steps:["AGACHAMENTO NA CADEIRA (12 repetições):","Pés na largura dos ombros, pontas levemente para fora","Desça em 3 segundos como se fosse sentar, toque levemente o assento","Suba empurrando pelos calcanhares, expire no esforço","SEM DESCANSO, vá direto para:","PONTE DE GLÚTEOS (15 repetições):","Deite no colchonete, joelhos dobrados, pés no chão","Eleve o quadril apertando os glúteos, segure 2s no topo","Desça sem tocar o chão completamente","Descanse 60s após completar os dois exercícios"],tip:"Dois exercícios seguidos sem pausa = 2 exercícios seguidos sem pausa entre eles. Isso eleva a queima calórica"},
+{name:"Dois exercícios seguidos sem pausa B — Passada Lateral com Faixa + Elevação de Panturrilha",sets:"3 rodadas",repetições:"10/lado + 20",rest:"45s após os dois",steps:["PASSADA LATERAL COM FAIXA (10 cada lado):","Faixa ao redor dos tornozelos, posição com joelhos levemente dobrados","Passo largo para o lado, mantendo tensão na faixa","Complete 10 para a direita, depois 10 para a esquerda","SEM DESCANSO:","ELEVAÇÃO DE PANTURRILHA (20 repetições):","Em pé, segure na cadeira, suba na ponta dos pés","Segure 1s no topo, desça em 3 segundos (lento!)","Peso distribuído igualmente nos dois pés"],tip:"A faixa ativa os glúteos laterais. Mantenha o quadril baixo durante a passada"},
+{name:"Afundo Estático (Lunge Parado)",sets:"3×10/perna",repetições:"10 cada perna",rest:"60s",steps:["Dê um passo largo para frente, mantenha a posição","Desça o joelho de trás em direção ao chão (sem tocar)","Joelho da frente alinhado com o tornozelo","Suba empurrando pelo calcanhar da frente, expire","Complete todas as repetições de um lado antes de trocar","Segure na cadeira se precisar de equilíbrio"],tip:"Exercício unilateral: corrige desequilíbrios e ativa mais fibras musculares"},
+{name:"Agachamento Isométrico na Parede",sets:"3×25s",repetições:"25 seg",rest:"45s",steps:["Encoste as costas na parede, deslize para baixo","Coxas paralelas ao chão (ou o mais perto que conseguir)","Canelas perpendiculares ao chão","Mantenha a posição respirando normalmente","Se precisar, suba um pouco para aliviar"],tip:"Isométrico = sem movimento. Fortalece sem impacto nas articulações"},
+{name:"FINISHER — Marcha Rápida Intervalada",sets:"1",repetições:"4 min",rest:"-",steps:["30 segundos de marcha RÁPIDA no lugar (joelhos bem altos, braços balançando forte)","30 segundos de marcha LEVE (recuperação)","Repita 4 vezes (total: 4 minutos)","Mantenha postura ereta, barriga contraída (puxe o umbigo para dentro)"],tip:"Esse finisher eleva os batimentos e queima calorias extras após o treino (efeito queima pós-treino)"}
 ]},
 "Terça":{title:"Peito, Costas & Ombros + Core",focus:"Upper Body + Abdômen",time:"~40 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"3 min",rest:"-",steps:["1 min círculos de braço (frente e trás, aumentando)","1 min polichinelos sem impacto (abrir pernas alternadas + braços)","1 min rotação de tronco em pé (mãos na cintura)"],tip:"Aqueça ombros e articulações antes de empurrar/puxar"},
-{name:"Superset A — Flexão na Parede + Remada com Faixa",sets:"4 rodadas",reps:"15 + 15",rest:"60s após os dois",steps:["FLEXÃO NA PAREDE (15 reps):","De frente para a parede, mãos na altura do peito","Abertura um pouco maior que os ombros","Desça em 3 segundos trazendo o peito à parede","Empurre de volta expirando, corpo reto como prancha","SEM DESCANSO:","REMADA COM FAIXA (15 reps):","Faixa presa na maçaneta (porta fechada), altura do peito","Puxe os cotovelos para trás apertando as escápulas","Segure 1s na contração, retorne em 3 segundos","Ombros baixos e longe das orelhas"],tip:"Push + Pull: trabalhar opostos em superset queima mais e equilibra o corpo"},
-{name:"Superset B — Elevação Lateral + Elevação Frontal (Halteres 3kg)",sets:"3 rodadas",reps:"12 + 10",rest:"45s após os dois",steps:["ELEVAÇÃO LATERAL (12 reps):","Em pé, halteres ao lado do corpo","Eleve os braços lateralmente até a altura dos ombros","Cotovelos levemente flexionados, palmas para baixo","Desça em 3 segundos","SEM DESCANSO:","ELEVAÇÃO FRONTAL (10 reps):","Mesmos halteres, braços à frente do corpo","Eleve alternando os braços até a altura dos ombros","Desça controlado em 3 segundos cada braço"],tip:"Combo de ombros: lateral + frontal trabalha todas as porções do deltóide"},
-{name:"Rosca Bíceps com Faixa (Tempo Lento)",sets:"3×15",reps:"15 reps",rest:"45s",steps:["Pise no meio da faixa com ambos os pés","Segure as pontas com palmas para cima","Suba em 2 segundos, segure 1s no topo","Desça em 4 segundos (fase excêntrica lenta!)","Cotovelos fixos ao lado do tronco"],tip:"A descida lenta (excêntrica) é o que mais gera definição muscular"},
-{name:"Tríceps com Faixa (Extensão Acima da Cabeça)",sets:"3×12",reps:"12 reps",rest:"45s",steps:["Pise na faixa com o pé de trás","Segure a outra ponta com ambas as mãos atrás da cabeça","Estenda os braços para cima, cotovelos apontando para frente","Desça controlado em 3 segundos","Core ativado para proteger a lombar"],tip:"Trabalha a porção longa do tríceps (a que mais aparece definida)"},
-{name:"Circuito Core — 2 rodadas",sets:"2 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Exercício 1: Prancha nos joelhos — 25 segundos","Exercício 2: Crunch parcial (mãos no peito) — 15 reps","Exercício 3: Rotação de tronco sentado — 10 cada lado","Faça os 3 exercícios seguidos sem pausa","Descanse 30s e repita a rodada"],tip:"Core no final garante abdômen trabalhado mesmo nos dias de upper body"},
-{name:"FINISHER — Step Touch Rápido",sets:"1",reps:"3 min",rest:"-",steps:["Passo lateral rápido alternando os pés (como corrida lateral parada)","30s rápido + 30s leve × 3 rounds","Braços acompanham o movimento","Mantenha o core ativado e postura ereta"],tip:"Cardio de baixo impacto que eleva muito a frequência cardíaca"}
+{name:"Aquecimento",sets:"1",repetições:"3 min",rest:"-",steps:["1 min círculos de braço (frente e trás, aumentando)","1 min polichinelos sem impacto (abrir pernas alternadas + braços)","1 min rotação de tronco em pé (mãos na cintura)"],tip:"Aqueça ombros e articulações antes de empurrar/puxar"},
+{name:"Dois exercícios seguidos sem pausa A — Flexão na Parede + Remada com Faixa",sets:"4 rodadas",repetições:"15 + 15",rest:"60s após os dois",steps:["FLEXÃO NA PAREDE (15 repetições):","De frente para a parede, mãos na altura do peito","Abertura um pouco maior que os ombros","Desça em 3 segundos trazendo o peito à parede","Empurre de volta expirando, corpo reto como prancha","SEM DESCANSO:","REMADA COM FAIXA (15 repetições):","Faixa presa na maçaneta (porta fechada), altura do peito","Puxe os cotovelos para trás apertando as omoplatas (os ossinhos das costas)","Segure 1s na contração, retorne em 3 segundos","Ombros baixos e longe das orelhas"],tip:"Push + Pull: trabalhar opostos em dois exercícios seguidos sem pausa queima mais e equilibra o corpo"},
+{name:"Dois exercícios seguidos sem pausa B — Elevação Lateral + Elevação Frontal (Halteres 3kg)",sets:"3 rodadas",repetições:"12 + 10",rest:"45s após os dois",steps:["ELEVAÇÃO LATERAL (12 repetições):","Em pé, halteres ao lado do corpo","Eleve os braços lateralmente até a altura dos ombros","Cotovelos levemente flexionados, palmas para baixo","Desça em 3 segundos","SEM DESCANSO:","ELEVAÇÃO FRONTAL (10 repetições):","Mesmos halteres, braços à frente do corpo","Eleve alternando os braços até a altura dos ombros","Desça controlado em 3 segundos cada braço"],tip:"Combo de ombros: lateral + frontal trabalha todas as porções do deltóide"},
+{name:"Rosca Bíceps com Faixa (Tempo Lento)",sets:"3×15",repetições:"15 repetições",rest:"45s",steps:["Pise no meio da faixa com ambos os pés","Segure as pontas com palmas para cima","Suba em 2 segundos, segure 1s no topo","Desça em 4 segundos (fase de descida (quando o músculo alonga) lenta!)","Cotovelos fixos ao lado do tronco"],tip:"A descida lenta (excêntrica) é o que mais gera definição muscular"},
+{name:"Tríceps com Faixa (Extensão Acima da Cabeça)",sets:"3×12",repetições:"12 repetições",rest:"45s",steps:["Pise na faixa com o pé de trás","Segure a outra ponta com ambas as mãos atrás da cabeça","Estenda os braços para cima, cotovelos apontando para frente","Desça controlado em 3 segundos","Barriga contraída (puxe o umbigo para dentro) para proteger a lombar"],tip:"Trabalha a porção longa do tríceps (a que mais aparece definida)"},
+{name:"Circuito Core — 2 rodadas",sets:"2 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Exercício 1: Prancha nos joelhos — 25 segundos","Exercício 2: Crunch parcial (mãos no peito) — 15 repetições","Exercício 3: Rotação de tronco sentado — 10 cada lado","Faça os 3 exercícios seguidos sem pausa","Descanse 30s e repita a rodada"],tip:"Core no final garante abdômen trabalhado mesmo nos dias de upper body"},
+{name:"FINISHER — Step Touch Rápido",sets:"1",repetições:"3 min",rest:"-",steps:["Passo lateral rápido alternando os pés (como corrida lateral parada)","30s rápido + 30s leve × 3 rounds","Braços acompanham o movimento","Mantenha o barriga contraída (puxe o umbigo para dentro) e postura ereta"],tip:"Cardio de baixo impacto que eleva muito a frequência cardíaca"}
 ]},
 "Quarta":{title:"Circuito Metabólico Full Body",focus:"Queima Máxima — Corpo Inteiro",time:"~40 min",exercises:[
-{name:"Aquecimento Progressivo",sets:"1",reps:"5 min",rest:"-",steps:["1 min marcha no lugar","1 min marcha com joelhos altos","1 min polichinelos sem impacto","1 min agachamento parcial","1 min passada lateral alternada"],tip:"Aquecimento mais longo porque a sessão será intensa"},
-{name:"CIRCUITO QUEIMA — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"90s entre rodadas",steps:["⚡ Exercício 1: Agachamento na cadeira — 15 reps","⚡ Exercício 2: Flexão na parede — 12 reps","⚡ Exercício 3: Remada com faixa — 12 reps","⚡ Exercício 4: Afundo estático — 8 reps/perna","⚡ Exercício 5: Elevação lateral com halteres — 12 reps","⚡ Exercício 6: Ponte de glúteos — 15 reps","⚡ Exercício 7: Prancha nos joelhos — 20 segundos","Faça TODOS os 7 exercícios em sequência","Máximo 10-15 segundos entre cada exercício","Após os 7 exercícios: descanse 90 segundos","Repita por 4 rodadas completas"],tip:"Circuito metabólico é a forma mais eficiente de queimar gordura em casa. O coração bate forte, os músculos trabalham e o metabolismo fica acelerado por horas depois"},
-{name:"FINISHER — Marcha Intervalada",sets:"1",reps:"4 min",rest:"-",steps:["30s marcha RÁPIDA (joelhos altos, braços fortes)","30s marcha LEVE","Repita 4 vezes","Última rodada: dê tudo de si nos 30s rápidos"],tip:"Finalize forte! Esses 4 minutos finais fazem diferença na queima"},
-{name:"Volta à Calma + Alongamento",sets:"1",reps:"5 min",rest:"-",steps:["2 min caminhada leve no lugar","30s alongamento quadríceps (cada lado)","30s alongamento isquiotibiais (cada lado)","30s alongamento peitorais na porta (cada lado)","30s respiração profunda (4s inspira, 6s expira) × 5 ciclos"],tip:"Nunca pule o alongamento. Ajuda na recuperação e previne lesões"}
+{name:"Aquecimento Progressivo",sets:"1",repetições:"5 min",rest:"-",steps:["1 min marcha no lugar","1 min marcha com joelhos altos","1 min polichinelos sem impacto","1 min agachamento parcial","1 min passada lateral alternada"],tip:"Aquecimento mais longo porque a sessão será intensa"},
+{name:"CIRCUITO QUEIMA — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"90s entre rodadas",steps:["⚡ Exercício 1: Agachamento na cadeira — 15 repetições","⚡ Exercício 2: Flexão na parede — 12 repetições","⚡ Exercício 3: Remada com faixa — 12 repetições","⚡ Exercício 4: Afundo estático — 8 repetições/perna","⚡ Exercício 5: Elevação lateral com halteres — 12 repetições","⚡ Exercício 6: Ponte de glúteos — 15 repetições","⚡ Exercício 7: Prancha nos joelhos — 20 segundos","Faça TODOS os 7 exercícios em sequência","Máximo 10-15 segundos entre cada exercício","Após os 7 exercícios: descanse 90 segundos","Repita por 4 rodadas completas"],tip:"Circuito metabólico é a forma mais eficiente de queimar gordura em casa. O coração bate forte, os músculos trabalham e o metabolismo fica acelerado por horas depois"},
+{name:"FINISHER — Marcha Intervalada",sets:"1",repetições:"4 min",rest:"-",steps:["30s marcha RÁPIDA (joelhos altos, braços fortes)","30s marcha LEVE","Repita 4 vezes","Última rodada: dê tudo de si nos 30s rápidos"],tip:"Finalize forte! Esses 4 minutos finais fazem diferença na queima"},
+{name:"Volta à Calma + Alongamento",sets:"1",repetições:"5 min",rest:"-",steps:["2 min caminhada leve no lugar","30s alongamento quadríceps (cada lado)","30s alongamento isquiotibiais (cada lado)","30s alongamento peitorais na porta (cada lado)","30s respiração profunda (4s inspira, 6s expira) × 5 ciclos"],tip:"Nunca pule o alongamento. Ajuda na recuperação e previne lesões"}
 ]},
 "Quinta":{title:"Pernas & Glúteos — Hipertrofia + Core",focus:"Volume Muscular + Abdômen",time:"~40 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"4 min",rest:"-",steps:["1 min marcha no lugar","1 min agachamento parcial leve","1 min passada lateral","1 min elevação de panturrilha"],tip:"Mesmo aquecimento de segunda para preparar as pernas"},
-{name:"Superset A — Agachamento com Faixa + Abdução em Pé",sets:"4 rodadas",reps:"15 + 12/lado",rest:"60s",steps:["AGACHAMENTO COM FAIXA (15 reps):","Faixa acima dos joelhos, pés na largura dos ombros","Agache empurrando os joelhos PARA FORA contra a faixa","Desça em 3s, suba em 2s, expire ao subir","SEM DESCANSO:","ABDUÇÃO EM PÉ (12 cada lado):","Segure na cadeira, faixa nos tornozelos","Eleve a perna lateralmente, reta, até sentir o glúteo contrair","Desça controlado sem tocar o chão"],tip:"A faixa aumenta a ativação dos glúteos em 30-40%, essencial para definição"},
-{name:"Superset B — Step-Up na Cadeira + Elevação de Panturrilha Unilateral",sets:"3 rodadas",reps:"10/perna + 15/perna",rest:"60s",steps:["STEP-UP (10 cada perna):","Cadeira firme contra a parede","Suba com um pé, empurrando pelo calcanhar","Suba completamente, pause 1s, desça controlado","SEM DESCANSO:","PANTURRILHA UNILATERAL (15 cada pé):","Segure na cadeira, levante um pé do chão","Suba na ponta do pé apoiado, segure 2s no topo","Desça em 3 segundos, repita"],tip:"Unilateral = cada perna trabalha individualmente, sem compensações"},
-{name:"Ponte de Glúteos com Faixa + Pulso no Topo",sets:"3×15+5",reps:"15 reps + 5 pulsos",rest:"45s",steps:["Faixa acima dos joelhos, deite no colchonete","Faça 15 pontes de glúteos normais (subindo e descendo)","Na 15ª rep, fique no TOPO e faça 5 micro-pulsos (subir/descer 5cm)","Aperte os glúteos o máximo possível nos pulsos","Desça controlado"],tip:"Os pulsos no final causam fadiga profunda no glúteo. É o que gera definição"},
-{name:"Circuito Core — 3 rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Exercício 1: Prancha frontal nos joelhos — 25 segundos","Exercício 2: Crunch parcial — 15 reps","Exercício 3: Gato-Vaca — 10 reps (mobilidade da coluna)","Exercício 4: Rotação tronco sentado com halter 3kg — 10/lado","Faça os 4 seguidos sem pausa entre eles"],tip:"Core forte é a base da definição. Sem abdômen forte, não existe corpo definido"},
-{name:"FINISHER — Agachamento Pulsado",sets:"3×20s",reps:"20 seg cada",rest:"20s",steps:["Posição de meio agachamento (45°)","Faça micro-movimentos rápidos (sobe/desce 10cm)","20 segundos de pulsos, 20 segundos descansando","3 rodadas — vai queimar muito!"],tip:"Finisher metabólico para pernas. A queimação é sinal de que está funcionando"}
+{name:"Aquecimento",sets:"1",repetições:"4 min",rest:"-",steps:["1 min marcha no lugar","1 min agachamento parcial leve","1 min passada lateral","1 min elevação de panturrilha"],tip:"Mesmo aquecimento de segunda para preparar as pernas"},
+{name:"Dois exercícios seguidos sem pausa A — Agachamento com Faixa + Abdução em Pé",sets:"4 rodadas",repetições:"15 + 12/lado",rest:"60s",steps:["AGACHAMENTO COM FAIXA (15 repetições):","Faixa acima dos joelhos, pés na largura dos ombros","Agache empurrando os joelhos PARA FORA contra a faixa","Desça em 3s, suba em 2s, expire ao subir","SEM DESCANSO:","ABDUÇÃO EM PÉ (12 cada lado):","Segure na cadeira, faixa nos tornozelos","Eleve a perna lateralmente, reta, até sentir o glúteo contrair","Desça controlado sem tocar o chão"],tip:"A faixa aumenta a ativação dos glúteos em 30-40%, essencial para definição"},
+{name:"Dois exercícios seguidos sem pausa B — Step-Up na Cadeira + Elevação de Panturrilha Unilateral",sets:"3 rodadas",repetições:"10/perna + 15/perna",rest:"60s",steps:["STEP-UP (10 cada perna):","Cadeira firme contra a parede","Suba com um pé, empurrando pelo calcanhar","Suba completamente, pause 1s, desça controlado","SEM DESCANSO:","PANTURRILHA UNILATERAL (15 cada pé):","Segure na cadeira, levante um pé do chão","Suba na ponta do pé apoiado, segure 2s no topo","Desça em 3 segundos, repita"],tip:"Unilateral = cada perna trabalha individualmente, sem compensações"},
+{name:"Ponte de Glúteos com Faixa + Pulso no Topo",sets:"3×15+5",repetições:"15 repetições + 5 pulsos",rest:"45s",steps:["Faixa acima dos joelhos, deite no colchonete","Faça 15 pontes de glúteos normais (subindo e descendo)","Na 15ª rep, fique no TOPO e faça 5 micro-pulsos (subir/descer 5cm)","Aperte os glúteos o máximo possível nos pulsos","Desça controlado"],tip:"Os pulsos no final causam fadiga profunda no glúteo. É o que gera definição"},
+{name:"Circuito Core — 3 rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Exercício 1: Prancha frontal nos joelhos — 25 segundos","Exercício 2: Crunch parcial — 15 repetições","Exercício 3: Gato-Vaca — 10 repetições (mobilidade da coluna)","Exercício 4: Rotação tronco sentado com halter 3kg — 10/lado","Faça os 4 seguidos sem pausa entre eles"],tip:"Core forte é a base da definição. Sem abdômen forte, não existe corpo definido"},
+{name:"FINISHER — Agachamento Pulsado",sets:"3×20s",repetições:"20 seg cada",rest:"20s",steps:["Posição de meio agachamento (45°)","Faça micro-movimentos rápidos (sobe/desce 10cm)","20 segundos de pulsos, 20 segundos descansando","3 rodadas — vai queimar muito!"],tip:"Finisher metabólico para pernas. A queimação é sinal de que está funcionando"}
 ]},
 "Sexta":{title:"Braços, Ombros & Circuito Queima Final",focus:"Definição de Braços + Cardio",time:"~40 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"3 min",rest:"-",steps:["1 min círculos de braço crescentes","1 min rotação de punho + cotovelo","1 min polichinelos sem impacto"],tip:"Prepare as articulações dos braços e ombros"},
-{name:"Superset A — Rosca Bíceps com Halteres 3kg + Tríceps Kickback",sets:"4 rodadas",reps:"12 + 12",rest:"45s",steps:["ROSCA BÍCEPS ALTERNADA (12 reps total — 6 cada braço):","Em pé, halter em cada mão, braços ao lado","Flexione um cotovelo subindo o halter ao ombro (2s subindo)","Desça em 3 segundos, troque de braço","Cotovelos fixos ao lado do corpo","SEM DESCANSO:","TRÍCEPS KICKBACK (12 reps — 6 cada braço):","Incline o tronco, apoie mão livre na cadeira","Cotovelo dobrado 90° ao lado do corpo","Estenda o braço para trás contraindo o tríceps (segure 1s)","Retorne controlado em 3s, troque de braço"],tip:"Braços definidos = bíceps + tríceps trabalhados em superset. O tríceps é 2/3 do braço!"},
-{name:"Superset B — Press Ombro com Halteres + Remada Alta com Faixa",sets:"3 rodadas",reps:"10 + 12",rest:"45s",steps:["PRESS DE OMBRO (10 reps):","Sentado na cadeira, halteres na altura dos ombros","Empurre para cima até estender os braços (não trave os cotovelos)","Desça em 3 segundos até os ombros","SEM DESCANSO:","REMADA ALTA COM FAIXA (12 reps):","Pise na faixa, segure as pontas","Puxe os cotovelos para cima e para fora (até a altura dos ombros)","Cotovelos sempre mais altos que as mãos","Desça controlado"],tip:"Ombros definidos dão a aparência de cintura mais fina (proporção visual)"},
-{name:"Flexão de Punho + Extensão (Antebraço)",sets:"2×15 cada",reps:"15 cada direção",rest:"30s",steps:["Sentado, antebraço apoiado na coxa, mão para fora do joelho","Com halter 3kg: flexione o punho para cima (15 reps)","Vire a mão (palma para baixo): estenda o punho (15 reps)","Troque de mão","Movimento pequeno e controlado"],tip:"Antebraços definidos completam o visual dos braços"},
-{name:"CIRCUITO QUEIMA FINAL — 3 Rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Exercício 1: Agachamento na cadeira — 12 reps","⚡ Exercício 2: Flexão na parede — 10 reps","⚡ Exercício 3: Ponte de glúteos — 15 reps","⚡ Exercício 4: Prancha nos joelhos — 20 seg","⚡ Exercício 5: Marcha rápida no lugar — 30 seg","Todos seguidos, mínimo descanso entre exercícios","3 rodadas com 60s de descanso entre elas"],tip:"Circuito final de sexta queima as últimas reservas. Comece o fim de semana zerado!"},
-{name:"Alongamento Completo",sets:"1",reps:"5 min",rest:"-",steps:["30s quadríceps cada lado","30s isquiotibiais cada lado","30s peitorais cada lado","30s ombros (braço cruzado) cada lado","30s lombar (joelhos ao peito deitado)","5 respirações profundas para finalizar"],tip:"Alongamento completo após a semana toda. Você mereceu!"}
+{name:"Aquecimento",sets:"1",repetições:"3 min",rest:"-",steps:["1 min círculos de braço crescentes","1 min rotação de punho + cotovelo","1 min polichinelos sem impacto"],tip:"Prepare as articulações dos braços e ombros"},
+{name:"Dois exercícios seguidos sem pausa A — Rosca Bíceps com Halteres 3kg + Tríceps Kickback",sets:"4 rodadas",repetições:"12 + 12",rest:"45s",steps:["ROSCA BÍCEPS ALTERNADA (12 repetições total — 6 cada braço):","Em pé, halter em cada mão, braços ao lado","Flexione um cotovelo subindo o halter ao ombro (2s subindo)","Desça em 3 segundos, troque de braço","Cotovelos fixos ao lado do corpo","SEM DESCANSO:","TRÍCEPS KICKBACK (12 repetições — 6 cada braço):","Incline o tronco, apoie mão livre na cadeira","Cotovelo dobrado 90° ao lado do corpo","Estenda o braço para trás contraindo o tríceps (segure 1s)","Retorne controlado em 3s, troque de braço"],tip:"Braços definidos = bíceps + tríceps trabalhados em dois exercícios seguidos sem pausa. O tríceps é 2/3 do braço!"},
+{name:"Dois exercícios seguidos sem pausa B — Press Ombro com Halteres + Remada Alta com Faixa",sets:"3 rodadas",repetições:"10 + 12",rest:"45s",steps:["PRESS DE OMBRO (10 repetições):","Sentado na cadeira, halteres na altura dos ombros","Empurre para cima até estender os braços (não trave os cotovelos)","Desça em 3 segundos até os ombros","SEM DESCANSO:","REMADA ALTA COM FAIXA (12 repetições):","Pise na faixa, segure as pontas","Puxe os cotovelos para cima e para fora (até a altura dos ombros)","Cotovelos sempre mais altos que as mãos","Desça controlado"],tip:"Ombros definidos dão a aparência de cintura mais fina (proporção visual)"},
+{name:"Flexão de Punho + Extensão (Antebraço)",sets:"2×15 cada",repetições:"15 cada direção",rest:"30s",steps:["Sentado, antebraço apoiado na coxa, mão para fora do joelho","Com halter 3kg: flexione o punho para cima (15 repetições)","Vire a mão (palma para baixo): estenda o punho (15 repetições)","Troque de mão","Movimento pequeno e controlado"],tip:"Antebraços definidos completam o visual dos braços"},
+{name:"CIRCUITO QUEIMA FINAL — 3 Rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Exercício 1: Agachamento na cadeira — 12 repetições","⚡ Exercício 2: Flexão na parede — 10 repetições","⚡ Exercício 3: Ponte de glúteos — 15 repetições","⚡ Exercício 4: Prancha nos joelhos — 20 seg","⚡ Exercício 5: Marcha rápida no lugar — 30 seg","Todos seguidos, mínimo descanso entre exercícios","3 rodadas com 60s de descanso entre elas"],tip:"Circuito final de sexta queima as últimas reservas. Comece o fim de semana zerado!"},
+{name:"Alongamento Completo",sets:"1",repetições:"5 min",rest:"-",steps:["30s quadríceps cada lado","30s isquiotibiais cada lado","30s peitorais cada lado","30s ombros (braço cruzado) cada lado","30s lombar (joelhos ao peito deitado)","5 respirações profundas para finalizar"],tip:"Alongamento completo após a semana toda. Você mereceu!"}
 ]},
 "Sábado":{title:"Cardio Leve + Mobilidade",focus:"Recuperação Ativa — Queima Extra",time:"~30 min",exercises:[
-{name:"Cardio Leve — Caminhada Rápida em Casa",sets:"1",reps:"15 min",rest:"-",steps:["Marcha no lugar em ritmo moderado-rápido","Alterne a cada 2 minutos entre: marcha normal, joelhos altos, step touch lateral","Braços sempre balançando ativamente","Se possível, caminhar pelo bairro (15-20 min)","Ritmo de conversa: consegue falar mas com esforço"],tip:"Cardio leve no sábado mantém o metabolismo ativo sem atrapalhar a recuperação muscular"},
-{name:"Sessão de Mobilidade e Alongamento Profundo",sets:"1",reps:"15 min",rest:"-",steps:["Gato-Vaca: 12 reps lentas (3-4s cada transição)","Alongamento flexor de quadril: 45s cada lado (posição de afundo no chão)","Alongamento piriforme: 30s cada lado (deitado, tornozelo sobre o joelho oposto)","Alongamento isquiotibiais: 45s cada lado (sentado)","Rotação torácica deitado: 8 reps cada lado","Alongamento de peitorais na porta: 30s cada lado","Alongamento de dorsais (child's pose): 45s","Respiração diafragmática: 8 ciclos (4s inspira, 6s expira)"],tip:"Mobilidade é o segredo para treinar sem lesões e manter progressão constante por 44 semanas"}
+{name:"Cardio Leve — Caminhada Rápida em Casa",sets:"1",repetições:"15 min",rest:"-",steps:["Marcha no lugar em ritmo moderado-rápido","Alterne a cada 2 minutos entre: marcha normal, joelhos altos, step touch lateral","Braços sempre balançando ativamente","Se possível, caminhar pelo bairro (15-20 min)","Ritmo de conversa: consegue falar mas com esforço"],tip:"Cardio leve no sábado mantém o metabolismo ativo sem atrapalhar a recuperação muscular"},
+{name:"Sessão de Mobilidade e Alongamento Profundo",sets:"1",repetições:"15 min",rest:"-",steps:["Gato-Vaca: 12 repetições lentas (3-4s cada transição)","Alongamento flexor de quadril: 45s cada lado (posição de afundo no chão)","Alongamento piriforme: 30s cada lado (deitado, tornozelo sobre o joelho oposto)","Alongamento isquiotibiais: 45s cada lado (sentado)","Rotação torácica deitado: 8 repetições cada lado","Alongamento de peitorais na porta: 30s cada lado","Alongamento de dorsais (child's pose): 45s","Respiração diafragmática: 8 ciclos (4s inspira, 6s expira)"],tip:"Mobilidade é o segredo para treinar sem lesões e manter progressão constante por 44 semanas"}
 ]},
 "Domingo":{title:"Descanso Total",focus:"Recuperação Completa",time:"—",exercises:[
-{name:"Descanso Total — Recuperação",sets:"-",reps:"—",rest:"-",steps:["Dia de recuperação completa (músculos crescem no descanso!)","Aproveite para fazer o meal prep do domingo","Hidrate-se bem: mínimo 2,5L de água","Durma 7-8 horas para maximizar recuperação e queima de gordura","Se quiser, alongamento leve de 5 min à noite"],tip:"Não se culpe por descansar. Overtraining (treinar demais) sabota o emagrecimento porque eleva o cortisol"}
+{name:"Descanso Total — Recuperação",sets:"-",repetições:"—",rest:"-",steps:["Dia de recuperação completa (músculos crescem no descanso!)","Aproveite para fazer o meal prep do domingo","Hidrate-se bem: mínimo 2,5L de água","Durma 7-8 horas para maximizar recuperação e queima de gordura","Se quiser, alongamento leve de 5 min à noite"],tip:"Não se culpe por descansar. Overtraining (treinar demais) sabota o emagrecimento porque eleva o cortisol"}
 ]}
 },
 2:{
 "Segunda":{title:"Pernas & Glúteos — Força Avançada",focus:"Quadríceps, Glúteos, Panturrilhas",time:"~42 min",exercises:[
-{name:"Aquecimento Dinâmico",sets:"1",reps:"4 min",rest:"-",steps:["1 min marcha alta rápida","1 min agachamento parcial — 20 reps","1 min passada lateral com mini-agachamento — 8/lado","1 min polichinelos sem impacto"],tip:"Fase 2: aquecimento um pouco mais intenso"},
-{name:"Superset A — Agachamento Livre com Halteres 5kg + Ponte Glúteos com Faixa",sets:"4 rodadas",reps:"15 + 15",rest:"60s",steps:["AGACHAMENTO COM HALTERES (15 reps):","Halteres de 5kg em cada mão, braços ao lado","Agache até coxas paralelas ao chão (3s descendo)","Suba forte em 2s, expire no esforço","SEM DESCANSO:","PONTE GLÚTEOS COM FAIXA (15 reps):","Faixa acima dos joelhos, empurre joelhos para fora","Eleve o quadril, segure 2s apertando os glúteos","Desça controlado sem tocar o chão"],tip:"Progresso: agora com halteres no agachamento. Mais carga = mais músculos definidos"},
-{name:"Superset B — Afundo Reverso Alternado + Passada Lateral com Faixa",sets:"3 rodadas",reps:"10/perna + 12/lado",rest:"60s",steps:["AFUNDO REVERSO (10 cada perna):","Em pé, dê um passo para TRÁS","Desça o joelho de trás em direção ao chão","Empurre pelo calcanhar da frente para voltar","Alterne as pernas a cada rep","SEM DESCANSO:","PASSADA LATERAL COM FAIXA (12 cada lado):","Faixa nos tornozelos, semi-agachamento","Passos largos para os lados, mantendo tensão"],tip:"Afundo reverso é mais seguro para os joelhos que o frontal"},
-{name:"Agachamento Sumô com Halter",sets:"3×15",reps:"15 reps",rest:"45s",steps:["Pés bem afastados, pontas viradas para fora (45°)","Segure 1 halter de 5kg com ambas as mãos entre as pernas","Desça mantendo os joelhos alinhados com os pés","Aperte os glúteos e a parte interna da coxa ao subir","3s descendo, 1s pausa embaixo, 2s subindo"],tip:"Sumô trabalha adutores e glúteos. Essencial para definição das coxas internas"},
-{name:"Panturrilha Unilateral Lenta",sets:"3×15/pé",reps:"15 cada pé",rest:"30s",steps:["Segure na cadeira, levante um pé","Suba na ponta do pé apoiado (2s)","Segure 2s no topo, desça em 4s (muito lento!)","Perna oposta dobrada atrás de você"],tip:"Descida super lenta = mais tempo sob tensão = panturrilhas mais definidas"},
-{name:"FINISHER — Tabata Modificado (Agachamento)",sets:"1",reps:"4 min",rest:"-",steps:["20 segundos: agachamentos rápidos (o mais rápido que conseguir com boa forma)","10 segundos: descanso em pé","Repita 8 vezes (total: 4 minutos)","Mantenha postura ereta em todos os agachamentos"],tip:"Protocolo Tabata queima até 13,5 cal/min. 4 minutos que valem por 20 de cardio comum"}
+{name:"Aquecimento Dinâmico",sets:"1",repetições:"4 min",rest:"-",steps:["1 min marcha alta rápida","1 min agachamento parcial — 20 repetições","1 min passada lateral com mini-agachamento — 8/lado","1 min polichinelos sem impacto"],tip:"Fase 2: aquecimento um pouco mais intenso"},
+{name:"Dois exercícios seguidos sem pausa A — Agachamento Livre com Halteres 5kg + Ponte Glúteos com Faixa",sets:"4 rodadas",repetições:"15 + 15",rest:"60s",steps:["AGACHAMENTO COM HALTERES (15 repetições):","Halteres de 5kg em cada mão, braços ao lado","Agache até coxas paralelas ao chão (3s descendo)","Suba forte em 2s, expire no esforço","SEM DESCANSO:","PONTE GLÚTEOS COM FAIXA (15 repetições):","Faixa acima dos joelhos, empurre joelhos para fora","Eleve o quadril, segure 2s apertando os glúteos","Desça controlado sem tocar o chão"],tip:"Progresso: agora com halteres no agachamento. Mais carga = mais músculos definidos"},
+{name:"Dois exercícios seguidos sem pausa B — Afundo Reverso Alternado + Passada Lateral com Faixa",sets:"3 rodadas",repetições:"10/perna + 12/lado",rest:"60s",steps:["AFUNDO REVERSO (10 cada perna):","Em pé, dê um passo para TRÁS","Desça o joelho de trás em direção ao chão","Empurre pelo calcanhar da frente para voltar","Alterne as pernas a cada rep","SEM DESCANSO:","PASSADA LATERAL COM FAIXA (12 cada lado):","Faixa nos tornozelos, semi-agachamento","Passos largos para os lados, mantendo tensão"],tip:"Afundo reverso é mais seguro para os joelhos que o frontal"},
+{name:"Agachamento Sumô com Halter",sets:"3×15",repetições:"15 repetições",rest:"45s",steps:["Pés bem afastados, pontas viradas para fora (45°)","Segure 1 halter de 5kg com ambas as mãos entre as pernas","Desça mantendo os joelhos alinhados com os pés","Aperte os glúteos e a parte interna da coxa ao subir","3s descendo, 1s pausa embaixo, 2s subindo"],tip:"Sumô trabalha adutores e glúteos. Essencial para definição das coxas internas"},
+{name:"Panturrilha Unilateral Lenta",sets:"3×15/pé",repetições:"15 cada pé",rest:"30s",steps:["Segure na cadeira, levante um pé","Suba na ponta do pé apoiado (2s)","Segure 2s no topo, desça em 4s (muito lento!)","Perna oposta dobrada atrás de você"],tip:"Descida super lenta = mais tempo sob tensão = panturrilhas mais definidas"},
+{name:"FINISHER — Tabata Modificado (Agachamento)",sets:"1",repetições:"4 min",rest:"-",steps:["20 segundos: agachamentos rápidos (o mais rápido que conseguir com boa forma)","10 segundos: descanso em pé","Repita 8 vezes (total: 4 minutos)","Mantenha postura ereta em todos os agachamentos"],tip:"Protocolo Tabata queima até 13,5 cal/min. 4 minutos que valem por 20 de cardio comum"}
 ]},
 "Terça":{title:"Peito, Costas & Ombros + Core",focus:"Push/Pull + Abdômen Definido",time:"~45 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"3 min",rest:"-",steps:["Círculos de braço 1 min, polichinelos 1 min, flexão na parede leve (10 reps) 1 min"],tip:"Aqueça as articulações do ombro especialmente"},
-{name:"Superset A — Flexão Inclinada na Cadeira + Remada Faixa Baixa",sets:"4 rodadas",reps:"10 + 15",rest:"60s",steps:["FLEXÃO INCLINADA (10 reps):","Mãos na borda da cadeira (firme contra parede!)","Corpo em linha reta da cabeça aos pés","Desça em 4s, peito em direção à cadeira","Empurre de volta em 2s, expirando","SEM DESCANSO:","REMADA FAIXA BAIXA (15 reps):","Faixa na maçaneta, altura do umbigo","Puxe os cotovelos para trás, aperte escápulas","Segure 1s, retorne em 3s"],tip:"Progresso: flexão na cadeira é bem mais difícil que na parede"},
-{name:"Superset B — Elevação Lateral 3kg + Press Ombro 3kg",sets:"3 rodadas",reps:"12 + 10",rest:"45s",steps:["ELEVAÇÃO LATERAL (12 reps):","Halteres de 3kg, braços aos lados","Eleve até altura dos ombros (2s subindo)","Desça em 3s, controle total","SEM DESCANSO:","PRESS OMBRO (10 reps):","Halteres na altura dos ombros, sentado na cadeira","Empurre para cima sem travar cotovelos","Desça controlado em 3s"],tip:"Ombros e deltóides definidos criam a aparência de corpo em V"},
-{name:"Tri-Set Braços — Rosca 21s + Tríceps Kickback + Rosca Martelo",sets:"3 rodadas",reps:"21 + 10 + 10",rest:"60s",steps:["ROSCA 21s (7+7+7 = 21 reps totais):","7 reps da metade inferior (braço estendido até 90°)","7 reps da metade superior (90° até o ombro)","7 reps completas (amplitude total)","SEM DESCANSO:","TRÍCEPS KICKBACK (10 reps / braço):","Inclinado, cotovelo ao lado do corpo, estenda para trás","SEM DESCANSO:","ROSCA MARTELO (10 reps):","Palmas voltadas para dentro (uma para a outra)","Suba os dois ao mesmo tempo"],tip:"Tri-set de braços = 3 exercícios seguidos. Braços inflados e definidos!"},
-{name:"Circuito Core Avançado — 3 rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha nos joelhos — 30 segundos","Crunch com pernas elevadas (canelas paralelas ao chão) — 15 reps","Prancha lateral nos joelhos — 15s cada lado","Bird-Dog — 8 reps cada lado (braço + perna opostos)","Todos seguidos, sem pausa entre exercícios"],tip:"Core em 4 planos de movimento: frontal, superior, lateral e estabilização"},
-{name:"FINISHER — Step Touch Intervalado",sets:"1",reps:"3 min",rest:"-",steps:["30s step touch rápido (passo lateral alternado rápido)","30s marcha leve (recuperação)","Repita 3 vezes","Braços ativos o tempo todo"],tip:"Finalize com cardio para maximizar a queima"}
+{name:"Aquecimento",sets:"1",repetições:"3 min",rest:"-",steps:["Círculos de braço 1 min, polichinelos 1 min, flexão na parede leve (10 repetições) 1 min"],tip:"Aqueça as articulações do ombro especialmente"},
+{name:"Dois exercícios seguidos sem pausa A — Flexão Inclinada na Cadeira + Remada Faixa Baixa",sets:"4 rodadas",repetições:"10 + 15",rest:"60s",steps:["FLEXÃO INCLINADA (10 repetições):","Mãos na borda da cadeira (firme contra parede!)","Corpo em linha reta da cabeça aos pés","Desça em 4s, peito em direção à cadeira","Empurre de volta em 2s, expirando","SEM DESCANSO:","REMADA FAIXA BAIXA (15 repetições):","Faixa na maçaneta, altura do umbigo","Puxe os cotovelos para trás, aperte omoplatas (os ossinhos das costas)","Segure 1s, retorne em 3s"],tip:"Progresso: flexão na cadeira é bem mais difícil que na parede"},
+{name:"Dois exercícios seguidos sem pausa B — Elevação Lateral 3kg + Press Ombro 3kg",sets:"3 rodadas",repetições:"12 + 10",rest:"45s",steps:["ELEVAÇÃO LATERAL (12 repetições):","Halteres de 3kg, braços aos lados","Eleve até altura dos ombros (2s subindo)","Desça em 3s, controle total","SEM DESCANSO:","PRESS OMBRO (10 repetições):","Halteres na altura dos ombros, sentado na cadeira","Empurre para cima sem travar cotovelos","Desça controlado em 3s"],tip:"Ombros e deltóides definidos criam a aparência de corpo em V"},
+{name:"Três exercícios seguidos sem pausa Braços — Rosca 21s + Tríceps Kickback + Rosca Martelo",sets:"3 rodadas",repetições:"21 + 10 + 10",rest:"60s",steps:["ROSCA 21s (7+7+7 = 21 repetições totais):","7 repetições da metade inferior (braço estendido até 90°)","7 repetições da metade superior (90° até o ombro)","7 repetições completas (até onde o movimento vai total)","SEM DESCANSO:","TRÍCEPS KICKBACK (10 repetições / braço):","Inclinado, cotovelo ao lado do corpo, estenda para trás","SEM DESCANSO:","ROSCA MARTELO (10 repetições):","Palmas voltadas para dentro (uma para a outra)","Suba os dois ao mesmo tempo"],tip:"Três exercícios seguidos sem pausa de braços = 3 exercícios seguidos. Braços inflados e definidos!"},
+{name:"Circuito Core Avançado — 3 rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha nos joelhos — 30 segundos","Crunch com pernas elevadas (canelas paralelas ao chão) — 15 repetições","Prancha lateral nos joelhos — 15s cada lado","Bird-Dog — 8 repetições cada lado (braço + perna opostos)","Todos seguidos, sem pausa entre exercícios"],tip:"Core em 4 planos de movimento: frontal, superior, lateral e estabilização"},
+{name:"FINISHER — Step Touch Intervalado",sets:"1",repetições:"3 min",rest:"-",steps:["30s step touch rápido (passo lateral alternado rápido)","30s marcha leve (recuperação)","Repita 3 vezes","Braços ativos o tempo todo"],tip:"Finalize com cardio para maximizar a queima"}
 ]},
 "Quarta":{title:"Circuito Metabólico Full Body",focus:"Máxima Queima Calórica",time:"~45 min",exercises:[
-{name:"Aquecimento Progressivo",sets:"1",reps:"5 min",rest:"-",steps:["1 min marcha leve → moderada → rápida (progressivo)","1 min agachamento parcial — 20 reps","1 min passada lateral alternada","1 min polichinelos sem impacto","1 min círculos de braço + rotação de tronco"],tip:"5 min de aquecimento completo para sessão intensa"},
-{name:"CIRCUITO METABÓLICO — 5 Rodadas",sets:"5 rodadas",reps:"ver abaixo",rest:"75s entre rodadas",steps:["⚡ Exercício 1: Agachamento com halteres 5kg — 15 reps","⚡ Exercício 2: Flexão inclinada na cadeira — 8 reps","⚡ Exercício 3: Remada com faixa — 12 reps","⚡ Exercício 4: Afundo reverso alternado — 8/perna","⚡ Exercício 5: Elevação lateral 3kg — 10 reps","⚡ Exercício 6: Ponte glúteos com faixa — 15 reps","⚡ Exercício 7: Prancha nos joelhos — 25 seg","⚡ Exercício 8: Marcha rápida — 30 seg","8 exercícios seguidos, 10-15s entre cada","75 segundos de descanso entre rodadas","5 RODADAS COMPLETAS"],tip:"5 rodadas × 8 exercícios = 40 séries totais. Queima calórica absurda!"},
-{name:"Alongamento + Volta à Calma",sets:"1",reps:"5 min",rest:"-",steps:["2 min caminhada leve","Alongamento completo de corpo inteiro (30s cada grupo)","Respiração profunda para finalizar"],tip:"Parabéns pela sessão mais difícil da semana!"}
+{name:"Aquecimento Progressivo",sets:"1",repetições:"5 min",rest:"-",steps:["1 min marcha leve → moderada → rápida (progressivo)","1 min agachamento parcial — 20 repetições","1 min passada lateral alternada","1 min polichinelos sem impacto","1 min círculos de braço + rotação de tronco"],tip:"5 min de aquecimento completo para sessão intensa"},
+{name:"CIRCUITO METABÓLICO — 5 Rodadas",sets:"5 rodadas",repetições:"ver abaixo",rest:"75s entre rodadas",steps:["⚡ Exercício 1: Agachamento com halteres 5kg — 15 repetições","⚡ Exercício 2: Flexão inclinada na cadeira — 8 repetições","⚡ Exercício 3: Remada com faixa — 12 repetições","⚡ Exercício 4: Afundo reverso alternado — 8/perna","⚡ Exercício 5: Elevação lateral 3kg — 10 repetições","⚡ Exercício 6: Ponte glúteos com faixa — 15 repetições","⚡ Exercício 7: Prancha nos joelhos — 25 seg","⚡ Exercício 8: Marcha rápida — 30 seg","8 exercícios seguidos, 10-15s entre cada","75 segundos de descanso entre rodadas","5 RODADAS COMPLETAS"],tip:"5 rodadas × 8 exercícios = 40 séries totais. Queima calórica absurda!"},
+{name:"Alongamento + Volta à Calma",sets:"1",repetições:"5 min",rest:"-",steps:["2 min caminhada leve","Alongamento completo de corpo inteiro (30s cada grupo)","Respiração profunda para finalizar"],tip:"Parabéns pela sessão mais difícil da semana!"}
 ]},
 "Quinta":{title:"Pernas & Glúteos — Hipertrofia Avançada + Core",focus:"Volume + Definição de Pernas",time:"~45 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"4 min",rest:"-",steps:["Marcha alta 1 min, agachamento leve 1 min, passada lateral 1 min, panturrilha 1 min"],tip:"Mesma rotina para preparar pernas"},
-{name:"Superset A — Agachamento Búlgaro + Abdução com Faixa Deitado",sets:"4 rodadas",reps:"8/perna + 15/lado",rest:"60s",steps:["AGACHAMENTO BÚLGARO (8 cada perna):","Peito do pé de trás na cadeira (firme contra parede!)","Pé da frente a um passo de distância","Desça o joelho de trás em direção ao chão (3s)","Suba empurrando pelo calcanhar da frente","Complete 8 de um lado, depois troque","SEM DESCANSO:","ABDUÇÃO DEITADO COM FAIXA (15 cada lado):","Deite de lado, faixa acima dos joelhos","Abra o joelho de cima como uma concha (pés juntos)","Segure 1s no topo, desça controlado"],tip:"Búlgaro é o rei dos exercícios de pernas em casa. Brutal mas eficaz para definição"},
-{name:"Superset B — Step-Up com Halteres 3kg + Panturrilha Unilateral",sets:"3 rodadas",reps:"10/perna + 12/pé",rest:"60s",steps:["STEP-UP COM HALTERES (10 cada perna):","Halter em cada mão, suba na cadeira","3s subindo, 1s topo, 3s descendo","SEM DESCANSO:","PANTURRILHA UNILATERAL (12 cada pé):","Segure na cadeira, descida lenta (4s)"],tip:"Carga nos step-ups acelera os resultados nas pernas"},
-{name:"Ponte Unilateral + Isométrico na Parede",sets:"3 rodadas",reps:"10/lado + 30s",rest:"45s",steps:["PONTE UNILATERAL (10 cada lado):","Uma perna estendida para cima, eleve o quadril com a outra","Segure 2s no topo, desça controlado","DIRETO PARA:","ISOMÉTRICO NA PAREDE (30 segundos):","Costas na parede, coxas paralelas ao chão","Segure 30s respirando normalmente"],tip:"Combo de isolamento + isometria: esgota completamente os músculos"},
-{name:"Circuito Core + Lombar — 3 rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal nos joelhos — 30s","Abdominal bicicleta — 12 cada lado (lento e controlado)","Prancha lateral nos joelhos — 15s cada lado","Dead Bug — 8 cada lado (braço + perna opostos estendem)","Superman parcial — 10 reps (eleve só os braços do chão, 2s segurando)"],tip:"Superman parcial fortalece a lombar: essencial para postura e definição das costas"},
-{name:"FINISHER — Agachamento Pulso + Marcha",sets:"1",reps:"4 min",rest:"-",steps:["30s agachamentos pulsados rápidos (micro-movimentos em 45°)","30s marcha rápida no lugar","Repita 4 vezes sem pausa","Últimos 30s: dê tudo de si!"],tip:"Combinação de queima localizada + cardio. Finalize a semana forte!"}
+{name:"Aquecimento",sets:"1",repetições:"4 min",rest:"-",steps:["Marcha alta 1 min, agachamento leve 1 min, passada lateral 1 min, panturrilha 1 min"],tip:"Mesma rotina para preparar pernas"},
+{name:"Dois exercícios seguidos sem pausa A — Agachamento Búlgaro + Abdução com Faixa Deitado",sets:"4 rodadas",repetições:"8/perna + 15/lado",rest:"60s",steps:["AGACHAMENTO BÚLGARO (8 cada perna):","Peito do pé de trás na cadeira (firme contra parede!)","Pé da frente a um passo de distância","Desça o joelho de trás em direção ao chão (3s)","Suba empurrando pelo calcanhar da frente","Complete 8 de um lado, depois troque","SEM DESCANSO:","ABDUÇÃO DEITADO COM FAIXA (15 cada lado):","Deite de lado, faixa acima dos joelhos","Abra o joelho de cima como uma concha (pés juntos)","Segure 1s no topo, desça controlado"],tip:"Búlgaro é o rei dos exercícios de pernas em casa. Brutal mas eficaz para definição"},
+{name:"Dois exercícios seguidos sem pausa B — Step-Up com Halteres 3kg + Panturrilha Unilateral",sets:"3 rodadas",repetições:"10/perna + 12/pé",rest:"60s",steps:["STEP-UP COM HALTERES (10 cada perna):","Halter em cada mão, suba na cadeira","3s subindo, 1s topo, 3s descendo","SEM DESCANSO:","PANTURRILHA UNILATERAL (12 cada pé):","Segure na cadeira, descida lenta (4s)"],tip:"Carga nos step-ups acelera os resultados nas pernas"},
+{name:"Ponte Unilateral + Isométrico na Parede",sets:"3 rodadas",repetições:"10/lado + 30s",rest:"45s",steps:["PONTE UNILATERAL (10 cada lado):","Uma perna estendida para cima, eleve o quadril com a outra","Segure 2s no topo, desça controlado","DIRETO PARA:","ISOMÉTRICO NA PAREDE (30 segundos):","Costas na parede, coxas paralelas ao chão","Segure 30s respirando normalmente"],tip:"Combo de isolamento + isometria: esgota completamente os músculos"},
+{name:"Circuito Core + Lombar — 3 rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal nos joelhos — 30s","Abdominal bicicleta — 12 cada lado (lento e controlado)","Prancha lateral nos joelhos — 15s cada lado","Dead Bug — 8 cada lado (braço + perna opostos estendem)","Superman parcial — 10 repetições (eleve só os braços do chão, 2s segurando)"],tip:"Superman parcial fortalece a lombar: essencial para postura e definição das costas"},
+{name:"FINISHER — Agachamento Pulso + Marcha",sets:"1",repetições:"4 min",rest:"-",steps:["30s agachamentos pulsados rápidos (micro-movimentos em 45°)","30s marcha rápida no lugar","Repita 4 vezes sem pausa","Últimos 30s: dê tudo de si!"],tip:"Combinação de queima localizada + cardio. Finalize a semana forte!"}
 ]},
 "Sexta":{title:"Full Body Pump + Circuito Final",focus:"Definição Completa + Queima",time:"~45 min",exercises:[
-{name:"Aquecimento Completo",sets:"1",reps:"4 min",rest:"-",steps:["Marcha 1 min, polichinelos 1 min, agachamento parcial 1 min, círculos braço 1 min"],tip:"Corpo todo aquecido para a sessão final da semana"},
-{name:"Superset A — Flexão Inclinada Lenta + Rosca Bíceps Halteres 5kg",sets:"3 rodadas",reps:"10 + 12",rest:"60s",steps:["FLEXÃO INCLINADA LENTA (10 reps):","Mãos na cadeira, desça em 5 segundos (contagem lenta!)","Pause 1s embaixo, suba em 2s","SEM DESCANSO:","ROSCA BÍCEPS (12 reps):","Halteres 5kg, suba alternando (2s cada)","Desça em 3s (excêntrica lenta)"],tip:"5 segundos de descida na flexão = tempo sob tensão extremo para definição do peito"},
-{name:"Superset B — Agachamento Sumô Halter + Elevação Lateral 3kg",sets:"3 rodadas",reps:"15 + 12",rest:"45s",steps:["AGACHAMENTO SUMÔ (15 reps):","Pés afastados, halter 5kg entre as pernas","Desça 3s, suba 2s","SEM DESCANSO:","ELEVAÇÃO LATERAL (12 reps):","Halteres 3kg, suba até ombros, desça em 3s"],tip:"Superset de inferior + superior mantém o coração acelerado"},
-{name:"Superset C — Tríceps Dip Cadeira + Remada Faixa",sets:"3 rodadas",reps:"10 + 12",rest:"45s",steps:["TRÍCEPS DIP (10 reps):","Mãos na borda da cadeira, deslize o quadril para frente","Desça dobrando cotovelos até 90° (máximo!)","Suba estendendo os braços","SEM DESCANSO:","REMADA COM FAIXA (12 reps):","Puxada na altura do umbigo, aperte escápulas"],tip:"Push/Pull superset: peito-tríceps empurra, costas-bíceps puxa"},
-{name:"CIRCUITO FINAL DA SEMANA — 3 Rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento rápido na cadeira — 15 reps","⚡ Ponte glúteos com faixa — 15 reps","⚡ Flexão na parede (rápida) — 15 reps","⚡ Prancha nos joelhos — 30s","⚡ Marcha rápida — 30s","Todos seguidos, mínimo descanso","3 rodadas — deixe tudo no treino!"],tip:"Última sessão forte da semana. Na sexta à noite, descanse sabendo que deu seu máximo"},
-{name:"Alongamento Completo",sets:"1",reps:"6 min",rest:"-",steps:["Alongue cada grupo por 30-45 segundos","Quadríceps, isquiotibiais, panturrilhas, peitorais, dorsais, ombros, bíceps, tríceps","Finalize com 5 respirações profundas"],tip:"Parabéns pela semana completa! Recupere bem no fim de semana"}
+{name:"Aquecimento Completo",sets:"1",repetições:"4 min",rest:"-",steps:["Marcha 1 min, polichinelos 1 min, agachamento parcial 1 min, círculos braço 1 min"],tip:"Corpo todo aquecido para a sessão final da semana"},
+{name:"Dois exercícios seguidos sem pausa A — Flexão Inclinada Lenta + Rosca Bíceps Halteres 5kg",sets:"3 rodadas",repetições:"10 + 12",rest:"60s",steps:["FLEXÃO INCLINADA LENTA (10 repetições):","Mãos na cadeira, desça em 5 segundos (contagem lenta!)","Pause 1s embaixo, suba em 2s","SEM DESCANSO:","ROSCA BÍCEPS (12 repetições):","Halteres 5kg, suba alternando (2s cada)","Desça em 3s (excêntrica lenta)"],tip:"5 segundos de descida na flexão = tempo sob tensão extremo para definição do peito"},
+{name:"Dois exercícios seguidos sem pausa B — Agachamento Sumô Halter + Elevação Lateral 3kg",sets:"3 rodadas",repetições:"15 + 12",rest:"45s",steps:["AGACHAMENTO SUMÔ (15 repetições):","Pés afastados, halter 5kg entre as pernas","Desça 3s, suba 2s","SEM DESCANSO:","ELEVAÇÃO LATERAL (12 repetições):","Halteres 3kg, suba até ombros, desça em 3s"],tip:"Dois exercícios seguidos sem pausa de inferior + superior mantém o coração acelerado"},
+{name:"Dois exercícios seguidos sem pausa C — Tríceps Dip Cadeira + Remada Faixa",sets:"3 rodadas",repetições:"10 + 12",rest:"45s",steps:["TRÍCEPS DIP (10 repetições):","Mãos na borda da cadeira, deslize o quadril para frente","Desça dobrando cotovelos até 90° (máximo!)","Suba estendendo os braços","SEM DESCANSO:","REMADA COM FAIXA (12 repetições):","Puxada na altura do umbigo, aperte omoplatas (os ossinhos das costas)"],tip:"Push/Pull dois exercícios seguidos sem pausa: peito-tríceps empurra, costas-bíceps puxa"},
+{name:"CIRCUITO FINAL DA SEMANA — 3 Rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento rápido na cadeira — 15 repetições","⚡ Ponte glúteos com faixa — 15 repetições","⚡ Flexão na parede (rápida) — 15 repetições","⚡ Prancha nos joelhos — 30s","⚡ Marcha rápida — 30s","Todos seguidos, mínimo descanso","3 rodadas — deixe tudo no treino!"],tip:"Última sessão forte da semana. Na sexta à noite, descanse sabendo que deu seu máximo"},
+{name:"Alongamento Completo",sets:"1",repetições:"6 min",rest:"-",steps:["Alongue cada grupo por 30-45 segundos","Quadríceps, isquiotibiais, panturrilhas, peitorais, dorsais, ombros, bíceps, tríceps","Finalize com 5 respirações profundas"],tip:"Parabéns pela semana completa! Recupere bem no fim de semana"}
 ]},
 "Sábado":{title:"Cardio + Mobilidade",focus:"Recuperação Ativa + Queima Extra",time:"~30 min",exercises:[
-{name:"Cardio Leve-Moderado",sets:"1",reps:"15 min",rest:"-",steps:["Marcha moderada-rápida no lugar por 15 minutos","Alterne: 2 min normal, 1 min joelhos altos, 1 min step touch","Se possível: caminhada pelo bairro (20 min)"],tip:"Sábado ativo mantém metabolismo acelerado"},
-{name:"Sessão de Mobilidade Profunda",sets:"1",reps:"15 min",rest:"-",steps:["Gato-Vaca: 12 reps lentas","Alongamento flexor quadril: 45s cada lado","Piriforme: 30s cada lado","Isquiotibiais sentado: 45s cada lado","Rotação torácica: 8 reps/lado","Peitorais na porta: 30s cada lado","Child's pose (dorsais): 45s","Respiração diafragmática: 10 ciclos"],tip:"Mobilidade profunda: previne lesões e melhora a amplitude dos exercícios na semana seguinte"}
+{name:"Cardio Leve-Moderado",sets:"1",repetições:"15 min",rest:"-",steps:["Marcha moderada-rápida no lugar por 15 minutos","Alterne: 2 min normal, 1 min joelhos altos, 1 min step touch","Se possível: caminhada pelo bairro (20 min)"],tip:"Sábado ativo mantém metabolismo acelerado"},
+{name:"Sessão de Mobilidade Profunda",sets:"1",repetições:"15 min",rest:"-",steps:["Gato-Vaca: 12 repetições lentas","Alongamento flexor quadril: 45s cada lado","Piriforme: 30s cada lado","Isquiotibiais sentado: 45s cada lado","Rotação torácica: 8 repetições/lado","Peitorais na porta: 30s cada lado","Child's pose (dorsais): 45s","Respiração diafragmática: 10 ciclos"],tip:"Mobilidade profunda: previne lesões e melhora a até onde o movimento vai dos exercícios na semana seguinte"}
 ]},
 "Domingo":{title:"Descanso Total",focus:"Recuperação Completa",time:"—",exercises:[
-{name:"Descanso Total",sets:"-",reps:"—",rest:"-",steps:["Recuperação completa. Músculos crescem e se definem durante o descanso","Meal prep para a semana (priorize proteínas para definição)","Hidratação: 2,5-3L de água","Sono: 7-8 horas (hormônio do crescimento é liberado durante o sono profundo)","Opcional: alongamento leve de 5 min à noite"],tip:"O descanso dominical é parte do plano, não exceção. Sem ele, o corpo não se adapta e os resultados caem"}
+{name:"Descanso Total",sets:"-",repetições:"—",rest:"-",steps:["Recuperação completa. Músculos crescem e se definem durante o descanso","Meal prep para a semana (priorize proteínas para definição)","Hidratação: 2,5-3L de água","Sono: 7-8 horas (hormônio do crescimento é liberado durante o sono profundo)","Opcional: alongamento leve de 5 min à noite"],tip:"O descanso dominical é parte do plano, não exceção. Sem ele, o corpo não se adapta e os resultados caem"}
 ]}
 },
 3:{
 "Segunda":{title:"Pernas — Força Máxima",focus:"Força + Hipertrofia de Pernas",time:"~48 min",exercises:[
-{name:"Aquecimento Dinâmico",sets:"1",reps:"5 min",rest:"-",steps:["1 min marcha alta rápida","1 min agachamento parcial rápido (20 reps)","1 min afundo parcial alternado (10/lado)","1 min passada lateral com mini-agachamento","1 min polichinelos sem impacto"],tip:"Aquecimento completo para sessão de alta intensidade"},
-{name:"Tri-Set A — Agachamento Halteres + Búlgaro + Isométrico",sets:"4 rodadas",reps:"15 + 8/perna + 20s",rest:"75s",steps:["AGACHAMENTO COM HALTERES 5kg (15 reps):","Halteres ao lado, agache completo (3s descendo, 2s subindo)","DIRETO PARA BÚLGARO (8 cada perna):","Pé de trás na cadeira, desça controlado","DIRETO PARA ISOMÉTRICO NA PAREDE (20 seg):","Costas na parede, 90° e segure","Descanse 75s após os 3 exercícios"],tip:"Tri-set: 3 exercícios seguidos sem pausa. Intensidade de academia em casa"},
-{name:"Superset B — Afundo Reverso com Halteres + Passada Lateral Faixa Forte",sets:"3 rodadas",reps:"10/perna + 12/lado",rest:"60s",steps:["AFUNDO REVERSO COM HALTERES 3kg (10 cada perna):","Halter em cada mão, passo para trás","Desça 3s, suba 2s pelo calcanhar da frente","SEM DESCANSO:","PASSADA LATERAL FAIXA FORTE (12 cada lado):","Use a faixa de maior resistência","Semi-agachamento baixo durante todo o movimento"],tip:"Halteres no afundo adicionam carga progressiva"},
-{name:"Superset C — Ponte Unilateral com Faixa + Panturrilha Unilateral",sets:"3 rodadas",reps:"12/lado + 15/pé",rest:"45s",steps:["PONTE UNILATERAL COM FAIXA (12 cada lado):","Faixa acima dos joelhos, uma perna estendida","Eleve apertando glúteo, segure 2s no topo","DIRETO PARA PANTURRILHA (15 cada pé):","Descida super lenta (5 segundos!)"],tip:"Trabalho unilateral garante simetria. Nada de uma perna mais forte que a outra"},
-{name:"FINISHER — Tabata Agachamento + Marcha",sets:"1",reps:"4 min",rest:"-",steps:["Rodada 1-2: 20s agachamento rápido + 10s descanso","Rodada 3-4: 20s marcha alta rápida + 10s descanso","Rodada 5-6: 20s agachamento rápido + 10s descanso","Rodada 7-8: 20s marcha alta rápida + 10s descanso","Total: 8 rodadas, 4 minutos"],tip:"Tabata alternado mantém a intensidade sem sobrecarregar um músculo só"}
+{name:"Aquecimento Dinâmico",sets:"1",repetições:"5 min",rest:"-",steps:["1 min marcha alta rápida","1 min agachamento parcial rápido (20 repetições)","1 min afundo parcial alternado (10/lado)","1 min passada lateral com mini-agachamento","1 min polichinelos sem impacto"],tip:"Aquecimento completo para sessão de alta intensidade"},
+{name:"Três exercícios seguidos sem pausa A — Agachamento Halteres + Búlgaro + Isométrico",sets:"4 rodadas",repetições:"15 + 8/perna + 20s",rest:"75s",steps:["AGACHAMENTO COM HALTERES 5kg (15 repetições):","Halteres ao lado, agache completo (3s descendo, 2s subindo)","DIRETO PARA BÚLGARO (8 cada perna):","Pé de trás na cadeira, desça controlado","DIRETO PARA ISOMÉTRICO NA PAREDE (20 seg):","Costas na parede, 90° e segure","Descanse 75s após os 3 exercícios"],tip:"Três exercícios seguidos sem pausa: 3 exercícios seguidos sem pausa. Intensidade de academia em casa"},
+{name:"Dois exercícios seguidos sem pausa B — Afundo Reverso com Halteres + Passada Lateral Faixa Forte",sets:"3 rodadas",repetições:"10/perna + 12/lado",rest:"60s",steps:["AFUNDO REVERSO COM HALTERES 3kg (10 cada perna):","Halter em cada mão, passo para trás","Desça 3s, suba 2s pelo calcanhar da frente","SEM DESCANSO:","PASSADA LATERAL FAIXA FORTE (12 cada lado):","Use a faixa de maior resistência","Semi-agachamento baixo durante todo o movimento"],tip:"Halteres no afundo adicionam carga progressiva"},
+{name:"Dois exercícios seguidos sem pausa C — Ponte Unilateral com Faixa + Panturrilha Unilateral",sets:"3 rodadas",repetições:"12/lado + 15/pé",rest:"45s",steps:["PONTE UNILATERAL COM FAIXA (12 cada lado):","Faixa acima dos joelhos, uma perna estendida","Eleve apertando glúteo, segure 2s no topo","DIRETO PARA PANTURRILHA (15 cada pé):","Descida super lenta (5 segundos!)"],tip:"Trabalho unilateral garante simetria. Nada de uma perna mais forte que a outra"},
+{name:"FINISHER — Tabata Agachamento + Marcha",sets:"1",repetições:"4 min",rest:"-",steps:["Rodada 1-2: 20s agachamento rápido + 10s descanso","Rodada 3-4: 20s marcha alta rápida + 10s descanso","Rodada 5-6: 20s agachamento rápido + 10s descanso","Rodada 7-8: 20s marcha alta rápida + 10s descanso","Total: 8 rodadas, 4 minutos"],tip:"Tabata alternado mantém a intensidade sem sobrecarregar um músculo só"}
 ]},
 "Terça":{title:"Push/Pull — Definição Superior",focus:"Peito, Costas, Ombros, Braços",time:"~48 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"4 min",rest:"-",steps:["Círculos braço 1 min, rotação tronco 1 min, flexão parede leve 15 reps 1 min, polichinelos 1 min"],tip:"Ombros bem aquecidos antes do trabalho pesado"},
-{name:"Tri-Set A — Flexão Inclinada Lenta + Remada Faixa + Press Ombro",sets:"4 rodadas",reps:"10 + 15 + 10",rest:"75s",steps:["FLEXÃO INCLINADA LENTA (10 reps):","Mãos na cadeira, 5s descendo, 2s subindo","DIRETO:","REMADA FAIXA (15 reps):","Faixa na porta (umbigo), aperte escápulas 2s","DIRETO:","PRESS OMBRO HALTERES 5kg (10 reps):","Sentado, empurre para cima sem travar cotovelos","75s de descanso após os 3"],tip:"Push-Pull-Push em tri-set: trabalha todo o tronco superior sem descanso"},
-{name:"Superset B — Rosca 21s Halteres 5kg + Tríceps Dip Cadeira",sets:"3 rodadas",reps:"21 + 12",rest:"60s",steps:["ROSCA 21s (7 metade inferior + 7 metade superior + 7 completas):","Halteres 5kg, controle total em cada fase","DIRETO:","TRÍCEPS DIP (12 reps):","Mãos na cadeira, desça até 90°, suba forte"],tip:"Bíceps + tríceps em superset: pump máximo nos braços"},
-{name:"Superset C — Elevação Lateral + Remada Alta Faixa",sets:"3 rodadas",reps:"15 + 12",rest:"45s",steps:["ELEVAÇÃO LATERAL 3kg (15 reps — volume alto!):","Desça em 3s cada rep","DIRETO:","REMADA ALTA COM FAIXA (12 reps):","Cotovelos para cima e fora, altura dos ombros"],tip:"15 reps com 3s de descida = 45s de tensão nos ombros por série. Definição garantida"},
-{name:"Circuito Core Intenso — 3 rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal (pés no chão, não joelhos!) — 25s","Abdominal bicicleta lento — 15/lado","Prancha lateral (pés) — 15s cada lado","Dead Bug — 10/lado","Superman parcial — 12 reps (segure 2s cada)"],tip:"Progresso: prancha nos PÉS agora! Se não aguentar, volte para joelhos"},
-{name:"FINISHER — Circuito Braços 2 min",sets:"1",reps:"2 min",rest:"-",steps:["30s rosca bíceps rápida (faixa)","30s tríceps extensão rápida (faixa)","30s elevação lateral rápida (2kg ou sem peso)","30s flexão na parede rápida","Tudo seguido sem parar!"],tip:"2 minutos para definir os braços. Pump final!"}
+{name:"Aquecimento",sets:"1",repetições:"4 min",rest:"-",steps:["Círculos braço 1 min, rotação tronco 1 min, flexão parede leve 15 repetições 1 min, polichinelos 1 min"],tip:"Ombros bem aquecidos antes do trabalho pesado"},
+{name:"Três exercícios seguidos sem pausa A — Flexão Inclinada Lenta + Remada Faixa + Press Ombro",sets:"4 rodadas",repetições:"10 + 15 + 10",rest:"75s",steps:["FLEXÃO INCLINADA LENTA (10 repetições):","Mãos na cadeira, 5s descendo, 2s subindo","DIRETO:","REMADA FAIXA (15 repetições):","Faixa na porta (umbigo), aperte omoplatas (os ossinhos das costas) 2s","DIRETO:","PRESS OMBRO HALTERES 5kg (10 repetições):","Sentado, empurre para cima sem travar cotovelos","75s de descanso após os 3"],tip:"Push-Pull-Push em três exercícios seguidos sem pausa: trabalha todo o tronco superior sem descanso"},
+{name:"Dois exercícios seguidos sem pausa B — Rosca 21s Halteres 5kg + Tríceps Dip Cadeira",sets:"3 rodadas",repetições:"21 + 12",rest:"60s",steps:["ROSCA 21s (7 metade inferior + 7 metade superior + 7 completas):","Halteres 5kg, controle total em cada fase","DIRETO:","TRÍCEPS DIP (12 repetições):","Mãos na cadeira, desça até 90°, suba forte"],tip:"Bíceps + tríceps em dois exercícios seguidos sem pausa: pump máximo nos braços"},
+{name:"Dois exercícios seguidos sem pausa C — Elevação Lateral + Remada Alta Faixa",sets:"3 rodadas",repetições:"15 + 12",rest:"45s",steps:["ELEVAÇÃO LATERAL 3kg (15 repetições — volume alto!):","Desça em 3s cada rep","DIRETO:","REMADA ALTA COM FAIXA (12 repetições):","Cotovelos para cima e fora, altura dos ombros"],tip:"15 repetições com 3s de descida = 45s de tensão nos ombros por série. Definição garantida"},
+{name:"Circuito Core Intenso — 3 rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal (pés no chão, não joelhos!) — 25s","Abdominal bicicleta lento — 15/lado","Prancha lateral (pés) — 15s cada lado","Dead Bug — 10/lado","Superman parcial — 12 repetições (segure 2s cada)"],tip:"Progresso: prancha nos PÉS agora! Se não aguentar, volte para joelhos"},
+{name:"FINISHER — Circuito Braços 2 min",sets:"1",repetições:"2 min",rest:"-",steps:["30s rosca bíceps rápida (faixa)","30s tríceps extensão rápida (faixa)","30s elevação lateral rápida (2kg ou sem peso)","30s flexão na parede rápida","Tudo seguido sem parar!"],tip:"2 minutos para definir os braços. Pump final!"}
 ]},
 "Quarta":{title:"Circuito Metabólico Intenso",focus:"Queima Máxima — Full Body",time:"~48 min",exercises:[
-{name:"Aquecimento Progressivo",sets:"1",reps:"5 min",rest:"-",steps:["Progressão de marcha leve → moderada → rápida → joelhos altos → step touch","1 minuto em cada intensidade"],tip:"Corpo todo preparado para circuito pesado"},
-{name:"CIRCUITO METABÓLICO A — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento com halteres 5kg — 15 reps","⚡ Flexão inclinada na cadeira (4s descida) — 8 reps","⚡ Afundo reverso alternado — 10/perna","⚡ Remada faixa — 15 reps","⚡ Marcha rápida — 30s","10-15s entre exercícios, 60s entre rodadas"],tip:"Circuito A foca em movimentos compostos para máxima queima"},
-{name:"CIRCUITO METABÓLICO B — 3 Rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Ponte glúteos com faixa — 15 reps","⚡ Press ombro 5kg — 10 reps","⚡ Agachamento sumô com halter — 12 reps","⚡ Rosca bíceps faixa — 15 reps","⚡ Prancha frontal (pés) — 20s","⚡ Step touch rápido — 30s","6 exercícios seguidos, 60s entre rodadas"],tip:"Dois circuitos na mesma sessão = volume total altíssimo. Queima de 300-400 kcal estimada"},
-{name:"Alongamento + Respiração",sets:"1",reps:"5 min",rest:"-",steps:["Alongamento completo de corpo inteiro","Foco em: quadríceps, isquiotibiais, peitorais, ombros","Respiração 4-6 para finalizar: 8 ciclos"],tip:"Você sobreviveu ao circuito duplo! Alongue e hidrate"}
+{name:"Aquecimento Progressivo",sets:"1",repetições:"5 min",rest:"-",steps:["Progressão de marcha leve → moderada → rápida → joelhos altos → step touch","1 minuto em cada intensidade"],tip:"Corpo todo preparado para circuito pesado"},
+{name:"CIRCUITO METABÓLICO A — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento com halteres 5kg — 15 repetições","⚡ Flexão inclinada na cadeira (4s descida) — 8 repetições","⚡ Afundo reverso alternado — 10/perna","⚡ Remada faixa — 15 repetições","⚡ Marcha rápida — 30s","10-15s entre exercícios, 60s entre rodadas"],tip:"Circuito A foca em movimentos compostos para máxima queima"},
+{name:"CIRCUITO METABÓLICO B — 3 Rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Ponte glúteos com faixa — 15 repetições","⚡ Press ombro 5kg — 10 repetições","⚡ Agachamento sumô com halter — 12 repetições","⚡ Rosca bíceps faixa — 15 repetições","⚡ Prancha frontal (pés) — 20s","⚡ Step touch rápido — 30s","6 exercícios seguidos, 60s entre rodadas"],tip:"Dois circuitos na mesma sessão = volume total altíssimo. Queima de 300-400 kcal estimada"},
+{name:"Alongamento + Respiração",sets:"1",repetições:"5 min",rest:"-",steps:["Alongamento completo de corpo inteiro","Foco em: quadríceps, isquiotibiais, peitorais, ombros","Respiração 4-6 para finalizar: 8 ciclos"],tip:"Você sobreviveu ao circuito duplo! Alongue e hidrate"}
 ]},
 "Quinta":{title:"Pernas — Hipertrofia + Core Intenso",focus:"Volume Máximo + Abdômen 6-pack",time:"~48 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"4 min",rest:"-",steps:["Marcha 1 min, agachamento parcial 1 min, afundo parcial 1 min, panturrilha 1 min"],tip:"Pernas bem aquecidas"},
-{name:"Tri-Set A — Búlgaro + Step-Up + Agachamento Pulsado",sets:"3 rodadas",reps:"10/perna + 8/perna + 20s",rest:"75s",steps:["BÚLGARO COM HALTERES 3kg (10 cada perna):","Halter em cada mão, desça controlado 3s","DIRETO PARA STEP-UP (8 cada perna):","Suba na cadeira com ritmo controlado","DIRETO PARA AGACHAMENTO PULSADO (20s):","Posição de 45°, micro-movimentos rápidos","75s descanso após os 3"],tip:"Tri-set de pernas: vai queimar MUITO. Isso é normal e é o que gera definição"},
-{name:"Superset B — Abdução Faixa Deitado + Ponte Unilateral Faixa",sets:"3 rodadas",reps:"15/lado + 12/lado",rest:"45s",steps:["ABDUÇÃO DEITADO (15 cada lado):","Faixa forte, abra como concha, segure 1s","DIRETO:","PONTE UNILATERAL (12 cada lado):","Uma perna estendida, eleve com a outra"],tip:"Isolamento de glúteos para definição lateral e posterior"},
-{name:"Panturrilha Drop-Set",sets:"3 séries",reps:"15+15+15",rest:"30s",steps:["15 reps panturrilha bilateral com halter 5kg (em uma mão)","Sem pausa: 15 reps bilateral sem peso","Sem pausa: 15 reps unilateral sem peso (cada pé)","Isso é 1 série. Descanse 30s e repita 3 vezes"],tip:"Drop-set: reduz a carga sem parar. Esgota completamente o músculo"},
-{name:"CIRCUITO CORE 6-PACK — 4 rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal (pés) — 30s","Abdominal bicicleta — 15/lado","Prancha lateral — 20s cada lado","Dead Bug — 10/lado","Crunch reverso (eleve o quadril do chão, pernas a 90°) — 12 reps","Mountain Climber LENTO (traga joelho ao peito alternando) — 10/lado","6 exercícios, 4 rodadas, sem pausa entre exercícios"],tip:"4 rodadas de core com 6 exercícios = abdômen em fogo. É assim que se faz 6-pack!"},
-{name:"FINISHER — Isométrico Duplo",sets:"1",reps:"2 min",rest:"-",steps:["30s agachamento isométrico na parede","30s prancha frontal (pés ou joelhos)","30s agachamento isométrico","30s prancha frontal","Sem descanso entre eles!"],tip:"Finisher isométrico: treino mental + físico"}
+{name:"Aquecimento",sets:"1",repetições:"4 min",rest:"-",steps:["Marcha 1 min, agachamento parcial 1 min, afundo parcial 1 min, panturrilha 1 min"],tip:"Pernas bem aquecidas"},
+{name:"Três exercícios seguidos sem pausa A — Búlgaro + Step-Up + Agachamento Pulsado",sets:"3 rodadas",repetições:"10/perna + 8/perna + 20s",rest:"75s",steps:["BÚLGARO COM HALTERES 3kg (10 cada perna):","Halter em cada mão, desça controlado 3s","DIRETO PARA STEP-UP (8 cada perna):","Suba na cadeira com ritmo controlado","DIRETO PARA AGACHAMENTO PULSADO (20s):","Posição de 45°, micro-movimentos rápidos","75s descanso após os 3"],tip:"Três exercícios seguidos sem pausa de pernas: vai queimar MUITO. Isso é normal e é o que gera definição"},
+{name:"Dois exercícios seguidos sem pausa B — Abdução Faixa Deitado + Ponte Unilateral Faixa",sets:"3 rodadas",repetições:"15/lado + 12/lado",rest:"45s",steps:["ABDUÇÃO DEITADO (15 cada lado):","Faixa forte, abra como concha, segure 1s","DIRETO:","PONTE UNILATERAL (12 cada lado):","Uma perna estendida, eleve com a outra"],tip:"Isolamento de glúteos para definição lateral e posterior"},
+{name:"Panturrilha Drop-Set",sets:"3 séries",repetições:"15+15+15",rest:"30s",steps:["15 repetições panturrilha bilateral com halter 5kg (em uma mão)","Sem pausa: 15 repetições bilateral sem peso","Sem pausa: 15 repetições unilateral sem peso (cada pé)","Isso é 1 série. Descanse 30s e repita 3 vezes"],tip:"Série com redução de peso (sem parar, diminui o peso e continua): reduz a carga sem parar. Esgota completamente o músculo"},
+{name:"CIRCUITO CORE 6-PACK — 4 rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal (pés) — 30s","Abdominal bicicleta — 15/lado","Prancha lateral — 20s cada lado","Dead Bug — 10/lado","Crunch reverso (eleve o quadril do chão, pernas a 90°) — 12 repetições","Mountain Climber LENTO (traga joelho ao peito alternando) — 10/lado","6 exercícios, 4 rodadas, sem pausa entre exercícios"],tip:"4 rodadas de centro do corpo (barriga e lombar) com 6 exercícios = abdômen em fogo. É assim que se faz 6-pack!"},
+{name:"FINISHER — Isométrico Duplo",sets:"1",repetições:"2 min",rest:"-",steps:["30s agachamento isométrico na parede","30s prancha frontal (pés ou joelhos)","30s agachamento isométrico","30s prancha frontal","Sem descanso entre eles!"],tip:"Finisher isométrico: treino mental + físico"}
 ]},
 "Sexta":{title:"Full Body Pump — Sessão Máxima",focus:"Definição Total + Queima Final",time:"~50 min",exercises:[
-{name:"Aquecimento Completo",sets:"1",reps:"5 min",rest:"-",steps:["Marcha progressiva 1 min, agachamento 1 min, polichinelos 1 min, círculos braço 1 min, afundo parcial 1 min"],tip:"Aquecimento completo para a sessão mais longa da semana"},
-{name:"Bloco A — Tri-Set Pernas",sets:"3 rodadas",reps:"15+10/perna+12",rest:"60s",steps:["Agachamento com halteres 5kg — 15 reps","Afundo reverso — 10/perna","Agachamento sumô halter — 12 reps","60s descanso"],tip:"Pernas primeiro enquanto a energia está alta"},
-{name:"Bloco B — Tri-Set Superior",sets:"3 rodadas",reps:"10+15+10",rest:"60s",steps:["Flexão inclinada lenta (5s descida) — 10 reps","Remada faixa — 15 reps","Press ombro 5kg — 10 reps","60s descanso"],tip:"Push-Pull-Push para tronco superior completo"},
-{name:"Bloco C — Superset Braços",sets:"3 rodadas",reps:"12+12",rest:"45s",steps:["Rosca bíceps halteres 5kg — 12 reps","Tríceps dip cadeira — 12 reps","45s descanso"],tip:"Braços para finalizar a parte de força"},
-{name:"CIRCUITO QUEIMA FINAL — 3 Rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Ponte glúteos faixa — 15 reps","⚡ Flexão parede rápida — 15 reps","⚡ Agachamento rápido — 15 reps","⚡ Prancha frontal — 25s","⚡ Marcha alta rápida — 30s","3 rodadas, 45s entre cada"],tip:"Circuito final queima as últimas reservas. Deixe tudo no treino de sexta!"},
-{name:"Alongamento Completo",sets:"1",reps:"6 min",rest:"-",steps:["Alongue TODOS os grupos: 30-45s cada","Quadríceps, isquiotibiais, panturrilhas, glúteos, peitorais, dorsais, ombros, bíceps, tríceps, lombar","Finalize com respiração profunda (10 ciclos)"],tip:"Fim da semana. Recuperação total no fim de semana para voltar ainda mais forte"}
+{name:"Aquecimento Completo",sets:"1",repetições:"5 min",rest:"-",steps:["Marcha progressiva 1 min, agachamento 1 min, polichinelos 1 min, círculos braço 1 min, afundo parcial 1 min"],tip:"Aquecimento completo para a sessão mais longa da semana"},
+{name:"Bloco A — Três exercícios seguidos sem pausa Pernas",sets:"3 rodadas",repetições:"15+10/perna+12",rest:"60s",steps:["Agachamento com halteres 5kg — 15 repetições","Afundo reverso — 10/perna","Agachamento sumô halter — 12 repetições","60s descanso"],tip:"Pernas primeiro enquanto a energia está alta"},
+{name:"Bloco B — Três exercícios seguidos sem pausa Superior",sets:"3 rodadas",repetições:"10+15+10",rest:"60s",steps:["Flexão inclinada lenta (5s descida) — 10 repetições","Remada faixa — 15 repetições","Press ombro 5kg — 10 repetições","60s descanso"],tip:"Push-Pull-Push para tronco superior completo"},
+{name:"Bloco C — Dois exercícios seguidos sem pausa Braços",sets:"3 rodadas",repetições:"12+12",rest:"45s",steps:["Rosca bíceps halteres 5kg — 12 repetições","Tríceps dip cadeira — 12 repetições","45s descanso"],tip:"Braços para finalizar a parte de força"},
+{name:"CIRCUITO QUEIMA FINAL — 3 Rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Ponte glúteos faixa — 15 repetições","⚡ Flexão parede rápida — 15 repetições","⚡ Agachamento rápido — 15 repetições","⚡ Prancha frontal — 25s","⚡ Marcha alta rápida — 30s","3 rodadas, 45s entre cada"],tip:"Circuito final queima as últimas reservas. Deixe tudo no treino de sexta!"},
+{name:"Alongamento Completo",sets:"1",repetições:"6 min",rest:"-",steps:["Alongue TODOS os grupos: 30-45s cada","Quadríceps, isquiotibiais, panturrilhas, glúteos, peitorais, dorsais, ombros, bíceps, tríceps, lombar","Finalize com respiração profunda (10 ciclos)"],tip:"Fim da semana. Recuperação total no fim de semana para voltar ainda mais forte"}
 ]},
 "Sábado":{title:"Cardio + Mobilidade",focus:"Queima Extra + Recuperação",time:"~35 min",exercises:[
-{name:"Cardio Moderado",sets:"1",reps:"20 min",rest:"-",steps:["Opção A (em casa): Marcha intervalada 20 min","2 min moderado + 1 min rápido (joelhos altos) × 7 ciclos","Opção B (rua): Caminhada rápida 25-30 min","Ritmo de conversa com esforço"],tip:"Sábado é dia de cardio focado: queima extra sem desgastar os músculos"},
-{name:"Mobilidade Profunda",sets:"1",reps:"15 min",rest:"-",steps:["Gato-Vaca 12 reps, flexor quadril 45s/lado, piriforme 30s/lado","Isquiotibiais 45s/lado, rotação torácica 8/lado","Peitorais 30s/lado, child's pose 45s, ombros 30s/lado","Respiração diafragmática 10 ciclos"],tip:"Mobilidade completa para recuperação e preparação da próxima semana"}
+{name:"Cardio Moderado",sets:"1",repetições:"20 min",rest:"-",steps:["Opção A (em casa): Marcha intervalada 20 min","2 min moderado + 1 min rápido (joelhos altos) × 7 ciclos","Opção B (rua): Caminhada rápida 25-30 min","Ritmo de conversa com esforço"],tip:"Sábado é dia de cardio focado: queima extra sem desgastar os músculos"},
+{name:"Mobilidade Profunda",sets:"1",repetições:"15 min",rest:"-",steps:["Gato-Vaca 12 repetições, flexor quadril 45s/lado, piriforme 30s/lado","Isquiotibiais 45s/lado, rotação torácica 8/lado","Peitorais 30s/lado, child's pose 45s, ombros 30s/lado","Respiração diafragmática 10 ciclos"],tip:"Mobilidade completa para recuperação e preparação da próxima semana"}
 ]},
 "Domingo":{title:"Descanso Total",focus:"Recuperação Completa",time:"—",exercises:[
-{name:"Descanso Total",sets:"-",reps:"—",rest:"-",steps:["Recuperação completa, meal prep, hidratação 2,5-3L","Sono de 7-8h para liberação de GH e regeneração muscular","Opcional: 5 min de alongamento leve à noite","Avalie seu progresso: tire foto, pese-se (sempre no mesmo horário)"],tip:"Cada semana de descanso adequado equivale a ganhos que levariam 2 semanas sem descanso"}
+{name:"Descanso Total",sets:"-",repetições:"—",rest:"-",steps:["Recuperação completa, meal prep, hidratação 2,5-3L","Sono de 7-8h para liberação de GH e regeneração muscular","Opcional: 5 min de alongamento leve à noite","Avalie seu progresso: tire foto, pese-se (sempre no mesmo horário)"],tip:"Cada semana de descanso adequado equivale a ganhos que levariam 2 semanas sem descanso"}
 ]}
 },
 4:{
 "Segunda":{title:"Circuito Pernas — Alta Densidade",focus:"Volume + Queima de Pernas",time:"~48 min",exercises:[
-{name:"Aquecimento Dinâmico Completo",sets:"1",reps:"5 min",rest:"-",steps:["Marcha progressiva 1 min, agachamento parcial rápido 1 min, afundo alternado 1 min, passada lateral faixa 1 min, panturrilha + polichinelos 1 min"],tip:"Aquecimento completo e intenso para a fase final do programa"},
-{name:"CIRCUITO PERNAS A — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 reps","⚡ Búlgaro — 10/perna","⚡ Agachamento sumô halter — 15 reps","⚡ Passada lateral faixa forte — 12/lado","⚡ Agachamento pulsado — 20s","5 exercícios seguidos, 60s entre rodadas"],tip:"Circuito de pernas em formato de alta densidade: máximo trabalho em mínimo tempo"},
-{name:"CIRCUITO PERNAS B — 3 Rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Afundo reverso halteres 3kg — 10/perna","⚡ Step-Up — 10/perna","⚡ Ponte unilateral faixa — 12/lado","⚡ Panturrilha unilateral — 15/pé","⚡ Isométrico parede — 30s","5 exercícios seguidos, 60s entre rodadas"],tip:"Segundo circuito foca em trabalho unilateral para simetria e definição"},
-{name:"FINISHER — Tabata Misto",sets:"1",reps:"4 min",rest:"-",steps:["R1-R2: 20s agachamento rápido + 10s descanso","R3-R4: 20s afundo alternado rápido + 10s descanso","R5-R6: 20s marcha alta + 10s descanso","R7-R8: 20s agachamento rápido + 10s descanso"],tip:"Tabata final: 4 minutos de queima absoluta para fechar pernas"}
+{name:"Aquecimento Dinâmico Completo",sets:"1",repetições:"5 min",rest:"-",steps:["Marcha progressiva 1 min, agachamento parcial rápido 1 min, afundo alternado 1 min, passada lateral faixa 1 min, panturrilha + polichinelos 1 min"],tip:"Aquecimento completo e intenso para a fase final do programa"},
+{name:"CIRCUITO PERNAS A — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 repetições","⚡ Búlgaro — 10/perna","⚡ Agachamento sumô halter — 15 repetições","⚡ Passada lateral faixa forte — 12/lado","⚡ Agachamento pulsado — 20s","5 exercícios seguidos, 60s entre rodadas"],tip:"Circuito de pernas em formato de alta densidade: máximo trabalho em mínimo tempo"},
+{name:"CIRCUITO PERNAS B — 3 Rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Afundo reverso halteres 3kg — 10/perna","⚡ Step-Up — 10/perna","⚡ Ponte unilateral faixa — 12/lado","⚡ Panturrilha unilateral — 15/pé","⚡ Isométrico parede — 30s","5 exercícios seguidos, 60s entre rodadas"],tip:"Segundo circuito foca em trabalho unilateral para simetria e definição"},
+{name:"FINISHER — Tabata Misto",sets:"1",repetições:"4 min",rest:"-",steps:["R1-R2: 20s agachamento rápido + 10s descanso","R3-R4: 20s afundo alternado rápido + 10s descanso","R5-R6: 20s marcha alta + 10s descanso","R7-R8: 20s agachamento rápido + 10s descanso"],tip:"Tabata final: 4 minutos de queima absoluta para fechar pernas"}
 ]},
 "Terça":{title:"Circuito Superior — Alta Densidade",focus:"Peito, Costas, Ombros, Braços Definidos",time:"~48 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"4 min",rest:"-",steps:["Círculos braço, rotação tronco, flexão parede 15 reps, polichinelos"],tip:"Prepare ombros e articulações"},
-{name:"CIRCUITO SUPERIOR A — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Flexão inclinada cadeira (5s descida!) — 10 reps","⚡ Remada faixa — 15 reps","⚡ Press ombro halteres 5kg — 12 reps","⚡ Elevação lateral 3kg — 12 reps","⚡ Prancha frontal pés — 25s","5 exercícios seguidos, 60s entre rodadas"],tip:"Push-Pull alternado em circuito para definição máxima do tronco"},
-{name:"CIRCUITO BRAÇOS — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Rosca 21s halteres 5kg (7+7+7)","⚡ Tríceps dip cadeira — 12 reps","⚡ Rosca martelo 5kg — 10 reps","⚡ Tríceps extensão faixa — 12 reps","4 exercícios para braços, alternando bíceps/tríceps"],tip:"Circuito dedicado de braços na Fase 4 para definição máxima"},
-{name:"Core Intenso — 3 rodadas",sets:"3 rodadas",reps:"ver abaixo",rest:"30s",steps:["Prancha frontal pés — 30s","Abdominal bicicleta — 15/lado","Prancha lateral pés — 20s/lado","Crunch reverso — 12 reps","Mountain climber lento — 10/lado"],tip:"Core em 5 planos: frontal, superior, lateral, inferior, rotacional"},
-{name:"FINISHER — Circuito 2 min",sets:"1",reps:"2 min",rest:"-",steps:["30s flexão parede rápida","30s rosca bíceps faixa rápida","30s marcha alta rápida","30s prancha nos joelhos","Tudo seguido sem parar!"],tip:"2 minutos para finalizar com pump total"}
+{name:"Aquecimento",sets:"1",repetições:"4 min",rest:"-",steps:["Círculos braço, rotação tronco, flexão parede 15 repetições, polichinelos"],tip:"Prepare ombros e articulações"},
+{name:"CIRCUITO SUPERIOR A — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Flexão inclinada cadeira (5s descida!) — 10 repetições","⚡ Remada faixa — 15 repetições","⚡ Press ombro halteres 5kg — 12 repetições","⚡ Elevação lateral 3kg — 12 repetições","⚡ Prancha frontal pés — 25s","5 exercícios seguidos, 60s entre rodadas"],tip:"Push-Pull alternado em circuito para definição máxima do tronco"},
+{name:"CIRCUITO BRAÇOS — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Rosca 21s halteres 5kg (7+7+7)","⚡ Tríceps dip cadeira — 12 repetições","⚡ Rosca martelo 5kg — 10 repetições","⚡ Tríceps extensão faixa — 12 repetições","4 exercícios para braços, alternando bíceps/tríceps"],tip:"Circuito dedicado de braços na Fase 4 para definição máxima"},
+{name:"Core Intenso — 3 rodadas",sets:"3 rodadas",repetições:"ver abaixo",rest:"30s",steps:["Prancha frontal pés — 30s","Abdominal bicicleta — 15/lado","Prancha lateral pés — 20s/lado","Crunch reverso — 12 repetições","Mountain climber lento — 10/lado"],tip:"Core em 5 planos: frontal, superior, lateral, inferior, rotacional"},
+{name:"FINISHER — Circuito 2 min",sets:"1",repetições:"2 min",rest:"-",steps:["30s flexão parede rápida","30s rosca bíceps faixa rápida","30s marcha alta rápida","30s prancha nos joelhos","Tudo seguido sem parar!"],tip:"2 minutos para finalizar com pump total"}
 ]},
 "Quarta":{title:"Circuito Metabólico Duplo",focus:"Queima Máxima Absoluta",time:"~50 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"5 min",rest:"-",steps:["Progressão de intensidade: marcha → joelhos altos → polichinelos → agachamento → step touch"],tip:"Aquecimento de 5 min para a sessão mais intensa da semana"},
-{name:"CIRCUITO METABÓLICO A — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 reps","⚡ Flexão inclinada lenta (5s) — 8 reps","⚡ Afundo reverso — 10/perna","⚡ Remada faixa — 15 reps","⚡ Ponte glúteos faixa — 15 reps","⚡ Press ombro 5kg — 10 reps","⚡ Marcha alta — 30s","7 exercícios, 4 rodadas"],tip:"Primeiro circuito foca em força com tempo controlado"},
-{name:"CIRCUITO METABÓLICO B — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Agachamento sumô — 12 reps","⚡ Flexão parede rápida — 15 reps","⚡ Elevação lateral 3kg — 12 reps","⚡ Rosca bíceps faixa — 15 reps","⚡ Agachamento pulsado — 20s","⚡ Prancha frontal — 25s","⚡ Step touch rápido — 30s","7 exercícios, 4 rodadas, APENAS 45s de descanso"],tip:"Segundo circuito é mais rápido (45s descanso) para manter frequência cardíaca elevada"},
-{name:"Alongamento",sets:"1",reps:"5 min",rest:"-",steps:["Alongamento completo + respiração profunda"],tip:"Você completou a sessão mais difícil do programa inteiro. Respeito!"}
+{name:"Aquecimento",sets:"1",repetições:"5 min",rest:"-",steps:["Progressão de intensidade: marcha → joelhos altos → polichinelos → agachamento → step touch"],tip:"Aquecimento de 5 min para a sessão mais intensa da semana"},
+{name:"CIRCUITO METABÓLICO A — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 repetições","⚡ Flexão inclinada lenta (5s) — 8 repetições","⚡ Afundo reverso — 10/perna","⚡ Remada faixa — 15 repetições","⚡ Ponte glúteos faixa — 15 repetições","⚡ Press ombro 5kg — 10 repetições","⚡ Marcha alta — 30s","7 exercícios, 4 rodadas"],tip:"Primeiro circuito foca em força com tempo controlado"},
+{name:"CIRCUITO METABÓLICO B — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"45s entre rodadas",steps:["⚡ Agachamento sumô — 12 repetições","⚡ Flexão parede rápida — 15 repetições","⚡ Elevação lateral 3kg — 12 repetições","⚡ Rosca bíceps faixa — 15 repetições","⚡ Agachamento pulsado — 20s","⚡ Prancha frontal — 25s","⚡ Step touch rápido — 30s","7 exercícios, 4 rodadas, APENAS 45s de descanso"],tip:"Segundo circuito é mais rápido (45s descanso) para manter frequência cardíaca elevada"},
+{name:"Alongamento",sets:"1",repetições:"5 min",rest:"-",steps:["Alongamento completo + respiração profunda"],tip:"Você completou a sessão mais difícil do programa inteiro. Respeito!"}
 ]},
 "Quinta":{title:"Pernas + Core — Escultura Final",focus:"Definição Máxima Inferior + Abdômen",time:"~48 min",exercises:[
-{name:"Aquecimento",sets:"1",reps:"5 min",rest:"-",steps:["Aquecimento dinâmico completo de pernas"],tip:"Prepare-se bem para sessão intensa"},
-{name:"CIRCUITO PERNAS ESCULTURA — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Búlgaro com halteres 3kg — 10/perna","⚡ Step-Up com halteres 3kg — 10/perna","⚡ Agachamento sumô halter 5kg — 15 reps","⚡ Abdução faixa deitado — 15/lado","⚡ Panturrilha unilateral — 15/pé","5 exercícios focados em definição unilateral"],tip:"Trabalho unilateral na Fase 4 garante simetria perfeita"},
-{name:"Superset Glúteos — 3 Rodadas",sets:"3 rodadas",reps:"15+10/lado+20s",rest:"45s",steps:["Ponte glúteos faixa — 15 reps + 5 pulsos no topo","Ponte unilateral — 10/lado","Isométrico parede — 20s faixa (abrindo joelhos)","Tudo seguido, 45s descanso"],tip:"Isolamento total de glúteos para definição traseira"},
-{name:"CIRCUITO CORE ABSOLUTO — 4 Rodadas",sets:"4 rodadas",reps:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal pés — 35s","Abdominal bicicleta — 20/lado","Prancha lateral pés — 25s/lado","Dead Bug — 12/lado","Crunch reverso — 15 reps","Mountain climber lento — 12/lado","6 exercícios, 4 rodadas"],tip:"O circuito de core mais completo do programa. Abdômen em fogo total!"},
-{name:"FINISHER",sets:"1",reps:"3 min",rest:"-",steps:["1 min agachamento pulsado, 1 min prancha, 1 min marcha rápida"],tip:"Finalize a sessão de quinta forte!"}
+{name:"Aquecimento",sets:"1",repetições:"5 min",rest:"-",steps:["Aquecimento dinâmico completo de pernas"],tip:"Prepare-se bem para sessão intensa"},
+{name:"CIRCUITO PERNAS ESCULTURA — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Búlgaro com halteres 3kg — 10/perna","⚡ Step-Up com halteres 3kg — 10/perna","⚡ Agachamento sumô halter 5kg — 15 repetições","⚡ Abdução faixa deitado — 15/lado","⚡ Panturrilha unilateral — 15/pé","5 exercícios focados em definição unilateral"],tip:"Trabalho unilateral na Fase 4 garante simetria perfeita"},
+{name:"Dois exercícios seguidos sem pausa Glúteos — 3 Rodadas",sets:"3 rodadas",repetições:"15+10/lado+20s",rest:"45s",steps:["Ponte glúteos faixa — 15 repetições + 5 pulsos no topo","Ponte unilateral — 10/lado","Isométrico parede — 20s faixa (abrindo joelhos)","Tudo seguido, 45s descanso"],tip:"Isolamento total de glúteos para definição traseira"},
+{name:"CIRCUITO CORE ABSOLUTO — 4 Rodadas",sets:"4 rodadas",repetições:"ver abaixo",rest:"30s entre rodadas",steps:["Prancha frontal pés — 35s","Abdominal bicicleta — 20/lado","Prancha lateral pés — 25s/lado","Dead Bug — 12/lado","Crunch reverso — 15 repetições","Mountain climber lento — 12/lado","6 exercícios, 4 rodadas"],tip:"O circuito de centro do corpo (barriga e lombar) mais completo do programa. Abdômen em fogo total!"},
+{name:"FINISHER",sets:"1",repetições:"3 min",rest:"-",steps:["1 min agachamento pulsado, 1 min prancha, 1 min marcha rápida"],tip:"Finalize a sessão de quinta forte!"}
 ]},
 "Sexta":{title:"Full Body — Grande Final da Semana",focus:"Tudo Junto — Sessão Épica",time:"~50 min",exercises:[
-{name:"Aquecimento Completo",sets:"1",reps:"5 min",rest:"-",steps:["Aquecimento dinâmico completo de corpo inteiro"],tip:"Última sessão forte da semana. Aqueça bem!"},
-{name:"MEGA CIRCUITO — 5 Rodadas",sets:"5 rodadas",reps:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 reps","⚡ Flexão inclinada cadeira lenta — 10 reps","⚡ Afundo reverso — 10/perna","⚡ Remada faixa — 15 reps","⚡ Ponte glúteos faixa — 15 reps","⚡ Press ombro 5kg — 10 reps","⚡ Rosca bíceps 5kg — 12 reps","⚡ Prancha frontal pés — 30s","⚡ Agachamento pulsado — 20s","⚡ Marcha alta rápida — 30s","10 exercícios × 5 rodadas = 50 séries totais!","Mínimo descanso entre exercícios, 60s entre rodadas"],tip:"A sessão mais épica do programa inteiro. 10 exercícios, 5 rodadas. Você evoluiu de iniciante a isso!"},
-{name:"Alongamento Profundo",sets:"1",reps:"8 min",rest:"-",steps:["Alongue CADA grupo muscular por 30-45s","Quadríceps, isquiotibiais, panturrilhas, glúteos, peitorais, dorsais, ombros, bíceps, tríceps, lombar, flexor de quadril","Finalize com 10 ciclos de respiração profunda","Parabéns! Semana completa na Fase 4!"],tip:"Você está a caminho do corpo que sempre quis. Cada semana te deixa mais perto da meta!"}
+{name:"Aquecimento Completo",sets:"1",repetições:"5 min",rest:"-",steps:["Aquecimento dinâmico completo de corpo inteiro"],tip:"Última sessão forte da semana. Aqueça bem!"},
+{name:"MEGA CIRCUITO — 5 Rodadas",sets:"5 rodadas",repetições:"ver abaixo",rest:"60s entre rodadas",steps:["⚡ Agachamento halteres 5kg — 15 repetições","⚡ Flexão inclinada cadeira lenta — 10 repetições","⚡ Afundo reverso — 10/perna","⚡ Remada faixa — 15 repetições","⚡ Ponte glúteos faixa — 15 repetições","⚡ Press ombro 5kg — 10 repetições","⚡ Rosca bíceps 5kg — 12 repetições","⚡ Prancha frontal pés — 30s","⚡ Agachamento pulsado — 20s","⚡ Marcha alta rápida — 30s","10 exercícios × 5 rodadas = 50 séries totais!","Mínimo descanso entre exercícios, 60s entre rodadas"],tip:"A sessão mais épica do programa inteiro. 10 exercícios, 5 rodadas. Você evoluiu de iniciante a isso!"},
+{name:"Alongamento Profundo",sets:"1",repetições:"8 min",rest:"-",steps:["Alongue CADA grupo muscular por 30-45s","Quadríceps, isquiotibiais, panturrilhas, glúteos, peitorais, dorsais, ombros, bíceps, tríceps, lombar, flexor de quadril","Finalize com 10 ciclos de respiração profunda","Parabéns! Semana completa na Fase 4!"],tip:"Você está a caminho do corpo que sempre quis. Cada semana te deixa mais perto da meta!"}
 ]},
 "Sábado":{title:"Cardio + Mobilidade",focus:"Queima Extra + Recuperação",time:"~35 min",exercises:[
-{name:"Cardio Moderado-Intenso",sets:"1",reps:"20 min",rest:"-",steps:["Marcha intervalada em casa: 2 min moderado + 1 min rápido × 7 ciclos","OU caminhada rápida pelo bairro (25-30 min)","OU subir/descer escadas (se tiver, 15 min)"],tip:"Na Fase 4, sábado pode ser um pouco mais intenso se estiver se sentindo bem"},
-{name:"Mobilidade Profunda",sets:"1",reps:"15 min",rest:"-",steps:["Rotina completa de mobilidade e alongamento","Foco especial em quadril, ombros e coluna","Respiração diafragmática para finalizar"],tip:"Mobilidade na Fase 4 previne lesões e mantém a qualidade dos movimentos"}
+{name:"Cardio Moderado-Intenso",sets:"1",repetições:"20 min",rest:"-",steps:["Marcha intervalada em casa: 2 min moderado + 1 min rápido × 7 ciclos","OU caminhada rápida pelo bairro (25-30 min)","OU subir/descer escadas (se tiver, 15 min)"],tip:"Na Fase 4, sábado pode ser um pouco mais intenso se estiver se sentindo bem"},
+{name:"Mobilidade Profunda",sets:"1",repetições:"15 min",rest:"-",steps:["Rotina completa de mobilidade e alongamento","Foco especial em quadril, ombros e coluna","Respiração diafragmática para finalizar"],tip:"Mobilidade na Fase 4 previne lesões e mantém a qualidade dos movimentos"}
 ]},
 "Domingo":{title:"Descanso Total",focus:"Recuperação Completa",time:"—",exercises:[
-{name:"Descanso Total",sets:"-",reps:"—",rest:"-",steps:["Recuperação completa, meal prep, hidratação e sono","Avalie seu progresso semanal (peso, fotos, medidas)","Celebre cada conquista, por menor que pareça","Lembre-se: você começou com 111kg e está transformando seu corpo!"],tip:"44 semanas de consistência vencem qualquer genética. Continue firme!"}
+{name:"Descanso Total",sets:"-",repetições:"—",rest:"-",steps:["Recuperação completa, meal prep, hidratação e sono","Avalie seu progresso semanal (peso, fotos, medidas)","Celebre cada conquista, por menor que pareça","Lembre-se: você começou com 111kg e está transformando seu corpo!"],tip:"44 semanas de consistência vencem qualquer genética. Continue firme!"}
 ]}
 }
 };
@@ -714,7 +778,7 @@ h+=`<div class="ex-phase" style="background:linear-gradient(135deg,#F59E0B,#D977
 h+=`<div class="ex-phase"><h2>🏠 Fase ${phase}: ${pi.name}</h2><p>${pi.desc}</p><div class="ex-ps"><div class="ex-pst"><div class="ex-pst-v">${pi.dur}</div><div class="ex-pst-l">por sessão</div></div><div class="ex-pst"><div class="ex-pst-v">${pi.freq}</div><div class="ex-pst-l">frequência</div></div><div class="ex-pst"><div class="ex-pst-v">18h</div><div class="ex-pst-l">horário ideal</div></div><div class="ex-pst"><div class="ex-pst-v">Sem ${exWeekNum}</div><div class="ex-pst-l">semana atual</div></div></div></div>`;
 }
 
-h+=`<div class="ex-sub-nav"><button class="ex-sub-btn ${exView==='treino'?'active':''}" id="exBtn_treino" onclick="setExView('treino')">Treino do Dia</button><button class="ex-sub-btn ${exView==='equip'?'active':''}" id="exBtn_equip" onclick="setExView('equip')">Equipamentos</button><button class="ex-sub-btn ${exView==='dicas'?'active':''}" id="exBtn_dicas" onclick="setExView('dicas')">Dicas</button></div>`;
+h+=`<div class="ex-sub-nav"><button class="ex-sub-btn ${exView==='treino'?'active':''}" id="exBtn_treino" onclick="setExView('treino')">📋 Plano</button><button class="ex-sub-btn" id="exBtn_play" onclick="wmStart()" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;font-weight:700;border-radius:8px">▶ Treinar</button><button class="ex-sub-btn ${exView==='equip'?'active':''}" id="exBtn_equip" onclick="setExView('equip')">🛍️ Equip.</button><button class="ex-sub-btn ${exView==='dicas'?'active':''}" id="exBtn_dicas" onclick="setExView('dicas')">📖 Dicas</button></div>`;
 
 const dl=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
 h+='<div class="dp" style="margin-bottom:14px">';
@@ -740,7 +804,8 @@ h+=`<div class="ex-item"><div class="ex-item-h"><div class="ex-item-name">${ex.n
 if(ex.sets&&ex.sets!=='-')h+=`<span class="ex-item-b ex-b-sets">${ex.sets}</span>`;
 if(ex.rest&&ex.rest!=='-')h+=`<span class="ex-item-b ex-b-rest">⏸ ${ex.rest}</span>`;
 h+=`</div></div>`;
-h+=`<details class="meal-subs" style="border:none;padding:0;margin:0;background:none"><summary style="color:#7C3AED">Passo a passo</summary><div class="ex-item-steps"><ol>`;
+const isWarmup=ex.name.includes('Aquecimento')||ex.name.includes('Volta à Calma')||ex.name.includes('Alongamento')||ex.name.includes('Descanso');
+h+=`<details class="meal-subs" style="border:none;padding:0;margin:0;background:none" ${isWarmup?'open':''}><summary style="color:#7C3AED">${isWarmup?'📋 Como fazer':'📋 Passo a passo'}</summary><div class="ex-item-steps"><ol>`;
 ex.steps.forEach(s=>h+=`<li>${s}</li>`);
 h+=`</ol></div>`;
 if(ex.tip)h+=`<div class="ex-item-tip">💡 ${ex.tip}</div>`;
@@ -772,11 +837,11 @@ h+=`<div style="background:linear-gradient(135deg,#DC2626,#991B1B);border-radius
 
 h+=`<div class="card" style="border-left:5px solid #F59E0B"><div class="card-title">📖 Glossário — Termos do Treino</div><div style="display:flex;flex-direction:column;gap:10px">`;
 const glossario=[
-["Superset","Fazer 2 exercícios seguidos SEM descanso entre eles. Exemplo: agachamento + ponte de glúteos. Só descansa depois de fazer os dois."],
-["Tri-set","Igual ao superset, mas com 3 exercícios seguidos sem pausa. Descansa só depois do terceiro."],
+["Dois exercícios seguidos sem pausa","Fazer 2 exercícios seguidos SEM descanso entre eles. Exemplo: agachamento + ponte de glúteos. Só descansa depois de fazer os dois."],
+["Três exercícios seguidos sem pausa","Igual ao dois exercícios seguidos sem pausa, mas com 3 exercícios seguidos sem pausa. Descansa só depois do terceiro."],
 ["Circuito","Fazer vários exercícios em sequência (5-8 exercícios seguidos), descansa, e repete tudo de novo."],
 ["Rodada","Uma passagem completa por todos os exercícios do circuito. Ex: 4 rodadas = fazer o circuito inteiro 4 vezes."],
-["Reps (Repetições)","Quantas vezes você faz o movimento. Ex: 12 reps = subir e descer 12 vezes."],
+["Reps (Repetições)","Quantas vezes você faz o movimento. Ex: 12 repetições = subir e descer 12 vezes."],
 ["Séries (Sets)","Quantos grupos de repetições. Ex: 3×12 = 3 grupos de 12 repetições, com descanso entre cada grupo."],
 ["Finisher","Exercício rápido e intenso no final do treino para queimar calorias extras."],
 ["Core","A região do abdômen, lombar e cintura. É o centro do corpo que estabiliza tudo."],
@@ -790,7 +855,7 @@ h+=`</div></div>`;
 
 h+=`<div class="card" style="border-left:5px solid #10B981"><div class="card-title">🏃 Como Fazer os Aquecimentos</div><div style="display:flex;flex-direction:column;gap:12px">`;
 const aquecimentos=[
-["Marcha Estacionária","Fique em pé e caminhe no lugar. Levante os joelhos até a altura do quadril, alternando as pernas. Balance os braços como se estivesse caminhando. Ritmo de caminhada normal."],
+["Marcha no Lugar (caminhar sem sair do lugar)","Fique em pé e caminhe no lugar. Levante os joelhos até a altura do quadril, alternando as pernas. Balance os braços como se estivesse caminhando. Ritmo de caminhada normal."],
 ["Marcha com Joelhos Altos","Igual à marcha, mas levante os joelhos BEM alto, acima da cintura se conseguir. Mais rápido que a marcha normal. Os braços acompanham com força."],
 ["Polichinelos Sem Impacto","Em pé, abra uma perna para o lado (sem pular) enquanto levanta os braços acima da cabeça. Volte ao centro. Repita com a outra perna. Parece polichinelo, mas sem salto."],
 ["Step Touch Lateral","Dê um passo para a direita e encoste o pé esquerdo no direito. Depois dê um passo para a esquerda e encoste o direito no esquerdo. Ritmo rápido, como uma dancinha lateral."],
@@ -809,9 +874,9 @@ const dicas=[
 {icon:"📈",title:"Progressão Automática",text:"O programa muda sozinho a cada 11 semanas (4 fases no total). Se um exercício ficou fácil, tente fazer 2-3 repetições a mais antes de trocar de fase."},
 {icon:"🛑",title:"Dor vs Desconforto",text:"Sentir os músculos queimando durante o exercício é NORMAL e bom sinal. Sentir dor aguda (tipo pontada) em articulações (joelho, ombro, cotovelo) é sinal para PARAR na hora."},
 {icon:"😴",title:"Descanso é Treino",text:"Sábado é recuperação ativa (cardio leve + alongamento) e Domingo descanso total. Dormir 7-8h é obrigatório para perder gordura e definir os músculos."},
-{icon:"📊",title:"Resultados Esperados",text:"Com dieta de 1450 kcal + exercícios 6×/semana com supersets e circuitos, é possível perder 1,0-1,2 kg por semana. Nas primeiras 12 semanas você já vai notar mudanças visíveis no espelho. Meta de peso: ~80kg com corpo definido."},
+{icon:"📊",title:"Resultados Esperados",text:"Com dieta de 1450 kcal + exercícios 6×/semana com dois exercícios seguidos sem pausas e circuitos, é possível perder 1,0-1,2 kg por semana. Nas primeiras 12 semanas você já vai notar mudanças visíveis no espelho. Meta de peso: ~80kg com corpo definido."},
 {icon:"🔥",title:"Queima Calórica Extra",text:"Os treinos queimam ~250-400 calorias por sessão. Além disso, após treinos intensos o corpo continua queimando calorias por até 24h, mesmo em repouso."},
-{icon:"💪",title:"Supersets e Definição",text:"Fazer 2 exercícios seguidos sem pausa mantém o coração acelerado enquanto trabalha os músculos. É o jeito mais eficiente de queimar gordura e definir ao mesmo tempo."},
+{icon:"💪",title:"Dois exercícios seguidos sem pausas e Definição",text:"Fazer 2 exercícios seguidos sem pausa mantém o coração acelerado enquanto trabalha os músculos. É o jeito mais eficiente de queimar gordura e definir ao mesmo tempo."},
 {icon:"🎯",title:"Barriga Chapada",text:"80% da barriga chapada vem da dieta (comer menos calorias). Os outros 20% vêm dos exercícios de abdômen presentes em quase TODOS os dias de treino. Com 4 sessões de abdômen/semana + dieta, os resultados virão."},
 {icon:"🪞",title:"Definição Corpo Todo",text:"O programa trabalha TODOS os músculos: peito (flexões), costas (remadas), ombros (elevações), braços (rosca+tríceps), pernas (agachamentos+afundos), bumbum (pontes), abdômen (pranchas+abdominais). Nada fica de fora."},
 {icon:"📸",title:"Acompanhamento",text:"Tire fotos a cada 4 semanas (mesma roupa, mesma luz, mesmo ângulo). A balança pode enganar porque músculo pesa mais que gordura. As fotos mostram a verdade."}
@@ -823,15 +888,200 @@ h+=`<div class="card" style="margin-bottom:0;padding:16px"><div style="display:f
 });
 h+=`</div>`;
 
-h+=`<div style="margin-top:16px;background:linear-gradient(135deg,#059669,#047857);border-radius:var(--r);padding:20px;color:#fff;box-shadow:var(--shm)"><h3 style="font-size:15px;font-weight:800;margin-bottom:12px">📅 Estrutura Semanal</h3><div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:13px;line-height:1.8"><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SEG</span><span>Pernas & Glúteos — Força + Supersets</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">TER</span><span>Peito, Costas, Ombros, Braços + Core</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">QUA</span><span>Circuito Metabólico Full Body</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">QUI</span><span>Pernas & Glúteos — Volume + Core</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SEX</span><span>Full Body Pump + Circuito Queima Final</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SÁB</span><span>Cardio Leve + Mobilidade Profunda</span><span style="font-weight:700;background:rgba(255,255,255,.1);padding:2px 8px;border-radius:4px;text-align:center;opacity:.7">DOM</span><span style="opacity:.7">Descanso Total — Recuperação</span></div></div>`;
+h+=`<div style="margin-top:16px;background:linear-gradient(135deg,#059669,#047857);border-radius:var(--r);padding:20px;color:#fff;box-shadow:var(--shm)"><h3 style="font-size:15px;font-weight:800;margin-bottom:12px">📅 Estrutura Semanal</h3><div style="display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:13px;line-height:1.8"><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SEG</span><span>Pernas & Glúteos — Força + Dois exercícios seguidos sem pausas</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">TER</span><span>Peito, Costas, Ombros, Braços + Core</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">QUA</span><span>Circuito Metabólico Full Body</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">QUI</span><span>Pernas & Glúteos — Volume + Core</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SEX</span><span>Full Body Pump + Circuito Queima Final</span><span style="font-weight:700;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;text-align:center">SÁB</span><span>Cardio Leve + Mobilidade Profunda</span><span style="font-weight:700;background:rgba(255,255,255,.1);padding:2px 8px;border-radius:4px;text-align:center;opacity:.7">DOM</span><span style="opacity:.7">Descanso Total — Recuperação</span></div></div>`;
 
-h+=`<div style="margin-top:16px;background:linear-gradient(135deg,#7C3AED,#5B21B6);border-radius:var(--r);padding:20px;color:#fff;box-shadow:var(--shm)"><h3 style="font-size:15px;font-weight:800;margin-bottom:12px">🎯 Fases do Programa</h3><div style="display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.6"><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 1 (Sem 1-11)</strong><br>Fundação + Queima — Aprender a fazer supersets corretamente · 35-40 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 2 (Sem 12-22)</strong><br>Intensificação — Tri-sets e séries rápidas tipo Tabata · 40-45 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 3 (Sem 23-33)</strong><br>Definição Máxima — Circuitos duplos de alta intensidade · 45-50 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 4 (Sem 34-44)</strong><br>Escultura Final — Mega circuitos para corpo definido · 45-50 min</div></div></div>`;
+h+=`<div style="margin-top:16px;background:linear-gradient(135deg,#7C3AED,#5B21B6);border-radius:var(--r);padding:20px;color:#fff;box-shadow:var(--shm)"><h3 style="font-size:15px;font-weight:800;margin-bottom:12px">🎯 Fases do Programa</h3><div style="display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.6"><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 1 (Sem 1-11)</strong><br>Fundação + Queima — Aprender a fazer dois exercícios seguidos sem pausas corretamente · 35-40 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 2 (Sem 12-22)</strong><br>Intensificação — Três exercícios seguidos sem pausas e séries rápidas tipo Tabata · 40-45 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 3 (Sem 23-33)</strong><br>Definição Máxima — Circuitos duplos de alta intensidade · 45-50 min</div><div style="padding:10px 12px;background:rgba(255,255,255,.1);border-radius:8px"><strong>Fase 4 (Sem 34-44)</strong><br>Escultura Final — Mega circuitos para corpo definido · 45-50 min</div></div></div>`;
 
 document.getElementById('exContent').insertAdjacentHTML('beforeend',h);
 }
 
 
+// ===================== WORKOUT TIMER MODE =====================
+let wmState={active:false,phase:0,exIdx:0,setIdx:0,timer:null,startTime:0,totalSets:0,doneSets:0,restSecs:0};
+const wmAudioCtx=typeof AudioContext!=='undefined'?new AudioContext():null;
+function wmBeep(freq=880,dur=0.15){if(!wmAudioCtx)return;const o=wmAudioCtx.createOscillator(),g=wmAudioCtx.createGain();o.connect(g);g.connect(wmAudioCtx.destination);o.frequency.value=freq;g.gain.value=0.3;o.start();o.stop(wmAudioCtx.currentTime+dur)}
+function wmBeepDone(){wmBeep(523,.1);setTimeout(()=>wmBeep(659,.1),150);setTimeout(()=>wmBeep(784,.2),300)}
+
+function wmStart(){
+  const exD=exAutoDetect();
+  const phase=getExPhase(exD.ewi);
+  const workout=WORKOUTS[phase]?.[exDay];
+  if(!workout||!workout.exercises||workout.exercises.length===0){alert('Sem treino para este dia!');return;}
+  if(exDay==='Domingo'){alert('Domingo é descanso total! 😴');return;}
+  wmState={active:true,phase:phase,exIdx:0,setIdx:0,timer:null,startTime:Date.now(),totalSets:0,doneSets:0,exercises:workout.exercises,title:workout.title,focus:workout.focus};
+  // Count total sets
+  workout.exercises.forEach(ex=>{
+    const sm=ex.sets.match(/(\d+)/);
+    wmState.totalSets+=sm?parseInt(sm[1]):1;
+  });
+  document.getElementById('wmOverlay').classList.add('active');
+  document.getElementById('wmTitle').textContent=workout.title;
+  document.getElementById('wmSubtitle').textContent=workout.focus+' · '+workout.time;
+  wmRenderEx();
+}
+
+function wmClose(){
+  if(wmState.timer)clearInterval(wmState.timer);
+  wmState.active=false;
+  document.getElementById('wmOverlay').classList.remove('active');
+}
+
+function wmRenderEx(){
+  const ex=wmState.exercises[wmState.exIdx];
+  if(!ex){wmRenderSummary();return;}
+  const pct=Math.round((wmState.exIdx/wmState.exercises.length)*100);
+  document.getElementById('wmProgressFill').style.width=pct+'%';
+  
+  const sm=ex.sets.match(/(\d+)/);
+  const totalSetsForEx=sm?parseInt(sm[1]):1;
+  const isTimedSet=ex.repetições&&(ex.repetições.includes('seg')||ex.repetições.includes('min'));
+  
+  // Build set dots
+  let dots='<div class="wm-set-dots">';
+  for(let i=0;i<totalSetsForEx;i++){
+    const cls=i<wmState.setIdx?'done':i===wmState.setIdx?'current':'';
+    dots+=`<div class="wm-set-dot ${cls}"></div>`;
+  }
+  dots+='</div>';
+  
+  let h=`<div class="wm-ex-card">`;
+  h+=`<div style="font-size:12px;font-weight:700;color:var(--tmu);text-transform:uppercase;margin-bottom:8px">Exercício ${wmState.exIdx+1} de ${wmState.exercises.length}</div>`;
+  h+=`<div class="wm-ex-name">${ex.name}</div>`;
+  h+=`<div class="wm-ex-detail">${ex.sets} · ${ex.repetições}${ex.rest&&ex.rest!=='-'?' · Descanso: '+ex.rest:''}</div>`;
+  h+=dots;
+  
+  if(isTimedSet){
+    const secMatch=ex.repetições.match(/(\d+)\s*seg/);
+    const minMatch=ex.repetições.match(/(\d+)\s*min/);
+    const totalSec=secMatch?parseInt(secMatch[1]):minMatch?parseInt(minMatch[1])*60:30;
+    h+=`<div class="wm-timer" id="wmTimerDisplay">${totalSec}</div>`;
+    h+=`<div style="margin:12px 0"><button class="wm-btn wm-btn-primary" id="wmStartSetBtn" onclick="wmStartTimer(${totalSec})">⏱ Iniciar ${totalSec}s</button></div>`;
+  } else {
+    h+=`<div class="wm-timer">${ex.repetições}</div>`;
+    h+=`<div style="margin:12px 0"><button class="wm-btn wm-btn-primary" onclick="wmCompleteSet()">✅ Concluído</button></div>`;
+  }
+  
+  // Steps
+  h+='<div class="wm-steps"><ol>';
+  ex.steps.forEach(s=>h+=`<li>${s}</li>`);
+  h+='</ol></div>';
+  
+  if(ex.tip)h+=`<div class="wm-tip">💡 ${ex.tip}</div>`;
+  h+='</div>';
+  
+  // Skip button
+  h+=`<div style="text-align:center;margin-top:8px"><button class="wm-btn wm-btn-outline" onclick="wmSkipEx()" style="min-width:auto;padding:10px 20px;font-size:13px">Pular exercício ⏭</button></div>`;
+  
+  document.getElementById('wmBody').innerHTML=h;
+}
+
+function wmStartTimer(secs){
+  let remaining=secs;
+  const display=document.getElementById('wmTimerDisplay');
+  const btn=document.getElementById('wmStartSetBtn');
+  if(btn)btn.style.display='none';
+  
+  wmState.timer=setInterval(()=>{
+    remaining--;
+    if(display)display.textContent=remaining;
+    if(remaining<=3&&remaining>0)wmBeep(660,.08);
+    if(remaining<=0){
+      clearInterval(wmState.timer);
+      wmBeepDone();
+      if(display){display.textContent='✓';display.classList.add('done')}
+      setTimeout(()=>wmCompleteSet(),800);
+    }
+  },1000);
+}
+
+function wmCompleteSet(){
+  if(wmState.timer){clearInterval(wmState.timer);wmState.timer=null;}
+  wmState.setIdx++;wmState.doneSets++;
+  const ex=wmState.exercises[wmState.exIdx];
+  const sm=ex.sets.match(/(\d+)/);
+  const totalSetsForEx=sm?parseInt(sm[1]):1;
+  
+  if(wmState.setIdx>=totalSetsForEx){
+    // Exercise complete, move to next
+    wmState.exIdx++;wmState.setIdx=0;
+    if(wmState.exIdx<wmState.exercises.length){
+      const nextEx=wmState.exercises[wmState.exIdx];
+      const restSec=ex.rest&&ex.rest!=='-'?parseInt(ex.rest)||60:30;
+      if(restSec>10)wmStartRest(restSec);
+      else wmRenderEx();
+    } else {
+      wmRenderSummary();
+    }
+  } else {
+    // More sets, rest between sets
+    const restSec=ex.rest&&ex.rest!=='-'?parseInt(ex.rest)||45:30;
+    wmStartRest(restSec);
+  }
+}
+
+function wmStartRest(secs){
+  let remaining=secs;
+  const pct=Math.round((wmState.exIdx/wmState.exercises.length)*100);
+  document.getElementById('wmProgressFill').style.width=pct+'%';
+  
+  let h=`<div class="wm-ex-card"><div style="font-size:14px;font-weight:700;color:#F59E0B;text-transform:uppercase;margin-bottom:8px">⏸ Descanso</div>`;
+  h+=`<div class="wm-timer rest" id="wmRestTimer">${remaining}</div>`;
+  h+=`<div style="font-size:14px;color:var(--ts);margin-bottom:16px">Respire fundo, beba água, prepare-se para o próximo</div>`;
+  h+=`<button class="wm-btn wm-btn-rest" onclick="wmSkipRest()">Pular descanso ⏭</button>`;
+  h+='</div>';
+  document.getElementById('wmBody').innerHTML=h;
+  
+  wmState.timer=setInterval(()=>{
+    remaining--;
+    const d=document.getElementById('wmRestTimer');
+    if(d)d.textContent=remaining;
+    if(remaining<=3&&remaining>0)wmBeep(440,.08);
+    if(remaining<=0){
+      clearInterval(wmState.timer);wmState.timer=null;
+      wmBeep(880,.2);
+      wmRenderEx();
+    }
+  },1000);
+}
+
+function wmSkipRest(){if(wmState.timer){clearInterval(wmState.timer);wmState.timer=null;}wmRenderEx();}
+function wmSkipEx(){if(wmState.timer){clearInterval(wmState.timer);wmState.timer=null;}wmState.exIdx++;wmState.setIdx=0;wmRenderEx();}
+
+function wmRenderSummary(){
+  document.getElementById('wmProgressFill').style.width='100%';
+  const elapsed=Math.round((Date.now()-wmState.startTime)/1000);
+  const mins=Math.floor(elapsed/60);
+  const secs=elapsed%60;
+  wmBeepDone();setTimeout(()=>wmBeepDone(),500);
+  
+  let h=`<div class="wm-summary">`;
+  h+=`<div style="font-size:48px;margin-bottom:8px">🏆</div>`;
+  h+=`<h2>Treino Completo!</h2>`;
+  h+=`<div style="font-size:14px;color:var(--ts);margin-bottom:4px">${wmState.title}</div>`;
+  h+=`<div class="wm-summary-grid">`;
+  h+=`<div class="wm-summary-item"><div class="wm-summary-val">${mins}:${String(secs).padStart(2,'0')}</div><div class="wm-summary-label">Tempo Total</div></div>`;
+  h+=`<div class="wm-summary-item"><div class="wm-summary-val">${wmState.exercises.length}</div><div class="wm-summary-label">Exercícios</div></div>`;
+  h+=`<div class="wm-summary-item"><div class="wm-summary-val">${wmState.doneSets}</div><div class="wm-summary-label">Séries Feitas</div></div>`;
+  h+=`<div class="wm-summary-item"><div class="wm-summary-val" style="color:#F59E0B">~${Math.round(elapsed/60*6)}</div><div class="wm-summary-label">Kcal Estimadas</div></div>`;
+  h+=`</div>`;
+  h+=`<div style="margin-top:20px"><button class="wm-btn wm-btn-done" onclick="wmClose()">Fechar ✓</button></div>`;
+  h+=`</div>`;
+  document.getElementById('wmBody').innerHTML=h;
+}
+// ===================== END WORKOUT MODE =====================
+
+
 renderW();updateP();
 </script>
+
+<div id="wmOverlay" class="wm-overlay">
+  <div class="wm-hdr">
+    <button class="wm-close" onclick="wmClose()">✕</button>
+    <h2 id="wmTitle">Modo Treino</h2>
+    <div class="wm-hdr-sub" id="wmSubtitle"></div>
+    <div class="wm-progress"><div class="wm-progress-fill" id="wmProgressFill"></div></div>
+  </div>
+  <div class="wm-body" id="wmBody"></div>
+</div>
 </body>
 </html>
