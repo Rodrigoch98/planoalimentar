@@ -758,7 +758,7 @@ function wmRenderEx(){
   
   const sm=ex.sets.match(/(\d+)/);
   const totalSetsForEx=sm?parseInt(sm[1]):1;
-  const isTimedSet=ex.repetições&&(ex.repetições.includes('seg')||ex.repetições.includes('min'));
+  const isTimedSet=ex.reps&&(ex.reps.includes('seg')||ex.reps.includes('min'));
   
   // Build set dots
   let dots='<div class="wm-set-dots">';
@@ -771,17 +771,17 @@ function wmRenderEx(){
   let h=`<div class="wm-ex-card">`;
   h+=`<div style="font-size:12px;font-weight:700;color:var(--tmu);text-transform:uppercase;margin-bottom:8px">Exercício ${wmState.exIdx+1} de ${wmState.exercises.length}</div>`;
   h+=`<div class="wm-ex-name">${ex.name}</div>`;
-  h+=`<div class="wm-ex-detail">${ex.sets} · ${ex.repetições}${ex.rest&&ex.rest!=='-'?' · Descanso: '+ex.rest:''}</div>`;
+  h+=`<div class="wm-ex-detail">${ex.sets} · ${ex.reps}${ex.rest&&ex.rest!=='-'?' · Descanso: '+ex.rest:''}</div>`;
   h+=dots;
   
   if(isTimedSet){
-    const secMatch=ex.repetições.match(/(\d+)\s*seg/);
-    const minMatch=ex.repetições.match(/(\d+)\s*min/);
+    const secMatch=ex.reps.match(/(\d+)\s*seg/);
+    const minMatch=ex.reps.match(/(\d+)\s*min/);
     const totalSec=secMatch?parseInt(secMatch[1]):minMatch?parseInt(minMatch[1])*60:30;
     h+=`<div class="wm-timer" id="wmTimerDisplay">${totalSec}</div>`;
     h+=`<div style="margin:12px 0"><button class="wm-btn wm-btn-primary" id="wmStartSetBtn" onclick="wmStartTimer(${totalSec})">⏱ Iniciar ${totalSec}s</button></div>`;
   } else {
-    h+=`<div class="wm-timer">${ex.repetições}</div>`;
+    h+=`<div class="wm-timer">${ex.reps}</div>`;
     h+=`<div style="margin:12px 0"><button class="wm-btn wm-btn-primary" onclick="wmCompleteSet()">✅ Concluído</button></div>`;
   }
   
